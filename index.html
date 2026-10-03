@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LAVO — Documentación del Proyecto</title>
+  <meta name="description" content="AI-Assisted System for Natural Language PLC Logic Generation, Validation and Deployment" />
+  <meta name="theme-color" content="#b3192a" />
+  <link rel="icon" href="assets/img/logo_icono.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/docs.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- ============================ HEADER ============================ -->
+  <header class="site-header">
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir índice" aria-controls="sidebar" aria-expanded="false">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <a href="#inicio" class="brand" aria-label="LAVO — ir al inicio de la documentación">
+      <span class="brand-mark"><img src="assets/img/logo_icono.png" alt="" /></span>
+      <span class="brand-text">
+        <span class="brand-name">LAVO <span>/</span> Documentación</span>
+        <span class="brand-sub">Proyecto Terminal · Ingeniería Mecatrónica</span>
+      </span>
+    </a>
+
+    <div class="header-spacer"></div>
+
+    <nav class="header-nav" aria-label="Herramientas del proyecto">
+      <a href="https://luiscortesmunoz.github.io/Proyecto_Final_Prospectiva_Tecnologia/index.html"><i class="fa-solid fa-comments"></i> Chat IA</a>
+      <a href="https://luiscortesmunoz.github.io/Proyecto_Final_Prospectiva_Tecnologia/ladder.html"><i class="fa-solid fa-table-cells"></i> Editor Ladder</a>
+      <a href="https://luiscortesmunoz.github.io/Proyecto_Final_Prospectiva_Tecnologia/Comparacion_Prompts_Disenador.html" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-chart-line"></i> Métricas</a>
+      <a class="header-gh" href="https://github.com/LuisCortesMunoz/Proyecto_Final_Prospectiva_Tecnologia" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> <span class="lbl">Repositorio</span></a>
+    </nav>
+
+    <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+  </header>
+
+  <div class="layout">
+
+    <!-- ============================ SIDEBAR ============================ -->
+    <aside class="sidebar" id="sidebar" aria-label="Índice de la documentación">
+      <div class="sidebar-head">
+        <span class="sidebar-title">Contenido</span>
+        <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar índice"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <a href="#inicio" class="sidebar-top"><i class="fa-solid fa-house"></i> Inicio de la documentación</a>
+
+      <nav id="doc-nav">
+        <div class="nav-group" data-group="introduccion">
+          <button class="nav-group-btn" aria-expanded="false">
+            <span class="nav-group-num">I</span><span class="nav-group-label">Introducción</span><i class="fa-solid fa-chevron-right chev"></i>
+          </button>
+          <ul class="nav-sub">
+            <li><a href="#resumen"><span class="n">01</span>Resumen</a></li>
+            <li><a href="#problema"><span class="n">02</span>Problema</a></li>
+            <li><a href="#objetivo"><span class="n">03</span>Objetivo</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-group" data-group="arquitectura">
+          <button class="nav-group-btn" aria-expanded="false">
+            <span class="nav-group-num">II</span><span class="nav-group-label">Arquitectura</span><i class="fa-solid fa-chevron-right chev"></i>
+          </button>
+          <ul class="nav-sub">
+            <li><a href="#arquitectura"><span class="n">04</span>Arquitectura general</a></li>
+            <li><a href="#flujo"><span class="n">05</span>Flujo completo</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-group" data-group="software">
+          <button class="nav-group-btn" aria-expanded="false">
+            <span class="nav-group-num">III</span><span class="nav-group-label">Software</span><i class="fa-solid fa-chevron-right chev"></i>
+          </button>
+          <ul class="nav-sub">
+            <li><a href="#frontend"><span class="n">06</span>Frontend</a></li>
+            <li><a href="#editor"><span class="n">07</span>Editor Ladder</a></li>
+            <li><a href="#backend"><span class="n">08</span>Backend</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-group" data-group="ia">
+          <button class="nav-group-btn" aria-expanded="false">
+            <span class="nav-group-num">IV</span><span class="nav-group-label">Inteligencia Artificial</span><i class="fa-solid fa-chevron-right chev"></i>
+          </button>
+          <ul class="nav-sub">
+            <li><a href="#contrato"><span class="n">09</span>JSON lógico</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-group" data-group="plc">
+          <button class="nav-group-btn" aria-expanded="false">
+            <span class="nav-group-num">V</span><span class="nav-group-label">PLC y comunicación</span><i class="fa-solid fa-chevron-right chev"></i>
+          </button>
+          <ul class="nav-sub">
+            <li><a href="#plc"><span class="n">10</span>PLC y registros</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-group" data-group="validacion">
+          <button class="nav-group-btn" aria-expanded="false">
+            <span class="nav-group-num">VI</span><span class="nav-group-label">Validación</span><i class="fa-solid fa-chevron-right chev"></i>
+          </button>
+          <ul class="nav-sub">
+            <li><a href="#seguridad"><span class="n">11</span>Validación y seguridad</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-group" data-group="pruebas">
+          <button class="nav-group-btn" aria-expanded="false">
+            <span class="nav-group-num">VII</span><span class="nav-group-label">Pruebas y resultados</span><i class="fa-solid fa-chevron-right chev"></i>
+          </button>
+          <ul class="nav-sub">
+            <li><a href="#metricas"><span class="n">12</span>Métricas</a></li>
+            <li><a href="#resultados"><span class="n">13</span>Resultados</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-group" data-group="creditos">
+          <button class="nav-group-btn" aria-expanded="false">
+            <span class="nav-group-num">VIII</span><span class="nav-group-label">Créditos</span><i class="fa-solid fa-chevron-right chev"></i>
+          </button>
+          <ul class="nav-sub">
+            <li><a href="#creditos"><span class="n">14</span>Herramientas de apoyo</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="sidebar-foot">
+        <a href="https://luiscortesmunoz.github.io/Proyecto_Final_Prospectiva_Tecnologia/index.html"><i class="fa-solid fa-comments"></i> Chat IA</a>
+        <a href="https://luiscortesmunoz.github.io/Proyecto_Final_Prospectiva_Tecnologia/ladder.html"><i class="fa-solid fa-table-cells"></i> Editor Ladder</a>
+        <a href="https://luiscortesmunoz.github.io/Proyecto_Final_Prospectiva_Tecnologia/Comparacion_Prompts_Disenador.html" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-chart-line"></i> Métricas evaluadas</a>
+        <a href="https://github.com/LuisCortesMunoz/Proyecto_Final_Prospectiva_Tecnologia" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Repositorio</a>
+      </div>
+    </aside>
+
+    <div class="scrim" id="scrim"></div>
+
+    <!-- ============================ CONTENIDO ============================ -->
+    <main class="content" id="contenido">
+      <div class="content-inner">
+
+        <!-- PORTADA -->
+        <section class="cover" id="inicio">
+          <div class="cover-top">
+            <div>
+              <div class="cover-kicker">
+                <span class="dot"></span> Documentación técnica extendida
+                <span class="sep">/</span> Proyecto Terminal
+              </div>
+              <h1>LAVO — <span class="accent">L</span>ogic <span class="accent">A</span>utomation, <span class="accent">V</span>alidation &amp; <span class="accent">O</span>peration</h1>
+            </div>
+            <div class="cover-logo"><img src="assets/img/logo_icono.png" alt="Logotipo de LAVO" /></div>
+          </div>
+
+          <p class="cover-tagline">AI-Assisted System for Natural Language PLC Logic Generation, Validation and Deployment</p>
+
+          <p class="cover-desc">
+            Esta página documenta con mayor detalle el funcionamiento del proyecto LAVO: su objetivo,
+            arquitectura, flujo de uso, frontend, backend, modelo de IA, validación, editor Ladder,
+            simulación, relación con el PLC Horner XL4 / XC1E5 y las métricas evaluadas durante las pruebas.
+          </p>
+
+          <dl class="cover-meta">
+            <div><dt>PLC</dt><dd>Horner XL4 / XC1E5</dd></div>
+            <div><dt>Software</dt><dd>Cscape</dd></div>
+            <div><dt>Comunicación</dt><dd>Modbus TCP</dd></div>
+            <div><dt>IA</dt><dd>Groq · Whisper</dd></div>
+          </dl>
+
+          <div class="cover-actions">
+            <a href="#arquitectura" class="btn btn-primary"><i class="fa-solid fa-diagram-project"></i> Ver arquitectura</a>
+            <a href="https://github.com/LuisCortesMunoz/Proyecto_Final_Prospectiva_Tecnologia" target="_blank" rel="noopener noreferrer" class="btn btn-ghost-light">
+              <i class="fa-brands fa-github"></i> Ver repositorio
+            </a>
+            <a href="https://luiscortesmunoz.github.io/Proyecto_Final_Prospectiva_Tecnologia/Comparacion_Prompts_Disenador.html" target="_blank" rel="noopener noreferrer" class="btn btn-ghost-light">
+              <i class="fa-solid fa-chart-line"></i> Abrir métricas evaluadas
+            </a>
+          </div>
+        </section>
+
+        <!-- ======================= PARTE I · INTRODUCCIÓN ======================= -->
+        <div class="part" data-group="introduccion"><span class="part-num">Parte I</span><span class="part-title">Introducción</span><span class="part-line"></span></div>
+
+        <!-- 01 · RESUMEN -->
+        <section class="doc-section" id="resumen" data-group="introduccion">
+          <header class="section-head">
+            <div class="section-num">01</div>
+            <div>
+              <div class="section-label">Resumen ejecutivo</div>
+              <h2>¿Qué es LAVO?</h2>
+            </div>
+          </header>
+
+          <p class="lead">
+            LAVO (Logic Automation, Validation &amp; Operation) es un sistema web que busca facilitar la creación,
+            visualización y prueba de lógica Ladder para PLC a partir de instrucciones en lenguaje natural.
+            El usuario puede escribir o dictar una instrucción como “con I1 enciende Q10 y con I2 apágala”,
+            y el sistema la transforma en una estructura lógica que puede visualizarse como diagrama Ladder.
+          </p>
+
+          <p>
+            La idea central del proyecto no es reemplazar por completo la programación industrial tradicional,
+            sino crear una capa asistida por inteligencia artificial que ayude a convertir necesidades humanas
+            en una lógica estructurada, validable y entendible antes de llevarla al PLC.
+          </p>
+
+          <p>
+            Para lograrlo, el proyecto separa responsabilidades: el frontend se encarga de la experiencia
+            visual, el editor Ladder, el chat y la simulación; el backend se encarga de la transcripción de voz,
+            la generación lógica con IA y la comunicación opcional con el PLC.
+          </p>
+
+          <div class="tags">
+            <span class="tag is-accent">LAVO</span>
+            <span class="tag">Logic Automation, Validation &amp; Operation</span>
+            <span class="tag">PLC Horner XL4 / XC1E5</span>
+            <span class="tag">Cscape</span>
+            <span class="tag">Modbus TCP</span>
+            <span class="tag">Groq</span>
+            <span class="tag">Whisper</span>
+            <span class="tag">JSON lógico</span>
+          </div>
+        </section>
+
+        <!-- 02 · PROBLEMA -->
+        <section class="doc-section" id="problema" data-group="introduccion">
+          <header class="section-head">
+            <div class="section-num">02</div>
+            <div>
+              <div class="section-label">Problema que atiende</div>
+              <h2>La programación PLC puede ser poco accesible para usuarios nuevos</h2>
+            </div>
+          </header>
+
+          <p>
+            Los PLCs se programan normalmente con herramientas especializadas como Cscape. Estas herramientas
+            son potentes, pero requieren conocer símbolos, contactos, bobinas, enclavamientos, timers,
+            contadores, direcciones de entradas y salidas, y el flujo de escaneo del PLC.
+          </p>
+
+          <p>
+            En un entorno educativo o de prototipado, muchas veces la persona sabe qué quiere que haga el
+            sistema, pero no sabe todavía cómo convertirlo en lógica Ladder. Por ejemplo, puede saber que quiere
+            “un botón de arranque, un botón de paro y una lámpara que quede encendida”, pero no necesariamente
+            sabe construir el enclavamiento con contacto de retención.
+          </p>
+
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-keyboard"></i></div>
+              <h4>Barrera técnica</h4>
+              <p>El usuario debe conocer sintaxis, direcciones, estructura Ladder y lógica de control.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-bug"></i></div>
+              <h4>Errores comunes</h4>
+              <p>Una mala interpretación puede activar salidas incorrectas o generar lógica incompleta.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+              <h4>Uso educativo</h4>
+              <p>El proyecto ayuda a explicar cómo una instrucción humana se convierte en lógica Ladder.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 03 · OBJETIVO -->
+        <section class="doc-section" id="objetivo" data-group="introduccion">
+          <header class="section-head">
+            <div class="section-num">03</div>
+            <div>
+              <div class="section-label">Objetivo del proyecto</div>
+              <h2>Convertir lenguaje natural en lógica Ladder validable</h2>
+            </div>
+          </header>
+
+          <p class="lead">
+            El objetivo principal de LAVO es permitir que una instrucción escrita o hablada se convierta en una
+            lógica de control estructurada. Esa lógica debe poder revisarse visualmente, simularse y, si se cuenta
+            con el entorno físico correcto, aplicarse al PLC mediante registros de configuración.
+          </p>
+
+          <h3>Objetivos específicos</h3>
+          <ol class="doc-list numbered">
+            <li>Capturar instrucciones por texto o voz desde una página web.</li>
+            <li>Transcribir audio a texto usando un modelo de voz a texto.</li>
+            <li>Interpretar la intención del usuario con un LLM.</li>
+            <li>Generar un JSON lógico simple, limitado y validable.</li>
+            <li>Compilar ese JSON lógico a una representación Ladder visual.</li>
+            <li>Permitir simulación básica desde el navegador.</li>
+            <li>Preparar una estrategia para controlar el PLC usando registros maestros.</li>
+            <li>Documentar resultados y métricas de generación para evaluar el comportamiento del modelo.</li>
+          </ol>
+
+          <div class="callout callout-note">
+            <div class="callout-icon"><i class="fa-solid fa-lightbulb"></i></div>
+            <div>
+              <span class="callout-title">Decisión de diseño</span>
+              La decisión más importante fue que la IA no dibuja directamente el Ladder. La IA solo interpreta
+              la intención y genera una descripción lógica. Después, el frontend valida y compila esa descripción
+              con reglas propias del proyecto.
+            </div>
+          </div>
+        </section>
+
+        <!-- ======================= PARTE II · ARQUITECTURA ======================= -->
+        <div class="part" data-group="arquitectura"><span class="part-num">Parte II</span><span class="part-title">Arquitectura</span><span class="part-line"></span></div>
+
+        <!-- 04 · ARQUITECTURA -->
+        <section class="doc-section" id="arquitectura" data-group="arquitectura">
+          <header class="section-head">
+            <div class="section-num">04</div>
+            <div>
+              <div class="section-label">Arquitectura general</div>
+              <h2>Separación entre interfaz, inteligencia artificial y control físico</h2>
+            </div>
+          </header>
+
+          <p class="lead">
+            La arquitectura se diseñó por capas para que cada parte tenga una responsabilidad clara. Esto evita
+            que la IA tenga control directo sobre el PLC y permite que el frontend funcione como una herramienta
+            visual independiente, mientras el backend concentra la comunicación con los modelos y servicios externos.
+          </p>
+
+          <!-- Diagrama de arquitectura: misma secuencia que el "Flujo general" de esta sección -->
+          <figure class="arch" aria-labelledby="arch-cap">
+            <div class="arch-legend">
+              <span class="lane-user"><i></i> Usuario</span>
+              <span class="lane-front"><i></i> Frontend web</span>
+              <span class="lane-back"><i></i> Backend IA / Puente PLC</span>
+              <span class="lane-plc"><i></i> PLC</span>
+            </div>
+
+            <ol class="pipeline">
+              <li class="stage lane-user">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-user"></i></span></div>
+                <h4>Usuario</h4>
+                <span class="stage-layer">escribe o dicta una instrucción</span>
+              </li>
+              <li class="stage lane-front">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-microphone-lines"></i></span></div>
+                <h4>Voz / Texto</h4>
+                <span class="stage-layer">frontend captura texto/audio</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-brain"></i></span></div>
+                <h4>IA</h4>
+                <span class="stage-layer">backend transcribe e interpreta con LLM</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-code"></i></span></div>
+                <h4>Generación de lógica</h4>
+                <span class="stage-layer">LLM devuelve JSON lógico</span>
+              </li>
+              <li class="stage lane-front">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-shield-halved"></i></span></div>
+                <h4>Validación</h4>
+                <span class="stage-layer">frontend valida el JSON</span>
+              </li>
+              <li class="stage lane-front">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-table-cells"></i></span></div>
+                <h4>Representación Ladder</h4>
+                <span class="stage-layer">frontend compila, renderiza y simula</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-network-wired"></i></span></div>
+                <h4>Comunicación Modbus</h4>
+                <span class="stage-layer">backend local escribe registros</span>
+              </li>
+              <li class="stage lane-plc">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-microchip"></i></span></div>
+                <h4>PLC</h4>
+                <span class="stage-layer">Horner XL4 / XC1E5</span>
+              </li>
+            </ol>
+
+            <figcaption class="arch-caption" id="arch-cap">
+              <b>Figura 1.</b> Flujo general del sistema LAVO, desde la instrucción del usuario hasta el PLC.
+            </figcaption>
+          </figure>
+
+          <h3>Capas del sistema</h3>
+          <div class="layers">
+            <div class="layer lane-front">
+              <div class="layer-name"><i class="fa-solid fa-window-maximize"></i> Frontend web</div>
+              <div class="layer-body">
+                <p>Interfaz principal, chat IA, documentación, editor Ladder, render, simulación y validación visual.</p>
+                <div class="layer-files"><span class="k">Archivos</span><code>index.html</code><code>ladder.html</code><code>documentacion.html</code><code>assets/js/*</code></div>
+              </div>
+            </div>
+            <div class="layer lane-front">
+              <div class="layer-name"><i class="fa-solid fa-table-cells"></i> Editor Ladder</div>
+              <div class="layer-body">
+                <p>Convierte estructuras de lógica en rungs, contactos, bobinas, ramas y elementos visibles.</p>
+                <div class="layer-files"><span class="k">Archivos</span><code>assets/js/ladder/app.js</code><code>renderer.js</code><code>simulator.js</code></div>
+              </div>
+            </div>
+            <div class="layer lane-front">
+              <div class="layer-name"><i class="fa-solid fa-gears"></i> Compilador lógico</div>
+              <div class="layer-body">
+                <p>Recibe JSON lógico simple y lo transforma en un esquema Ladder renderizable.</p>
+                <div class="layer-files"><span class="k">Archivos</span><code>logicToSchema.js</code><code>validate.js</code><code>schema.js</code></div>
+              </div>
+            </div>
+            <div class="layer lane-back">
+              <div class="layer-name"><i class="fa-solid fa-server"></i> Backend IA</div>
+              <div class="layer-body">
+                <p>Recibe audio o texto, llama a modelos de IA, genera respuestas estructuradas y devuelve JSON al frontend.</p>
+                <div class="layer-files"><span class="k">Elementos</span>Backend separado desplegado en Render / FastAPI</div>
+              </div>
+            </div>
+            <div class="layer lane-plc">
+              <div class="layer-name"><i class="fa-solid fa-plug"></i> Puente PLC</div>
+              <div class="layer-body">
+                <p>Permite escribir registros en el PLC Horner mediante Modbus TCP cuando se trabaja localmente.</p>
+                <div class="layer-files"><span class="k">Elementos</span>Script local de aplicación al PLC y endpoint de aplicación</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="code-block">
+            <div class="code-head"><div class="code-dots"><span></span><span></span><span></span></div><span class="code-title">flujo-general.txt</span></div>
+<pre data-lang="flow"><code>Flujo general:
+
+Usuario
+  → escribe o dicta una instrucción
+  → frontend captura texto/audio
+  → backend transcribe si hay audio
+  → backend interpreta con LLM
+  → LLM devuelve JSON lógico
+  → frontend valida el JSON
+  → frontend compila a Ladder
+  → frontend renderiza y simula
+  → si aplica, backend local escribe registros al PLC</code></pre>
+          </div>
+        </section>
+
+        <!-- 05 · FLUJO -->
+        <section class="doc-section" id="flujo" data-group="arquitectura">
+          <header class="section-head">
+            <div class="section-num">05</div>
+            <div>
+              <div class="section-label">Flujo completo de operación</div>
+              <h2>De una frase hablada a un programa Ladder visual</h2>
+            </div>
+          </header>
+
+          <ol class="timeline">
+            <li>
+              <div class="tl-num">1</div>
+              <div class="tl-body">
+                <strong>Entrada del usuario</strong>
+                <span>El usuario escribe o dicta una instrucción desde la página web. Puede pedir una lógica directa, un enclavamiento, una salida con timer o una combinación sencilla de entradas y salidas.</span>
+              </div>
+            </li>
+            <li>
+              <div class="tl-num">2</div>
+              <div class="tl-body">
+                <strong>Captura y envío al backend</strong>
+                <span>El frontend toma el texto o el archivo de audio y lo manda al backend. La API key nunca debe exponerse directamente en el frontend.</span>
+              </div>
+            </li>
+            <li>
+              <div class="tl-num">3</div>
+              <div class="tl-body">
+                <strong>Transcripción de voz</strong>
+                <span>Si el usuario usó voz, el backend utiliza un modelo STT para convertir el audio a texto. El resultado se devuelve al frontend para que el usuario pueda ver qué entendió el sistema.</span>
+              </div>
+            </li>
+            <li>
+              <div class="tl-num">4</div>
+              <div class="tl-body">
+                <strong>Generación lógica</strong>
+                <span>El texto se envía al modelo LLM, que debe responder con un JSON lógico simple. La respuesta no debe ser texto libre ni código Ladder dibujado.</span>
+              </div>
+            </li>
+            <li>
+              <div class="tl-num">5</div>
+              <div class="tl-body">
+                <strong>Validación del contrato</strong>
+                <span>El frontend revisa que el JSON tenga salidas válidas, entradas existentes, modos permitidos y estructura correcta antes de intentar dibujar algo.</span>
+              </div>
+            </li>
+            <li>
+              <div class="tl-num">6</div>
+              <div class="tl-body">
+                <strong>Compilación a Ladder</strong>
+                <span>Una vez validada, la lógica se convierte en rungs, contactos, bobinas y ramas. Esta parte es determinista y no depende de que la IA invente posiciones visuales.</span>
+              </div>
+            </li>
+            <li>
+              <div class="tl-num">7</div>
+              <div class="tl-body">
+                <strong>Simulación y revisión</strong>
+                <span>El usuario puede revisar el resultado, observar qué entradas controlan qué salidas y probar la lógica antes de aplicarla a un sistema físico.</span>
+              </div>
+            </li>
+            <li>
+              <div class="tl-num">8</div>
+              <div class="tl-body">
+                <strong>Aplicación al PLC</strong>
+                <span>Cuando se usa el entorno físico, el sistema no descarga un programa nuevo cada vez. En su lugar, actualiza registros que el programa maestro del PLC interpreta.</span>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <!-- ======================= PARTE III · SOFTWARE ======================= -->
+        <div class="part" data-group="software"><span class="part-num">Parte III</span><span class="part-title">Software</span><span class="part-line"></span></div>
+
+        <!-- 06 · FRONTEND -->
+        <section class="doc-section" id="frontend" data-group="software">
+          <header class="section-head">
+            <div class="section-num">06</div>
+            <div>
+              <div class="section-label">Frontend</div>
+              <h2>La parte visual del proyecto</h2>
+            </div>
+          </header>
+
+          <p>
+            El frontend es la única parte que se modifica con este cambio. Está compuesto por páginas HTML,
+            estilos CSS y módulos JavaScript. Su objetivo es que el usuario pueda interactuar con LAVO sin tener
+            que ver directamente el backend ni las llamadas a los modelos.
+          </p>
+
+          <h3>Páginas principales del frontend</h3>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 1.</b> Páginas principales del frontend</caption>
+              <thead>
+                <tr><th>Página</th><th>Función dentro del proyecto</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>index.html</code></td>
+                  <td>Entrada principal tipo Chat IA. Sirve para preguntar, explicar o pedir apoyo al asistente inteligente.</td>
+                </tr>
+                <tr>
+                  <td><code>ladder.html</code></td>
+                  <td>Editor visual Ladder. Aquí se ve, genera, valida, simula y manipula la lógica de control.</td>
+                </tr>
+                <tr>
+                  <td><code>documentacion.html</code></td>
+                  <td>Página de explicación técnica del sistema, su arquitectura, flujo, decisiones y métricas.</td>
+                </tr>
+                <tr>
+                  <td><code>Comparacion_Prompts_Disenador.html</code></td>
+                  <td>Reporte externo de métricas evaluadas. Se abre desde esta documentación mediante un enlace al final.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Módulos importantes del frontend</h3>
+          <ul class="file-list">
+            <li><code>assets/js/main.js</code><span>controla interacción general de la página principal.</span></li>
+            <li><code>assets/js/copilot.js</code><span>maneja la experiencia del chat IA.</span></li>
+            <li><code>assets/js/ladder/app.js</code><span>orquesta el editor Ladder.</span></li>
+            <li><code>assets/js/ladder/chat.js</code><span>conecta el panel de chat con la generación de lógica.</span></li>
+            <li><code>assets/js/ladder/generate.js</code><span>centraliza la generación desde texto o JSON lógico.</span></li>
+            <li><code>assets/js/ladder/gen-bridge.js</code><span>expone funciones globales para conectar páginas no modulares con el generador.</span></li>
+            <li><code>assets/js/ladder/validate.js</code><span>valida que la lógica recibida sea compatible con el contrato del proyecto.</span></li>
+            <li><code>assets/js/ladder/compiler/logicToSchema.js</code><span>convierte JSON lógico en un esquema Ladder visual.</span></li>
+            <li><code>assets/js/ladder/renderer.js</code><span>dibuja el Ladder en pantalla.</span></li>
+            <li><code>assets/js/ladder/simulator.js</code><span>permite probar la lógica desde el navegador.</span></li>
+          </ul>
+        </section>
+
+        <!-- 07 · EDITOR LADDER -->
+        <section class="doc-section" id="editor" data-group="software">
+          <header class="section-head">
+            <div class="section-num">07</div>
+            <div>
+              <div class="section-label">Editor Ladder</div>
+              <h2>Visualización, simulación y validación del programa</h2>
+            </div>
+          </header>
+
+          <p>
+            El editor Ladder es la parte donde la idea generada por IA se vuelve visible. En vez de mostrar solo
+            un JSON, el editor permite ver contactos, salidas, ramas y elementos de control de una forma más cercana
+            a cómo se trabaja en un entorno PLC.
+          </p>
+
+          <h3>Funciones principales</h3>
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+              <h4>Generación</h4>
+              <p>Recibe instrucciones y genera lógica Ladder usando el backend de IA.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-check-double"></i></div>
+              <h4>Validación</h4>
+              <p>Revisa que entradas, salidas, modos, timers y contadores sean válidos.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-play"></i></div>
+              <h4>Simulación</h4>
+              <p>Permite probar entradas y ver cómo deberían responder las salidas.</p>
+            </div>
+          </div>
+
+          <h3>Por qué es importante el editor</h3>
+          <p>
+            La IA puede cometer errores si se le deja generar estructuras libres. Por eso el editor funciona como
+            filtro visual y lógico: muestra lo que el sistema entendió, permite revisarlo y evita aplicar una lógica
+            confusa sin validación previa.
+          </p>
+        </section>
+
+        <!-- 08 · BACKEND -->
+        <section class="doc-section" id="backend" data-group="software">
+          <header class="section-head">
+            <div class="section-num">08</div>
+            <div>
+              <div class="section-label">Backend</div>
+              <h2>Servicios de IA y comunicación</h2>
+            </div>
+          </header>
+
+          <p>
+            Aunque este cambio no modifica el backend, es importante documentar su papel. El backend actúa como
+            intermediario entre el frontend y los servicios de IA. También puede servir como puente local para
+            comunicación con el PLC, dependiendo del entorno de ejecución.
+          </p>
+
+          <h3>Responsabilidades del backend</h3>
+          <ul class="doc-list">
+            <li>Recibir audio desde el frontend.</li>
+            <li>Convertir audio a texto mediante un modelo STT.</li>
+            <li>Enviar instrucciones de texto al modelo LLM.</li>
+            <li>Forzar que el modelo responda en formato JSON lógico.</li>
+            <li>Devolver al frontend una respuesta limpia y validable.</li>
+            <li>Guardar o consultar memoria de ejemplos cuando el flujo lo requiere.</li>
+            <li>Aplicar configuración al PLC mediante registros cuando se ejecuta localmente.</li>
+          </ul>
+
+          <h3>Endpoints documentados</h3>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 2.</b> Endpoints documentados del backend</caption>
+              <thead>
+                <tr><th>Endpoint</th><th>Descripción</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><span class="method method-post">POST</span><span class="path">/transcribir</span></td><td>Recibe audio y devuelve texto transcrito.</td></tr>
+                <tr><td><span class="method method-post">POST</span><span class="path">/voz-a-ladder</span></td><td>Flujo completo de voz a una estructura Ladder. Fue útil para pruebas iniciales.</td></tr>
+                <tr><td><span class="method method-post">POST</span><span class="path">/generar-ladder</span></td><td>Genera una estructura de Ladder de forma más directa a partir de texto.</td></tr>
+                <tr><td><span class="method method-post">POST</span><span class="path">/generar-logica</span></td><td>Endpoint principal para obtener JSON lógico simple a partir de lenguaje natural.</td></tr>
+                <tr><td><span class="method method-post">POST</span><span class="path">/aplicar-plc</span></td><td>Aplica una configuración al PLC mediante escritura de registros.</td></tr>
+                <tr><td><span class="method method-get">GET</span><span class="path">/plc/escanear</span></td><td>Busca dispositivos Modbus TCP disponibles en la red local.</td></tr>
+                <tr><td><span class="method method-post">POST</span><span class="path">/feedback</span></td><td>Registra si una respuesta fue aceptada, corregida o rechazada.</td></tr>
+                <tr><td><span class="method method-get">GET</span><span class="path">/memoria</span></td><td>Consulta ejemplos guardados para mejorar generaciones futuras.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout callout-warn">
+            <div class="callout-icon"><i class="fa-solid fa-key"></i></div>
+            <div>
+              <span class="callout-title">Importante</span>
+              Las API keys deben permanecer siempre en el backend o en variables de entorno del servicio desplegado.
+              No deben escribirse directamente en archivos HTML o JavaScript del frontend.
+            </div>
+          </div>
+        </section>
+
+        <!-- ======================= PARTE IV · INTELIGENCIA ARTIFICIAL ======================= -->
+        <div class="part" data-group="ia"><span class="part-num">Parte IV</span><span class="part-title">Inteligencia Artificial</span><span class="part-line"></span></div>
+
+        <!-- 09 · CONTRATO JSON -->
+        <section class="doc-section" id="contrato" data-group="ia">
+          <header class="section-head">
+            <div class="section-num">09</div>
+            <div>
+              <div class="section-label">Contrato de JSON lógico</div>
+              <h2>La IA responde con una estructura limitada y revisable</h2>
+            </div>
+          </header>
+
+          <p class="lead">
+            El contrato de JSON lógico es la parte más importante para controlar el comportamiento de la IA. En lugar
+            de pedirle que genere un programa Ladder completo con coordenadas o elementos visuales, se le pide una
+            descripción estructurada de la intención de control.
+          </p>
+
+          <h3>Ejemplo de instrucción</h3>
+          <div class="code-block">
+            <div class="code-head"><div class="code-dots"><span></span><span></span><span></span></div><span class="code-title">instrucción del usuario</span></div>
+<pre><code>Usuario:
+"Genera una lógica de enclavamiento donde I1 sea arranque,
+I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
+          </div>
+
+          <h3>Ejemplo de salida esperada</h3>
+          <div class="code-block">
+            <div class="code-head"><div class="code-dots"><span></span><span></span><span></span></div><span class="code-title">salida-esperada.json</span></div>
+<pre data-lang="json"><code>{
+  "name": "Enclavamiento_Inicio_Paro",
+  "device_profile": "maletin_basico",
+  "reset_before": true,
+  "system": {
+    "enable": true,
+    "global_stop": null
+  },
+  "outputs": [
+    {
+      "output": "Q10",
+      "logic": {
+        "mode": "enclavado",
+        "start": "I1",
+        "stop": "I2"
+      },
+      "timer": null,
+      "counter": null,
+      "expr": "(I1 + Q10) * !I2",
+      "comment": "I1 arranca y enclava Q10; I2 detiene la salida."
+    }
+  ]
+}</code></pre>
+          </div>
+
+          <h3>Ventajas de este enfoque</h3>
+          <ul class="doc-list">
+            <li>Reduce respuestas ambiguas del modelo.</li>
+            <li>Evita que la IA invente elementos Ladder no soportados.</li>
+            <li>Permite validar antes de renderizar.</li>
+            <li>Facilita convertir la lógica a registros del PLC.</li>
+            <li>Hace más claro qué entendió el modelo.</li>
+            <li>Permite comparar resultados en pruebas repetidas.</li>
+          </ul>
+        </section>
+
+        <!-- ======================= PARTE V · PLC Y COMUNICACIÓN ======================= -->
+        <div class="part" data-group="plc"><span class="part-num">Parte V</span><span class="part-title">PLC y comunicación</span><span class="part-line"></span></div>
+
+        <!-- 10 · PLC -->
+        <section class="doc-section" id="plc" data-group="plc">
+          <header class="section-head">
+            <div class="section-num">10</div>
+            <div>
+              <div class="section-label">PLC, Cscape y registros maestros</div>
+              <h2>Control físico sin descargar un programa nuevo cada vez</h2>
+            </div>
+          </header>
+
+          <p>
+            Para el entorno físico se considera un PLC Horner XL4 / XC1E5 usando Cscape. Una decisión clave del
+            proyecto fue no intentar reemplazar Cscape desde Python.En su lugar, se propone dejar cargado en el PLC
+            un programa Ladder maestro que contenga y lea registros de configuración.
+          </p>
+
+          <p>
+            Así, Python no tiene que generar y descargar un programa completo cada vez. Solo cambia valores en registros.
+            El PLC ya tiene una lógica base que interpreta esos valores y decide qué salida se activa, bajo qué modo
+            y con qué condiciones.
+          </p>
+
+          <h3>PLC objetivo</h3>
+          <dl class="spec-grid">
+            <div class="spec"><dt><i class="fa-solid fa-microchip spec-icon"></i><strong>PLC:</strong></dt><dd>Horner XL4 / XC1E5.</dd></div>
+            <div class="spec"><dt><i class="fa-solid fa-laptop-code spec-icon"></i><strong>Software:</strong></dt><dd>Cscape.</dd></div>
+            <div class="spec"><dt><i class="fa-solid fa-network-wired spec-icon"></i><strong>Comunicación:</strong></dt><dd>Modbus TCP.</dd></div>
+            <div class="spec"><dt><i class="fa-solid fa-ethernet spec-icon"></i><strong>Puerto típico:</strong></dt><dd>502.</dd></div>
+            <div class="spec"><dt><i class="fa-solid fa-right-to-bracket spec-icon"></i><strong>Entradas usadas en pruebas:</strong></dt><dd>I1, I2, I3, I4, I7.</dd></div>
+            <div class="spec"><dt><i class="fa-solid fa-right-from-bracket spec-icon"></i><strong>Salidas usadas en pruebas:</strong></dt><dd>Q10, Q11, Q12.</dd></div>
+          </dl>
+
+          <h3>Idea conceptual de registros</h3>
+          <div class="code-block">
+            <div class="code-head"><div class="code-dots"><span></span><span></span><span></span></div><span class="code-title">registros-conceptuales.txt</span></div>
+<pre data-lang="flow"><code>Bloques conceptuales:
+
+Q10 → registros de configuración para salida 1
+Q11 → registros de configuración para salida 2
+Q12 → registros de configuración para salida 3
+
+Cada bloque puede guardar:
+- salida habilitada
+- modo de operación
+- entrada de arranque
+- entrada de paro
+- timer
+- contador
+- reset
+- parámetros auxiliares</code></pre>
+          </div>
+
+          <h3>Modos de operación</h3>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 3.</b> Modos de operación</caption>
+              <thead>
+                <tr><th>Modo</th><th>Descripción</th><th>Ejemplo</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><span class="tag is-accent">directo</span></td><td>La salida sigue directamente el estado de una entrada.</td><td>I1 activa Q10 mientras I1 esté presionada.</td></tr>
+                <tr><td><span class="tag is-accent">enclavado</span></td><td>La salida queda retenida después del arranque hasta recibir paro.</td><td>I1 enciende Q10; I2 apaga Q10.</td></tr>
+                <tr><td><span class="tag is-accent">timer</span></td><td>Agrega comportamiento temporal como retardo o pulso.</td><td>I1 activa Q10 después de cierto tiempo.</td></tr>
+                <tr><td><span class="tag is-accent">counter</span></td><td>Activa una salida después de cierto número de eventos.</td><td>Después de 3 pulsos en I1, se activa Q10.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout callout-note">
+            <div class="callout-icon"><i class="fa-solid fa-circle-info"></i></div>
+            <div>
+              <span class="callout-title">Nota</span>
+              Esta estrategia es más realista para un proyecto académico con PLC físico: Cscape sigue siendo la
+              herramienta base de programación, y LAVO funciona como una capa inteligente que modifica parámetros
+              de operación.
+            </div>
+          </div>
+        </section>
+
+        <!-- ======================= PARTE VI · VALIDACIÓN ======================= -->
+        <div class="part" data-group="validacion"><span class="part-num">Parte VI</span><span class="part-title">Validación</span><span class="part-line"></span></div>
+
+        <!-- 11 · SEGURIDAD -->
+        <section class="doc-section" id="seguridad" data-group="validacion">
+          <header class="section-head">
+            <div class="section-num">11</div>
+            <div>
+              <div class="section-label">Validación y seguridad lógica</div>
+              <h2>La IA no debe tener control directo sin revisión</h2>
+            </div>
+          </header>
+
+          <p>
+            Un sistema que genera lógica para PLC debe ser cuidadoso. Aunque el proyecto funciona como prototipo,
+            la lógica de control puede representar acciones físicas reales. Por eso se usan capas de validación
+            antes de renderizar o aplicar cualquier configuración.
+          </p>
+
+          <h3>Validaciones importantes</h3>
+          <ul class="doc-list">
+            <li>Comprobar que las entradas solicitadas existan en el perfil del dispositivo.</li>
+            <li>Comprobar que las salidas solicitadas estén permitidas.</li>
+            <li>Rechazar modos de operación desconocidos.</li>
+            <li>Evitar respuestas que no sean JSON válido.</li>
+            <li>Evitar instrucciones ambiguas que no puedan convertirse de forma segura.</li>
+            <li>Separar generación lógica de aplicación física al PLC.</li>
+            <li>Mostrar al usuario lo que el modelo entendió antes de aplicar cambios.</li>
+          </ul>
+
+          <h3>Principio de diseño seguro</h3>
+          <ol class="chain">
+            <li><i class="fa-solid fa-brain"></i>La IA interpreta.</li>
+            <li><i class="fa-solid fa-shield-halved"></i>El frontend valida.</li>
+            <li><i class="fa-solid fa-gears"></i>El compilador estructura.</li>
+            <li><i class="fa-solid fa-user-check"></i>El usuario revisa.</li>
+            <li><i class="fa-solid fa-microchip"></i>El PLC ejecuta solamente una lógica previamente controlada.</li>
+          </ol>
+
+          <div class="callout callout-warn">
+            <div class="callout-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            <div>
+              <span class="callout-title">Alcance</span>
+              Para un uso industrial real harían falta más capas: revisión humana obligatoria, pruebas FAT/SAT,
+              límites físicos, paro de emergencia, permisos de usuario, bitácora de cambios y validación formal
+              de seguridad. En este proyecto, LAVO se plantea como prototipo educativo y de exploración tecnológica.
+            </div>
+          </div>
+        </section>
+
+        <!-- ======================= PARTE VII · PRUEBAS Y RESULTADOS ======================= -->
+        <div class="part" data-group="pruebas"><span class="part-num">Parte VII</span><span class="part-title">Pruebas y resultados</span><span class="part-line"></span></div>
+
+        <!-- 12 · MÉTRICAS -->
+        <section class="doc-section" id="metricas" data-group="pruebas">
+          <header class="section-head">
+            <div class="section-num">12</div>
+            <div>
+              <div class="section-label">Métricas evaluadas</div>
+              <h2>Comparación de prompts del modo Diseñador</h2>
+            </div>
+          </header>
+
+          <p>
+            Además de la documentación técnica, el proyecto incluye una evaluación de métricas sobre prompts del
+            modo Diseñador. En esa comparación se revisan pruebas automáticas del endpoint de generación lógica,
+            midiendo aspectos como ciclos completados, JSON válido, esquema válido, interpretación correcta,
+            latencia y consistencia de respuesta.
+          </p>
+
+          <p>
+            El reporte se encuentra en el archivo <code>Comparacion_Prompts_Disenador.html</code>. Para que el
+            botón funcione, ese archivo debe estar colocado en la raíz del frontend, junto a
+            <code>documentacion.html</code>.
+          </p>
+
+          <div class="card-grid cols-4">
+            <div class="metric"><strong>JSON</strong><span>Revisión de respuestas válidas y parseables.</span></div>
+            <div class="metric"><strong>Schema</strong><span>Validación contra la estructura esperada.</span></div>
+            <div class="metric"><strong>Latencia</strong><span>Tiempo de respuesta de cada generación.</span></div>
+            <div class="metric"><strong>Consistencia</strong><span>Estabilidad del modelo ante prompts repetidos.</span></div>
+          </div>
+
+          <div class="actions">
+            <a href="https://luiscortesmunoz.github.io/Proyecto_Final_Prospectiva_Tecnologia/Comparacion_Prompts_Disenador.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              <i class="fa-solid fa-chart-line"></i> Abrir métricas evaluadas
+            </a>
+            <a href="https://luiscortesmunoz.github.io/Proyecto_Final_Prospectiva_Tecnologia/ladder.html" class="btn btn-outline">
+              <i class="fa-solid fa-table-cells"></i> Abrir Editor Ladder
+            </a>
+            <a href="https://luiscortesmunoz.github.io/Proyecto_Final_Prospectiva_Tecnologia/index.html" class="btn btn-outline">
+              <i class="fa-solid fa-comments"></i> Abrir Chat IA
+            </a>
+          </div>
+        </section>
+
+        <!-- 13 · RESULTADOS -->
+        <section class="doc-section" id="resultados" data-group="pruebas">
+          <header class="section-head">
+            <div class="section-num">13</div>
+            <div>
+              <div class="section-label">Resultados</div>
+              <h2>Evidencia de funcionamiento en el PLC físico</h2>
+            </div>
+          </header>
+
+          <p>
+            Esta sección reúne los videos e imágenes obtenidos durante las pruebas del sistema sobre el
+            PLC. Cada resultado demuestra que la lógica generada y aplicada se comporta como se esperaba:
+            enclavamiento, botón de paro, temporizador y contador.
+          </p>
+
+          <!-- Los videos se sirven desde el sitio del proyecto principal (son demasiado
+               pesados para duplicarlos en este repositorio). Las imágenes son locales. -->
+
+          <!-- Enclavamiento -->
+          <div class="result-group">
+            <h3>Enclavamiento</h3>
+            <div class="figure-grid">
+              <figure class="figure">
+                <div class="figure-media"><video controls preload="metadata" src="https://luiscortesmunoz.github.io/Proyecto_Final_Prospectiva_Tecnologia/assets/resultados/Enclavamiento.mp4"></video></div>
+                <figcaption>
+                  <div class="fig-label"><span class="fig-num">Video 1</span><span class="fig-file"><i class="fa-solid fa-video"></i> Enclavamiento.mp4</span></div>
+                  <p>Prueba de la lógica de enclavamiento: una entrada activa la salida y ésta se mantiene encendida (se enclava) aunque se suelte el botón.</p>
+                </figcaption>
+              </figure>
+              <figure class="figure">
+                <div class="figure-media"><video controls preload="metadata" src="https://luiscortesmunoz.github.io/Proyecto_Final_Prospectiva_Tecnologia/assets/resultados/Enclavamiento%20(1).mp4"></video></div>
+                <figcaption>
+                  <div class="fig-label"><span class="fig-num">Video 2</span><span class="fig-file"><i class="fa-solid fa-video"></i> Enclavamiento (1).mp4</span></div>
+                  <p>Segunda toma del enclavamiento, mostrando el ciclo completo de encendido y apagado desde otra perspectiva o instrucción.</p>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <!-- Botón de paro -->
+          <div class="result-group">
+            <h3>Botón de paro</h3>
+            <div class="figure-grid">
+              <figure class="figure">
+                <div class="figure-media"><video controls preload="metadata" src="https://luiscortesmunoz.github.io/Proyecto_Final_Prospectiva_Tecnologia/assets/resultados/boton%20de%20paro.mp4"></video></div>
+                <figcaption>
+                  <div class="fig-label"><span class="fig-num">Video 3</span><span class="fig-file"><i class="fa-solid fa-video"></i> boton de paro.mp4</span></div>
+                  <p>Demostración del botón de paro: al accionarlo se corta la salida y el sistema deja de operar de forma inmediata.</p>
+                </figcaption>
+              </figure>
+              <figure class="figure">
+                <div class="figure-media"><video controls preload="metadata" src="https://luiscortesmunoz.github.io/Proyecto_Final_Prospectiva_Tecnologia/assets/resultados/boton%20de%20paro%20(1).mp4"></video></div>
+                <figcaption>
+                  <div class="fig-label"><span class="fig-num">Video 4</span><span class="fig-file"><i class="fa-solid fa-video"></i> boton de paro (1).mp4</span></div>
+                  <p>Segunda prueba del botón de paro, verificando que el paro tiene prioridad sobre la lógica de encendido.</p>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <!-- Temporizador -->
+          <div class="result-group">
+            <h3>Temporizador (timer)</h3>
+            <div class="figure-grid">
+              <figure class="figure">
+                <div class="figure-media"><video controls preload="metadata" src="https://luiscortesmunoz.github.io/Proyecto_Final_Prospectiva_Tecnologia/assets/resultados/timer.mp4"></video></div>
+                <figcaption>
+                  <div class="fig-label"><span class="fig-num">Video 5</span><span class="fig-file"><i class="fa-solid fa-video"></i> timer.mp4</span></div>
+                  <p>Prueba del temporizador: la salida se activa o desactiva tras el retardo de tiempo configurado en la lógica.</p>
+                </figcaption>
+              </figure>
+              <figure class="figure">
+                <div class="figure-media"><img src="assets/resultados/timer.png" alt="Captura del timer" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
+                <figcaption>
+                  <div class="fig-label"><span class="fig-num">Figura 2</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer.png</span></div>
+                  <p>Captura de la configuración/estado del temporizador en la interfaz o en el PLC.</p>
+                </figcaption>
+              </figure>
+              <figure class="figure">
+                <div class="figure-media"><img src="assets/resultados/timer2.png" alt="Segunda captura del timer" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
+                <figcaption>
+                  <div class="fig-label"><span class="fig-num">Figura 3</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer2.png</span></div>
+                  <p>Segunda captura del temporizador, mostrando otra fase o parámetro del mismo comportamiento.</p>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <!-- Contador -->
+          <div class="result-group">
+            <h3>Contador</h3>
+            <div class="figure-grid">
+              <figure class="figure">
+                <div class="figure-media"><video controls preload="metadata" src="https://luiscortesmunoz.github.io/Proyecto_Final_Prospectiva_Tecnologia/assets/resultados/contador.mp4"></video></div>
+                <figcaption>
+                  <div class="fig-label"><span class="fig-num">Video 6</span><span class="fig-file"><i class="fa-solid fa-video"></i> contador.mp4</span></div>
+                  <p>Prueba del contador: la salida se activa al alcanzar el número de pulsos/eventos definido en la lógica.</p>
+                </figcaption>
+              </figure>
+              <figure class="figure">
+                <div class="figure-media"><img src="assets/resultados/contador1.png" alt="Primera captura del contador" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
+                <figcaption>
+                  <div class="fig-label"><span class="fig-num">Figura 4</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador1.png</span></div>
+                  <p>Captura del contador antes de alcanzar el valor objetivo (conteo en progreso).</p>
+                </figcaption>
+              </figure>
+              <figure class="figure">
+                <div class="figure-media"><img src="assets/resultados/contador2.png" alt="Segunda captura del contador" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
+                <figcaption>
+                  <div class="fig-label"><span class="fig-num">Figura 5</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador2.png</span></div>
+                  <p>Captura del contador al llegar al valor configurado y activar la salida correspondiente.</p>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="callout callout-note">
+            <div class="callout-icon"><i class="fa-solid fa-folder-open"></i></div>
+            <div>
+              <span class="callout-title">Archivos</span>
+              Los archivos de esta sección se encuentran en <code>assets/resultados/</code> y conservan el
+              mismo nombre original usado en la carpeta de resultados.
+            </div>
+          </div>
+        </section>
+
+        <!-- ======================= PARTE VIII · CRÉDITOS ======================= -->
+        <div class="part" data-group="creditos"><span class="part-num">Parte VIII</span><span class="part-title">Créditos</span><span class="part-line"></span></div>
+
+        <!-- 14 · CRÉDITOS -->
+        <section class="doc-section" id="creditos" data-group="creditos">
+          <header class="section-head">
+            <div class="section-num">14</div>
+            <div>
+              <div class="section-label">Créditos y herramientas de apoyo</div>
+              <h2>Herramientas que apoyaron el desarrollo</h2>
+            </div>
+          </header>
+
+          <p>
+            LAVO fue desarrollado como proyecto académico de prospectiva tecnológica, combinando automatización,
+            desarrollo web, programación en Python, integración con IA y pruebas orientadas a PLC.
+          </p>
+
+          <div class="credits">
+            <div class="credit">
+              <div class="credit-icon"><i class="fa-solid fa-code"></i></div>
+              <div>
+                <strong>Claude Code</strong>
+                <p>Herramienta de apoyo para estructurar código, refactorizar partes del proyecto, organizar módulos
+                y acelerar la integración entre frontend, backend y generación lógica.</p>
+              </div>
+            </div>
+            <div class="credit">
+              <div class="credit-icon"><i class="fa-solid fa-comments"></i></div>
+              <div>
+                <strong>ChatGPT</strong>
+                <p>Utilizado para definir arquitectura, revisar código, explicar conceptos de PLC, documentar decisiones
+                técnicas y ordenar el desarrollo paso a paso.</p>
+              </div>
+            </div>
+            <div class="credit">
+              <div class="credit-icon"><i class="fa-solid fa-lightbulb"></i></div>
+              <div>
+                <strong>Gemini</strong>
+                <p>Usado para contrastar ideas, resolver dudas puntuales y apoyar algunas decisiones de diseño.</p>
+              </div>
+            </div>
+            <div class="credit">
+              <div class="credit-icon"><i class="fa-solid fa-bolt"></i></div>
+              <div>
+                <strong>Groq</strong>
+                <p>API usada para transcripción de voz con Whisper y generación de lógica estructurada con modelos LLM.</p>
+              </div>
+            </div>
+            <div class="credit">
+              <div class="credit-icon"><i class="fa-solid fa-computer"></i></div>
+              <div>
+                <strong>Ollama</strong>
+                <p>Considerado como alternativa para ejecutar modelos locales y comparar enfoques de asistencia con IA.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout callout-note">
+            <div class="callout-icon"><i class="fa-solid fa-circle-info"></i></div>
+            <div>
+              <span class="callout-title">Nota</span>
+              Esta documentación se actualizó únicamente en el frontend. No es necesario modificar el repositorio del backend
+              para que esta página extendida y el enlace a métricas funcionen.
+            </div>
+          </div>
+
+          <div class="actions">
+            <a href="https://luiscortesmunoz.github.io/Proyecto_Final_Prospectiva_Tecnologia/index.html" class="btn btn-outline">
+              <i class="fa-solid fa-arrow-left"></i> Volver a Chat IA
+            </a>
+            <a href="https://luiscortesmunoz.github.io/Proyecto_Final_Prospectiva_Tecnologia/ladder.html" class="btn btn-primary">
+              <i class="fa-solid fa-microchip"></i> Abrir Editor Ladder
+            </a>
+            <a href="https://luiscortesmunoz.github.io/Proyecto_Final_Prospectiva_Tecnologia/Comparacion_Prompts_Disenador.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+              <i class="fa-solid fa-chart-simple"></i> Ver métricas
+            </a>
+          </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="site-footer">
+          <div class="f-brand"><i class="fa-solid fa-microphone-lines"></i> LAVO</div>
+          <span>Proyecto Final &mdash; Prospectiva de la Tecnología</span>
+          <div class="f-links">
+            <a href="#inicio"><i class="fa-solid fa-arrow-up"></i> Inicio</a>
+            <a href="https://github.com/LuisCortesMunoz/Proyecto_Final_Prospectiva_Tecnologia" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Ver en GitHub</a>
+          </div>
+        </footer>
+
+      </div>
+    </main>
+
+    <!-- ============================ TOC DERECHO ============================ -->
+    <aside class="toc" aria-label="En esta sección">
+      <div class="toc-title">En esta sección</div>
+      <div class="toc-current" id="toc-current">Inicio</div>
+      <ul id="toc-list"></ul>
+    </aside>
+  </div>
+
+  <button class="to-top" id="to-top" aria-label="Volver al inicio de la documentación">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- LIGHTBOX (imágenes de Resultados en grande) -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Imagen ampliada">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+    <img id="lightbox-img" src="" alt="Imagen ampliada" />
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+  </div>
+
+  <script src="assets/js/docs.js"></script>
+</body>
+</html>
