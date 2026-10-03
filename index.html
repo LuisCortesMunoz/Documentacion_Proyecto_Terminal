@@ -98,7 +98,7 @@
             <span class="nav-group-num">IV</span><span class="nav-group-label">Inteligencia Artificial</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
-            <li><a href="#contrato"><span class="n">14</span>JSON lógico</a></li>
+            <li><a href="#contrato"><span class="n">14</span>Modelos y JSON lógico</a></li>
           </ul>
         </div>
 
@@ -108,6 +108,7 @@
           </button>
           <ul class="nav-sub">
             <li><a href="#plc"><span class="n">15</span>PLC y registros</a></li>
+            <li><a href="#comunicacion"><span class="n">16</span>Comunicación</a></li>
           </ul>
         </div>
 
@@ -116,8 +117,8 @@
             <span class="nav-group-num">VI</span><span class="nav-group-label">Validación</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
-            <li><a href="#seguridad"><span class="n">16</span>Validación y seguridad</a></li>
-            <li><a href="#manual"><span class="n">17</span>Manual de buenas prácticas</a></li>
+            <li><a href="#seguridad"><span class="n">17</span>Validación y seguridad</a></li>
+            <li><a href="#manual"><span class="n">18</span>Manual de buenas prácticas</a></li>
           </ul>
         </div>
 
@@ -126,8 +127,8 @@
             <span class="nav-group-num">VII</span><span class="nav-group-label">Pruebas y resultados</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
-            <li><a href="#metricas"><span class="n">18</span>Métricas</a></li>
-            <li><a href="#resultados"><span class="n">19</span>Resultados</a></li>
+            <li><a href="#metricas"><span class="n">19</span>Métricas</a></li>
+            <li><a href="#resultados"><span class="n">20</span>Resultados</a></li>
           </ul>
         </div>
 
@@ -136,7 +137,7 @@
             <span class="nav-group-num">VIII</span><span class="nav-group-label">Créditos</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
-            <li><a href="#creditos"><span class="n">20</span>Herramientas de apoyo</a></li>
+            <li><a href="#creditos"><span class="n">21</span>Herramientas de apoyo</a></li>
           </ul>
         </div>
 
@@ -145,7 +146,7 @@
             <span class="nav-group-num">IX</span><span class="nav-group-label">Referencias</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
-            <li><a href="#referencias"><span class="n">21</span>Referencias</a></li>
+            <li><a href="#referencias"><span class="n">22</span>Referencias</a></li>
           </ul>
         </div>
       </nav>
@@ -1494,7 +1495,7 @@
         <!-- ======================= PARTE II · ARQUITECTURA ======================= -->
         <div class="part" data-group="arquitectura"><span class="part-num">Parte II</span><span class="part-title">Arquitectura</span><span class="part-line"></span></div>
 
-        <!-- 04 · ARQUITECTURA -->
+        <!-- 09 · ARQUITECTURA -->
         <section class="doc-section" id="arquitectura" data-group="arquitectura">
           <header class="section-head">
             <div class="section-num">09</div>
@@ -1505,131 +1506,197 @@
           </header>
 
           <p class="lead">
-            La arquitectura se diseñó por capas para que cada parte tenga una responsabilidad clara. Esto evita
-            que la IA tenga control directo sobre el PLC y permite que el frontend funcione como una herramienta
-            visual independiente, mientras el backend concentra la comunicación con los modelos y servicios externos.
+            LAVO se divide en tres entornos de ejecución: un frontend estático que corre en el navegador, un
+            backend en la nube (Render) que concentra la comunicación con los modelos de IA, y un puente local
+            —el mismo backend ejecutado en una computadora de la red del PLC— que es el único componente que
+            escribe en los controladores. El sistema trabaja con dos equipos físicos independientes: el
+            <strong>maletín</strong> de laboratorio y la <strong>banda transportadora</strong>, cada uno con su
+            propio PLC Horner XL4, su propio programa maestro y su propio mapa de registros.
           </p>
 
-          <!-- Diagrama de arquitectura: misma secuencia que el "Flujo general" de esta sección -->
+          <h3>Relación entre módulos</h3>
           <figure class="arch" aria-labelledby="arch-cap">
             <div class="arch-legend">
               <span class="lane-user"><i></i> Usuario</span>
-              <span class="lane-front"><i></i> Frontend web</span>
-              <span class="lane-back"><i></i> Backend IA / Puente PLC</span>
-              <span class="lane-plc"><i></i> PLC</span>
+              <span class="lane-front"><i></i> Frontend (navegador)</span>
+              <span class="lane-back"><i></i> Backend en Render + Groq</span>
+              <span class="lane-plc"><i></i> Puente local + PLC</span>
             </div>
 
             <ol class="pipeline">
               <li class="stage lane-user">
                 <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-user"></i></span></div>
                 <h4>Usuario</h4>
-                <span class="stage-layer">escribe o dicta una instrucción</span>
+                <span class="stage-layer">escribe o dicta la instrucción</span>
               </li>
               <li class="stage lane-front">
-                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-microphone-lines"></i></span></div>
-                <h4>Voz / Texto</h4>
-                <span class="stage-layer">frontend captura texto/audio</span>
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-code-branch"></i></span></div>
+                <h4>Selección de equipo</h4>
+                <span class="stage-layer">maletín, banda o pregunta al usuario</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-server"></i></span></div>
+                <h4>/generar-logica</h4>
+                <span class="stage-layer">enruta por equipo y detecta datos faltantes</span>
               </li>
               <li class="stage lane-back">
                 <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-brain"></i></span></div>
-                <h4>IA</h4>
-                <span class="stage-layer">backend transcribe e interpreta con LLM</span>
+                <h4>LLM (Groq)</h4>
+                <span class="stage-layer">configuración del maletín o intención de la banda</span>
               </li>
               <li class="stage lane-back">
-                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-code"></i></span></div>
-                <h4>Generación de lógica</h4>
-                <span class="stage-layer">LLM devuelve JSON lógico</span>
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-shield-halved"></i></span></div>
+                <h4>Validación backend</h4>
+                <span class="stage-layer">reglas del hardware y auto-revisión</span>
               </li>
               <li class="stage lane-front">
-                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-shield-halved"></i></span></div>
-                <h4>Validación</h4>
-                <span class="stage-layer">frontend valida el JSON</span>
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-check-double"></i></span></div>
+                <h4>Validación frontend</h4>
+                <span class="stage-layer">validateLogicJson antes de dibujar</span>
               </li>
               <li class="stage lane-front">
                 <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-table-cells"></i></span></div>
-                <h4>Representación Ladder</h4>
-                <span class="stage-layer">frontend compila, renderiza y simula</span>
+                <h4>Vista Ladder</h4>
+                <span class="stage-layer">compilación, simulación y panel de la banda</span>
               </li>
-              <li class="stage lane-back">
+              <li class="stage lane-user">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-user-check"></i></span></div>
+                <h4>Revisión</h4>
+                <span class="stage-layer">el usuario revisa y decide cargar</span>
+              </li>
+              <li class="stage lane-front">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-plug-circle-check"></i></span></div>
+                <h4>Ventana de carga</h4>
+                <span class="stage-layer">programa, IP y prueba de comunicación</span>
+              </li>
+              <li class="stage lane-plc">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-laptop-code"></i></span></div>
+                <h4>Puente /aplicar-plc</h4>
+                <span class="stage-layer">valida otra vez y arma el plan de escritura</span>
+              </li>
+              <li class="stage lane-plc">
                 <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-network-wired"></i></span></div>
-                <h4>Comunicación Modbus</h4>
-                <span class="stage-layer">backend local escribe registros</span>
+                <h4>Modbus TCP</h4>
+                <span class="stage-layer">escritura y lectura de registros %R</span>
               </li>
               <li class="stage lane-plc">
                 <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-microchip"></i></span></div>
                 <h4>PLC</h4>
-                <span class="stage-layer">Horner XL4 / XC1E5</span>
+                <span class="stage-layer">el programa maestro ejecuta la lógica</span>
               </li>
             </ol>
 
             <figcaption class="arch-caption" id="arch-cap">
-              <b>Figura 14.</b> Flujo general del sistema LAVO, desde la instrucción del usuario hasta el PLC.
+              <b>Figura 14.</b> Relación entre los módulos de LAVO, desde la instrucción del usuario hasta el PLC.
+              Las respuestas regresan por el mismo camino (ver la tabla siguiente).
             </figcaption>
           </figure>
 
-          <h3>Capas del sistema</h3>
+          <h3>Mensajes entre módulos</h3>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 7.</b> Qué inicia cada operación, qué viaja y qué regresa</caption>
+              <thead>
+                <tr><th>Origen → destino</th><th>Información enviada</th><th>Respuesta</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Frontend → Backend Render</td>
+                  <td><code>POST /generar-logica</code> con el texto, el equipo (<code>device</code>), el perfil del dispositivo y el contexto (programa actual e instrucciones previas).</td>
+                  <td>Configuración validada (<code>logic</code> y <code>program</code>), avisos e id de ejemplo; o <code>status: "needs_clarification"</code> con preguntas.</td>
+                </tr>
+                <tr>
+                  <td>Backend → Groq</td>
+                  <td>Prompt de sistema del equipo, contexto opcional y la instrucción.</td>
+                  <td>Texto con un objeto JSON, que el backend extrae y valida.</td>
+                </tr>
+                <tr>
+                  <td>Frontend → Backend Render</td>
+                  <td><code>POST /chat</code> (modos Aprendizaje y Práctico) y <code>POST /feedback</code> (👍/👎).</td>
+                  <td>Respuesta del copiloto con métricas; confirmación del registro de feedback.</td>
+                </tr>
+                <tr>
+                  <td>Frontend → Puente local</td>
+                  <td><code>POST /aplicar-plc</code> con el <code>engine_config</code>, la IP, el puerto y el equipo elegidos por el usuario.</td>
+                  <td>Plan de escritura ejecutado, avisos y, en la banda, el estado de <code>CfgReady</code>.</td>
+                </tr>
+                <tr>
+                  <td>Puente local → PLC</td>
+                  <td>Escritura de registros de configuración por Modbus TCP.</td>
+                  <td>Confirmación de cada escritura y lectura de registros de estado.</td>
+                </tr>
+                <tr>
+                  <td>Frontend → Puente local</td>
+                  <td>Consultas de diagnóstico (<code>/plc/probar</code>, <code>/plc/escanear</code>) y, en la banda, <code>GET /banda/estado</code> cada 1.5 s.</td>
+                  <td>Alcance del PLC (ping y puerto 502) y estado real leído de los registros.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Componentes del sistema</h3>
           <div class="layers">
             <div class="layer lane-front">
               <div class="layer-name"><i class="fa-solid fa-window-maximize"></i> Frontend web</div>
               <div class="layer-body">
-                <p>Interfaz principal, chat IA, documentación, editor Ladder, render, simulación y validación visual.</p>
-                <div class="layer-files"><span class="k">Archivos</span><code>index.html</code><code>ladder.html</code><code>documentacion.html</code><code>assets/js/*</code></div>
-              </div>
-            </div>
-            <div class="layer lane-front">
-              <div class="layer-name"><i class="fa-solid fa-table-cells"></i> Editor Ladder</div>
-              <div class="layer-body">
-                <p>Convierte estructuras de lógica en rungs, contactos, bobinas, ramas y elementos visibles.</p>
-                <div class="layer-files"><span class="k">Archivos</span><code>assets/js/ladder/app.js</code><code>renderer.js</code><code>simulator.js</code></div>
-              </div>
-            </div>
-            <div class="layer lane-front">
-              <div class="layer-name"><i class="fa-solid fa-gears"></i> Compilador lógico</div>
-              <div class="layer-body">
-                <p>Recibe JSON lógico simple y lo transforma en un esquema Ladder renderizable.</p>
-                <div class="layer-files"><span class="k">Archivos</span><code>logicToSchema.js</code><code>validate.js</code><code>schema.js</code></div>
+                <p>Páginas estáticas publicadas en GitHub Pages: copiloto, editor Ladder y documentación. Detecta el equipo, valida la respuesta de la IA, compila el Ladder, simula y abre la ventana de carga al PLC.</p>
+                <div class="layer-files"><span class="k">Archivos</span><code>index.html</code><code>ladder.html</code><code>assets/js/*</code></div>
               </div>
             </div>
             <div class="layer lane-back">
-              <div class="layer-name"><i class="fa-solid fa-server"></i> Backend IA</div>
+              <div class="layer-name"><i class="fa-solid fa-server"></i> Backend en Render</div>
               <div class="layer-body">
-                <p>Recibe audio o texto, llama a modelos de IA, genera respuestas estructuradas y devuelve JSON al frontend.</p>
-                <div class="layer-files"><span class="k">Elementos</span>Backend separado desplegado en Render / FastAPI</div>
+                <p>Aplicación FastAPI que llama a Groq, valida y auto-corrige las respuestas, guarda la memoria de ejemplos y controla el acceso con contraseña.</p>
+                <div class="layer-files"><span class="k">Archivos</span><code>app.py</code><code>device_router.py</code><code>agents/*</code><code>banda_intent.py</code></div>
               </div>
             </div>
             <div class="layer lane-plc">
-              <div class="layer-name"><i class="fa-solid fa-plug"></i> Puente PLC</div>
+              <div class="layer-name"><i class="fa-solid fa-plug"></i> Puente local al PLC</div>
               <div class="layer-body">
-                <p>Permite escribir registros en el PLC Horner mediante Modbus TCP cuando se trabaja localmente.</p>
-                <div class="layer-files"><span class="k">Elementos</span>Script local de aplicación al PLC y endpoint de aplicación</div>
+                <p>El mismo <code>app.py</code> ejecutado en una PC de la red del PLC (<code>http://localhost:8000</code>). No necesita la llave de Groq: solo valida y escribe registros por Modbus TCP.</p>
+                <div class="layer-files"><span class="k">Archivos</span><code>iniciar_puente_PLC.bat</code><code>plc_maestro.py</code><code>plc_banda.py</code></div>
+              </div>
+            </div>
+            <div class="layer lane-plc">
+              <div class="layer-name"><i class="fa-solid fa-microchip"></i> PLC del maletín</div>
+              <div class="layer-body">
+                <p>Horner XL4 con un Ladder maestro que lee los registros de configuración: lámparas Q10, Q11 y Q12, entradas I1, I2, I3, I4 e I7 y un secuenciador de pasos.</p>
+              </div>
+            </div>
+            <div class="layer lane-plc">
+              <div class="layer-name"><i class="fa-solid fa-industry"></i> PLC de la banda</div>
+              <div class="layer-body">
+                <p>Horner XL4 con un programa maestro en Texto Estructurado (ST v5) que controla el variador de frecuencia, los sensores S1 y S2, la torreta y las dos plumas.</p>
               </div>
             </div>
           </div>
 
-          <div class="code-block">
-            <div class="code-head"><div class="code-dots"><span></span><span></span><span></span></div><span class="code-title">flujo-general.txt</span></div>
-<pre data-lang="flow"><code>Flujo general:
-
-Usuario
-  → escribe o dicta una instrucción
-  → frontend captura texto/audio
-  → backend transcribe si hay audio
-  → backend interpreta con LLM
-  → LLM devuelve JSON lógico
-  → frontend valida el JSON
-  → frontend compila a Ladder
-  → frontend renderiza y simula
-  → si aplica, backend local escribe registros al PLC</code></pre>
-          </div>
+          <h3>Cuándo se permite o se bloquea la escritura al PLC</h3>
+          <p>
+            La comunicación con el controlador ocurre únicamente desde el puente local y solo cuando el usuario la
+            solicita. La escritura se bloquea en cualquiera de estos casos:
+          </p>
+          <ul class="doc-list">
+            <li>El programa abierto no tiene <code>engine_config</code> (no fue generado por el asistente).</li>
+            <li>El usuario no eligió el equipo y la IP en la ventana de carga, o la prueba de comunicación falló.</li>
+            <li>El equipo elegido no coincide con el tipo del programa abierto (un programa de la banda no se carga en el maletín ni al revés).</li>
+            <li>El puente vuelve a validar la configuración y encuentra errores (respuesta 422).</li>
+            <li>No hay IP para el equipo (respuesta 400) o no se logra la conexión Modbus (respuesta 503).</li>
+          </ul>
+          <p>
+            En la banda, aun con la configuración escrita, el movimiento no empieza hasta que el operador pulsa el
+            botón físico <strong>I1</strong>; el programa maestro solo lo acepta si la configuración es válida y no
+            hay un paro activo.
+          </p>
         </section>
 
-        <!-- 05 · FLUJO -->
+        <!-- 10 · FLUJO -->
         <section class="doc-section" id="flujo" data-group="arquitectura">
           <header class="section-head">
             <div class="section-num">10</div>
             <div>
               <div class="section-label">Flujo completo de operación</div>
-              <h2>De una frase hablada a un programa Ladder visual</h2>
+              <h2>De una instrucción en lenguaje natural al PLC</h2>
             </div>
           </header>
 
@@ -1638,56 +1705,70 @@ Usuario
               <div class="tl-num">1</div>
               <div class="tl-body">
                 <strong>Entrada del usuario</strong>
-                <span>El usuario escribe o dicta una instrucción desde la página web. Puede pedir una lógica directa, un enclavamiento, una salida con timer o una combinación sencilla de entradas y salidas.</span>
+                <span>El usuario escribe la instrucción en el panel de chat del editor o en el modo Diseñador del copiloto. Si la dicta, el navegador la convierte a texto con la Web Speech API antes de enviarla; el audio no se manda al backend.</span>
               </div>
             </li>
             <li>
               <div class="tl-num">2</div>
               <div class="tl-body">
-                <strong>Captura y envío al backend</strong>
-                <span>El frontend toma el texto o el archivo de audio y lo manda al backend. La API key nunca debe exponerse directamente en el frontend.</span>
+                <strong>Selección de equipo (frontend)</strong>
+                <span><code>equipment.js</code> busca vocabulario exclusivo de cada equipo (por ejemplo, «banda», «sensor 1», «Hz» o «enclavamiento», «I7»). Si la instrucción puede aplicar a los dos, no se adivina: se pregunta «¿maletín o banda?» sin llamar al backend.</span>
               </div>
             </li>
             <li>
               <div class="tl-num">3</div>
               <div class="tl-body">
-                <strong>Transcripción de voz</strong>
-                <span>Si el usuario usó voz, el backend utiliza un modelo STT para convertir el audio a texto. El resultado se devuelve al frontend para que el usuario pueda ver qué entendió el sistema.</span>
+                <strong>Solicitud al backend</strong>
+                <span><code>generate.js</code> envía <code>POST /generar-logica</code> con el texto, el equipo y el contexto: el programa abierto en el editor y las últimas instrucciones del chat, para que órdenes como «agrégale» o «cámbialo» tengan referencia.</span>
               </div>
             </li>
             <li>
               <div class="tl-num">4</div>
               <div class="tl-body">
-                <strong>Generación lógica</strong>
-                <span>El texto se envía al modelo LLM, que debe responder con un JSON lógico simple. La respuesta no debe ser texto libre ni código Ladder dibujado.</span>
+                <strong>Enrutamiento y detección de ambigüedad (backend)</strong>
+                <span><code>device_router.py</code> confirma el equipo. En el maletín, si una instrucción nueva no nombra la salida o la entrada, el backend responde con preguntas en lugar de inventarlas. En la banda, se pregunta cuando falta un dato imprescindible o hay órdenes contradictorias.</span>
               </div>
             </li>
             <li>
               <div class="tl-num">5</div>
               <div class="tl-body">
-                <strong>Validación del contrato</strong>
-                <span>El frontend revisa que el JSON tenga salidas válidas, entradas existentes, modos permitidos y estructura correcta antes de intentar dibujar algo.</span>
+                <strong>Interpretación con el LLM</strong>
+                <span>El backend llama a Groq con el prompt del equipo. En el maletín el modelo devuelve la configuración por salida; en la banda devuelve una intención estructurada (eventos y acciones) que el backend traduce a los campos del programa maestro.</span>
               </div>
             </li>
             <li>
               <div class="tl-num">6</div>
               <div class="tl-body">
-                <strong>Compilación a Ladder</strong>
-                <span>Una vez validada, la lógica se convierte en rungs, contactos, bobinas y ramas. Esta parte es determinista y no depende de que la IA invente posiciones visuales.</span>
+                <strong>Validación y auto-revisión (backend)</strong>
+                <span>La respuesta se valida contra el hardware. Si hay errores, se le devuelven al modelo para que se corrija, hasta tres intentos. Solo una configuración válida llega al frontend; si no se consigue, se responde con un error que explica los motivos.</span>
               </div>
             </li>
             <li>
               <div class="tl-num">7</div>
               <div class="tl-body">
-                <strong>Simulación y revisión</strong>
-                <span>El usuario puede revisar el resultado, observar qué entradas controlan qué salidas y probar la lógica antes de aplicarla a un sistema físico.</span>
+                <strong>Validación, compilación y vista (frontend)</strong>
+                <span><code>validateLogicJson</code> vuelve a revisar la configuración; después <code>compileLogicToSchema</code> la convierte de forma determinista en rungs y el editor la dibuja. En la banda también se dibuja su panel (VFD, sensores, torreta y plumas).</span>
               </div>
             </li>
             <li>
               <div class="tl-num">8</div>
               <div class="tl-body">
+                <strong>Revisión del usuario</strong>
+                <span>El usuario ve el resumen de lo interpretado y los avisos, puede simular la lógica del maletín, calificar la respuesta con 👍/👎 y reformular la instrucción. Nada se envía al PLC en esta etapa.</span>
+              </div>
+            </li>
+            <li>
+              <div class="tl-num">9</div>
+              <div class="tl-body">
+                <strong>Confirmación de la carga</strong>
+                <span>Al pulsar «Cargar», se abre una ventana donde el usuario elige el equipo y la IP, y prueba la comunicación. El botón «Cargar ahora (TCP)» solo se habilita si la prueba es correcta y el equipo coincide con el programa abierto.</span>
+              </div>
+            </li>
+            <li>
+              <div class="tl-num">10</div>
+              <div class="tl-body">
                 <strong>Aplicación al PLC</strong>
-                <span>Cuando se usa el entorno físico, el sistema no descarga un programa nuevo cada vez. En su lugar, actualiza registros que el programa maestro del PLC interpreta.</span>
+                <span>El puente local recibe la configuración, la valida de nuevo y escribe los registros por Modbus TCP. El PLC no recibe un programa nuevo: su programa maestro lee los registros. En la banda, el puente espera la confirmación <code>CfgReady</code> y el operador arranca con I1.</span>
               </div>
             </li>
           </ol>
@@ -1696,7 +1777,7 @@ Usuario
         <!-- ======================= PARTE III · SOFTWARE ======================= -->
         <div class="part" data-group="software"><span class="part-num">Parte III</span><span class="part-title">Software</span><span class="part-line"></span></div>
 
-        <!-- 06 · FRONTEND -->
+        <!-- 11 · FRONTEND -->
         <section class="doc-section" id="frontend" data-group="software">
           <header class="section-head">
             <div class="section-num">11</div>
@@ -1707,55 +1788,103 @@ Usuario
           </header>
 
           <p>
-            El frontend es la única parte que se modifica con este cambio. Está compuesto por páginas HTML,
-            estilos CSS y módulos JavaScript. Su objetivo es que el usuario pueda interactuar con LAVO sin tener
-            que ver directamente el backend ni las llamadas a los modelos.
+            El frontend está escrito con HTML, CSS y JavaScript sin framework, organizado en módulos ES. Se publica
+            en GitHub Pages mediante un flujo de GitHub Actions que sube los archivos tal cual en cada cambio a la
+            rama <code>main</code>. Para cargar programas al PLC, la misma página se sirve en local
+            (<code>http://127.0.0.1:5500</code>) con <code>iniciar_pagina_local.bat</code>, porque una página
+            publicada en HTTPS no puede comunicarse con el puente local.
           </p>
 
           <h3>Páginas principales del frontend</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 7.</b> Páginas principales del frontend</caption>
+              <caption><b>Tabla 8.</b> Páginas principales del frontend</caption>
               <thead>
                 <tr><th>Página</th><th>Función dentro del proyecto</th></tr>
               </thead>
               <tbody>
                 <tr>
                   <td><code>index.html</code></td>
-                  <td>Entrada principal tipo Chat IA. Sirve para preguntar, explicar o pedir apoyo al asistente inteligente.</td>
+                  <td>Copiloto con tres modos: Aprendizaje y Práctico (chat sobre Groq) y Diseñador, que genera el programa y lo abre en el editor.</td>
                 </tr>
                 <tr>
                   <td><code>ladder.html</code></td>
-                  <td>Editor visual Ladder. Aquí se ve, genera, valida, simula y manipula la lógica de control.</td>
+                  <td>Editor visual Ladder con panel de chat, simulación, tablas de E/S, panel de la banda transportadora y carga al PLC.</td>
                 </tr>
                 <tr>
                   <td><code>documentacion.html</code></td>
-                  <td>Página de explicación técnica del sistema, su arquitectura, flujo, decisiones y métricas.</td>
+                  <td>Página de documentación técnica incluida en el repositorio del frontend.</td>
                 </tr>
                 <tr>
                   <td><code>Comparacion_Prompts_Disenador.html</code></td>
-                  <td>Reporte externo de métricas evaluadas. Se abre desde esta documentación mediante un enlace al final.</td>
+                  <td>Reporte de métricas evaluadas del modo Diseñador. Se abre desde esta documentación.</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
+          <h3>Tecnologías del frontend</h3>
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-brands fa-js"></i></div>
+              <h4>JavaScript con módulos ES</h4>
+              <p>Separa generación, validación, compilación, dibujo y simulación en archivos independientes, sin dependencias de un framework.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+              <h4>Web Speech API</h4>
+              <p>Reconocimiento de voz del navegador para dictar instrucciones en el copiloto y en el editor. En el editor, si el navegador no la ofrece, el botón de micrófono se oculta.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-bezier-curve"></i></div>
+              <h4>SVG</h4>
+              <p><code>renderer.js</code> dibuja los rungs y el esquema de la banda como gráficos vectoriales.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-route"></i></div>
+              <h4>Driver.js</h4>
+              <p>Recorridos guiados del copiloto y del editor (<code>tour-index.js</code>, <code>tour-ladder.js</code>).</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-icons"></i></div>
+              <h4>Font Awesome y Tabler Icons</h4>
+              <p>Iconografía de la interfaz, cargada desde CDN junto con las fuentes de Google Fonts.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-brands fa-github"></i></div>
+              <h4>GitHub Pages y Actions</h4>
+              <p>Publicación automática del sitio estático. El repositorio declara Vite como dependencia de desarrollo, pero el despliegue no usa un paso de compilación.</p>
+            </div>
+          </div>
+
           <h3>Módulos importantes del frontend</h3>
           <ul class="file-list">
-            <li><code>assets/js/main.js</code><span>controla interacción general de la página principal.</span></li>
-            <li><code>assets/js/copilot.js</code><span>maneja la experiencia del chat IA.</span></li>
-            <li><code>assets/js/ladder/app.js</code><span>orquesta el editor Ladder.</span></li>
-            <li><code>assets/js/ladder/chat.js</code><span>conecta el panel de chat con la generación de lógica.</span></li>
-            <li><code>assets/js/ladder/generate.js</code><span>centraliza la generación desde texto o JSON lógico.</span></li>
-            <li><code>assets/js/ladder/gen-bridge.js</code><span>expone funciones globales para conectar páginas no modulares con el generador.</span></li>
-            <li><code>assets/js/ladder/validate.js</code><span>valida que la lógica recibida sea compatible con el contrato del proyecto.</span></li>
-            <li><code>assets/js/ladder/compiler/logicToSchema.js</code><span>convierte JSON lógico en un esquema Ladder visual.</span></li>
-            <li><code>assets/js/ladder/renderer.js</code><span>dibuja el Ladder en pantalla.</span></li>
-            <li><code>assets/js/ladder/simulator.js</code><span>permite probar la lógica desde el navegador.</span></li>
+            <li><code>assets/js/auth.js</code><span>pide la contraseña cuando el backend la exige y agrega el token a todas las peticiones.</span></li>
+            <li><code>assets/js/copilot.js</code><span>maneja el copiloto: modos, perfiles de respuesta, dictado y llamada a <code>/chat</code>.</span></li>
+            <li><code>assets/js/ladder/app.js</code><span>orquesta el editor: estado del programa, simulación y ventana de carga al PLC.</span></li>
+            <li><code>assets/js/ladder/chat.js</code><span>panel de chat del editor: preguntas de aclaración, resumen de lo interpretado y feedback 👍/👎.</span></li>
+            <li><code>assets/js/ladder/generate.js</code><span>punto único de generación: selección de equipo, <code>/generar-logica</code>, validación y compilación.</span></li>
+            <li><code>assets/js/ladder/equipment.js</code><span>detecta si la instrucción es del maletín o de la banda y normaliza el bloque <code>band</code>.</span></li>
+            <li><code>assets/js/ladder/gen-bridge.js</code><span>expone el generador a las páginas no modulares (copiloto en modo Diseñador).</span></li>
+            <li><code>assets/js/ladder/validate.js</code><span>valida la configuración antes de compilar y normaliza el programa compilado.</span></li>
+            <li><code>assets/js/ladder/compiler/logicToSchema.js</code><span>convierte la configuración en el esquema Ladder (rungs, contactos, bobinas y bloques).</span></li>
+            <li><code>assets/js/ladder/renderer.js</code><span>dibuja el Ladder, las tablas de E/S y el panel de la banda con su estado leído del PLC.</span></li>
+            <li><code>assets/js/ladder/simulator.js</code><span>evalúa los rungs en ciclos de scan dentro del navegador.</span></li>
+            <li><code>assets/js/ladder/band-control.js</code><span>control en vivo de la banda: comandos al puente y lectura periódica de su estado.</span></li>
+            <li><code>assets/js/ladder/codec.js</code><span>codifica el programa en la URL para compartirlo o reabrirlo.</span></li>
+            <li><code>assets/devices/maletin_basico.json</code><span>perfil del maletín que usa el editor (entradas, salidas y etiquetas).</span></li>
+          </ul>
+
+          <h3>Estado y manejo de solicitudes</h3>
+          <ul class="doc-list">
+            <li>El programa abierto vive en un <em>store</em> reactivo de <code>app.js</code>; cada cambio vuelve a dibujar el editor.</li>
+            <li>El navegador recuerda en <code>localStorage</code> la URL del puente, la última IP del PLC, la IP de la banda, el modo y perfil del copiloto y el token de sesión.</li>
+            <li>Todas las peticiones usan <code>fetch</code> con tiempo límite (<code>AbortSignal.timeout</code>): 20 s para cargar al maletín, 40 s para la banda (espera <code>CfgReady</code>) y hasta 150–180 s para las llamadas del copiloto a la IA, porque el servicio gratuito de Render puede tardar en despertar.</li>
+            <li>Los errores del backend se muestran en el chat y en la terminal del editor con el texto de <code>detail</code> que devuelve la API.</li>
           </ul>
         </section>
 
-        <!-- 07 · EDITOR LADDER -->
+        <!-- 12 · EDITOR LADDER -->
         <section class="doc-section" id="editor" data-group="software">
           <header class="section-head">
             <div class="section-num">12</div>
@@ -1766,9 +1895,9 @@ Usuario
           </header>
 
           <p>
-            El editor Ladder es la parte donde la idea generada por IA se vuelve visible. En vez de mostrar solo
-            un JSON, el editor permite ver contactos, salidas, ramas y elementos de control de una forma más cercana
-            a cómo se trabaja en un entorno PLC.
+            El editor Ladder es la parte donde la configuración generada por la IA se vuelve visible. En vez de
+            mostrar solo un JSON, el editor muestra contactos, bobinas, ramas, temporizadores, contadores y, en la
+            banda, un esquema del equipo, de una forma cercana a cómo se trabaja en un entorno PLC.
           </p>
 
           <h3>Funciones principales</h3>
@@ -1776,29 +1905,45 @@ Usuario
             <div class="info-card">
               <div class="info-card-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
               <h4>Generación</h4>
-              <p>Recibe instrucciones y genera lógica Ladder usando el backend de IA.</p>
+              <p>El panel de chat envía la instrucción y aplica el programa resultante; si el backend pide aclaración, muestra las opciones como botones.</p>
             </div>
             <div class="info-card">
               <div class="info-card-icon"><i class="fa-solid fa-check-double"></i></div>
               <h4>Validación</h4>
-              <p>Revisa que entradas, salidas, modos, timers y contadores sean válidos.</p>
+              <p>Revisa la configuración antes de compilar y el programa compilado antes de simular.</p>
             </div>
             <div class="info-card">
               <div class="info-card-icon"><i class="fa-solid fa-play"></i></div>
               <h4>Simulación</h4>
-              <p>Permite probar entradas y ver cómo deberían responder las salidas.</p>
+              <p>Permite activar contactos y ver qué bobinas se energizan. Los temporizadores y contadores se simulan de forma simplificada.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-industry"></i></div>
+              <h4>Panel de la banda</h4>
+              <p>Dibuja VFD, sensores, torreta y plumas, y pinta el estado real leído del PLC mientras está abierto.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-table-list"></i></div>
+              <h4>Tablas de E/S</h4>
+              <p>Tabla de entradas y salidas, tabla de monitoreo y referencias cruzadas del programa.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-upload"></i></div>
+              <h4>Carga al PLC</h4>
+              <p>Ventana para elegir equipo e IP, escanear la red, probar la comunicación y enviar la configuración.</p>
             </div>
           </div>
 
           <h3>Por qué es importante el editor</h3>
           <p>
             La IA puede cometer errores si se le deja generar estructuras libres. Por eso el editor funciona como
-            filtro visual y lógico: muestra lo que el sistema entendió, permite revisarlo y evita aplicar una lógica
-            confusa sin validación previa.
+            filtro visual y lógico: muestra lo que el sistema interpretó, permite revisarlo y evita aplicar una
+            lógica sin validación previa. La geometría del Ladder no la genera la IA, sino el compilador del
+            frontend a partir de la configuración validada.
           </p>
         </section>
 
-        <!-- 08 · BACKEND -->
+        <!-- 13 · BACKEND -->
         <section class="doc-section" id="backend" data-group="software">
           <header class="section-head">
             <div class="section-num">13</div>
@@ -1809,48 +1954,83 @@ Usuario
           </header>
 
           <p>
-            Aunque este cambio no modifica el backend, es importante documentar su papel. El backend actúa como
-            intermediario entre el frontend y los servicios de IA. También puede servir como puente local para
-            comunicación con el PLC, dependiendo del entorno de ejecución.
+            El backend es una aplicación en Python con FastAPI (<code>app.py</code>, «LadderVoice Backend» v2.0).
+            El mismo código cumple dos funciones según dónde se ejecute.
           </p>
 
-          <h3>Responsabilidades del backend</h3>
-          <ul class="doc-list">
-            <li>Recibir audio desde el frontend.</li>
-            <li>Convertir audio a texto mediante un modelo STT.</li>
-            <li>Enviar instrucciones de texto al modelo LLM.</li>
-            <li>Forzar que el modelo responda en formato JSON lógico.</li>
-            <li>Devolver al frontend una respuesta limpia y validable.</li>
-            <li>Guardar o consultar memoria de ejemplos cuando el flujo lo requiere.</li>
-            <li>Aplicar configuración al PLC mediante registros cuando se ejecuta localmente.</li>
-          </ul>
-
-          <h3>Endpoints documentados</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 8.</b> Endpoints documentados del backend</caption>
+              <caption><b>Tabla 9.</b> Roles del backend</caption>
               <thead>
-                <tr><th>Endpoint</th><th>Descripción</th></tr>
+                <tr><th>Rol</th><th>Dónde corre</th><th>Qué hace</th><th>Necesita</th></tr>
               </thead>
               <tbody>
-                <tr><td><span class="method method-post">POST</span><span class="path">/transcribir</span></td><td>Recibe audio y devuelve texto transcrito.</td></tr>
-                <tr><td><span class="method method-post">POST</span><span class="path">/voz-a-ladder</span></td><td>Flujo completo de voz a una estructura Ladder. Fue útil para pruebas iniciales.</td></tr>
-                <tr><td><span class="method method-post">POST</span><span class="path">/generar-ladder</span></td><td>Genera una estructura de Ladder de forma más directa a partir de texto.</td></tr>
-                <tr><td><span class="method method-post">POST</span><span class="path">/generar-logica</span></td><td>Endpoint principal para obtener JSON lógico simple a partir de lenguaje natural.</td></tr>
-                <tr><td><span class="method method-post">POST</span><span class="path">/aplicar-plc</span></td><td>Aplica una configuración al PLC mediante escritura de registros.</td></tr>
-                <tr><td><span class="method method-get">GET</span><span class="path">/plc/escanear</span></td><td>Busca dispositivos Modbus TCP disponibles en la red local.</td></tr>
-                <tr><td><span class="method method-post">POST</span><span class="path">/feedback</span></td><td>Registra si una respuesta fue aceptada, corregida o rechazada.</td></tr>
-                <tr><td><span class="method method-get">GET</span><span class="path">/memoria</span></td><td>Consulta ejemplos guardados para mejorar generaciones futuras.</td></tr>
+                <tr><td>Nube</td><td>Render (<code>uvicorn app:app</code>)</td><td>Genera configuraciones, atiende el chat del copiloto y registra el feedback.</td><td><code>GROQ_API_KEY</code></td></tr>
+                <tr><td>Puente PLC</td><td>PC en la red del PLC (<code>localhost:8000</code>)</td><td>Valida y escribe registros por Modbus TCP; controla la banda en vivo.</td><td>Estar en la LAN del PLC</td></tr>
               </tbody>
             </table>
           </div>
 
+          <h3>Tecnologías del backend</h3>
+          <ul class="file-list">
+            <li><code>FastAPI + Uvicorn</code><span>API HTTP, middleware de CORS y de contraseña, documentación interactiva en <code>/docs</code>.</span></li>
+            <li><code>Pydantic</code><span>define la forma de cada petición y respuesta (por ejemplo, <code>LogicaRequest</code> y <code>LogicaResponse</code>).</span></li>
+            <li><code>groq</code><span>cliente oficial para los modelos de lenguaje y de voz alojados en Groq.</span></li>
+            <li><code>pymodbus</code><span>cliente Modbus TCP para leer y escribir los registros de los PLC.</span></li>
+            <li><code>python-dotenv</code><span>carga las variables de entorno (llaves, modelos, contraseña, IP de los PLC).</span></li>
+            <li><code>python-multipart</code><span>recibe archivos de audio en los endpoints de voz.</span></li>
+            <li><code>pymupdf</code><span>lo usa <code>preparar_contexto.py</code>, una utilidad que extrae contexto de programas Ladder en PDF.</span></li>
+          </ul>
+
+          <h3>Estructura de módulos</h3>
+          <ul class="file-list">
+            <li><code>app.py</code><span>endpoints, prompts, validación del maletín, auto-revisión y acceso con contraseña.</span></li>
+            <li><code>device_router.py</code><span>decide si una instrucción es del maletín o de la banda (espejo de <code>equipment.js</code>).</span></li>
+            <li><code>agents/clarify.py</code><span>detecta instrucciones del maletín sin salida o sin entrada y arma las preguntas.</span></li>
+            <li><code>agents/validators.py</code><span>validación semántica contra las capacidades del perfil.</span></li>
+            <li><code>agents/experts.py</code><span>fragmentos de guía por tipo de lógica (temporizador, contador, enclavamiento, combinacional, secuencia).</span></li>
+            <li><code>agents/memory.py</code><span>selecciona ejemplos validados por el usuario para reforzar el prompt.</span></li>
+            <li><code>profile_registry.py</code>, <code>engine_spec.py</code><span>carga los perfiles de dispositivo (<code>profiles/*.json</code>) y deriva de ellos el vocabulario válido.</span></li>
+            <li><code>banda_intent.py</code><span>traduce la intención de la banda a los campos del programa maestro y comprueba que no se pierda ninguna acción.</span></li>
+            <li><code>banda_contexto.py</code><span>agrega, solo cuando hace falta, el contexto industrial de la banda al prompt.</span></li>
+            <li><code>plc_maestro.py</code>, <code>plc_banda.py</code><span>mapas de registros, validación final y plan de escritura de cada PLC.</span></li>
+          </ul>
+
+          <h3>Endpoints principales</h3>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 10.</b> Endpoints del backend</caption>
+              <thead>
+                <tr><th>Endpoint</th><th>Descripción</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><span class="method method-post">POST</span><span class="path">/generar-logica</span></td><td>Endpoint principal: texto → configuración validada del maletín o de la banda, o preguntas de aclaración.</td></tr>
+                <tr><td><span class="method method-post">POST</span><span class="path">/chat</span></td><td>Copiloto de los modos Aprendizaje y Práctico.</td></tr>
+                <tr><td><span class="method method-get">GET</span><span class="path">/profiles</span></td><td>Perfiles de respuesta del copiloto (Genérico, Instantánea, Media, Alta).</td></tr>
+                <tr><td><span class="method method-post">POST</span><span class="path">/login</span></td><td>Cambia la contraseña por un token de sesión firmado.</td></tr>
+                <tr><td><span class="method method-get">GET</span><span class="path">/health</span></td><td>Estado del servicio, modelo configurado y si se requiere contraseña.</td></tr>
+                <tr><td><span class="method method-post">POST</span><span class="path">/feedback</span></td><td>Marca una respuesta como aceptada, corregida o rechazada.</td></tr>
+                <tr><td><span class="method method-get">GET</span><span class="path">/memoria</span></td><td>Consulta los ejemplos guardados.</td></tr>
+                <tr><td><span class="method method-post">POST</span><span class="path">/aplicar-plc</span></td><td>Valida y escribe la configuración en el PLC del equipo indicado (solo puente local).</td></tr>
+                <tr><td><span class="method method-get">GET</span><span class="path">/plc/probar</span>, <span class="path">/plc/escanear</span></td><td>Prueba ping y puerto 502 de una IP; busca equipos Modbus TCP en la red local.</td></tr>
+                <tr><td><span class="method method-get">GET</span><span class="path">/banda/estado</span></td><td>Estado real de la banda leído del PLC.</td></tr>
+                <tr><td><span class="method method-post">POST</span><span class="path">/banda/*</span></td><td>Comandos en vivo de la banda: configuración, frecuencia, dirección, paros, reset, torreta, plumas, lámpara temporizada y contadores.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="spaced">
+            El backend conserva además <code>/transcribir</code>, <code>/voz-a-ladder</code> y <code>/generar-ladder</code>
+            (voz con Whisper y el formato Ladder anterior), pero el frontend actual no los utiliza.
+          </p>
+
           <div class="callout callout-warn">
             <div class="callout-icon"><i class="fa-solid fa-key"></i></div>
             <div>
-              <span class="callout-title">Importante</span>
-              Las API keys deben permanecer siempre en el backend o en variables de entorno del servicio desplegado.
-              No deben escribirse directamente en archivos HTML o JavaScript del frontend.
+              <span class="callout-title">Llaves y acceso</span>
+              Las llaves de Groq viven solo en las variables de entorno de Render. Si se define
+              <code>APP_PASSWORD</code>, toda petición a la API, excepto las rutas públicas como <code>/health</code>
+              y <code>/login</code>, necesita un token firmado con HMAC que vence a las 12 horas; sin él, el
+              backend responde 401.
             </div>
           </div>
         </section>
@@ -1858,23 +2038,85 @@ Usuario
         <!-- ======================= PARTE IV · INTELIGENCIA ARTIFICIAL ======================= -->
         <div class="part" data-group="ia"><span class="part-num">Parte IV</span><span class="part-title">Inteligencia Artificial</span><span class="part-line"></span></div>
 
-        <!-- 09 · CONTRATO JSON -->
+        <!-- 14 · IA -->
         <section class="doc-section" id="contrato" data-group="ia">
           <header class="section-head">
             <div class="section-num">14</div>
             <div>
-              <div class="section-label">Contrato de JSON lógico</div>
+              <div class="section-label">Modelos, prompts y JSON lógico</div>
               <h2>La IA responde con una estructura limitada y revisable</h2>
             </div>
           </header>
 
           <p class="lead">
-            El contrato de JSON lógico es la parte más importante para controlar el comportamiento de la IA. En lugar
-            de pedirle que genere un programa Ladder completo con coordenadas o elementos visuales, se le pide una
-            descripción estructurada de la intención de control.
+            La IA no genera geometría Ladder, código ni direcciones de registro. Su única tarea es interpretar la
+            instrucción y devolver una estructura JSON acotada que después se valida, se compila en el frontend y,
+            si el usuario lo decide, se traduce a registros del PLC en el puente local.
           </p>
 
-          <h3>Ejemplo de instrucción</h3>
+          <h3>Modelos utilizados</h3>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 11.</b> Modelos de IA y su responsabilidad</caption>
+              <thead>
+                <tr><th>Modelo (Groq)</th><th>Dónde se usa</th><th>Responsabilidad</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>openai/gpt-oss-120b</code></td><td><code>/generar-logica</code> (maletín y banda)</td><td>Interpreta la instrucción y devuelve JSON. Se llama en modo <code>json_object</code>, con temperatura 1.</td></tr>
+                <tr><td><code>llama-3.3-70b-versatile</code></td><td><code>/chat</code></td><td>Responde en los modos Aprendizaje y Práctico. Si Groq retira el modelo configurado, se prueban <code>openai/gpt-oss-20b</code> y <code>llama-3.1-8b-instant</code>.</td></tr>
+                <tr><td><code>whisper-large-v3</code></td><td><code>/transcribir</code></td><td>Voz a texto en el backend. El frontend actual dicta con la Web Speech API del navegador, por lo que este modelo no interviene en el flujo principal.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="spaced">
+            Los modelos se configuran por variables de entorno (<code>GROQ_MODEL</code>, <code>GROQ_CHAT_MODEL</code>,
+            <code>GROQ_CHAT_MODEL_APRENDIZAJE</code>, <code>GROQ_STT_MODEL</code>); los nombres anteriores son los valores
+            por defecto del código.
+          </p>
+
+          <h3>Modos del copiloto</h3>
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+              <h4>Aprendizaje</h4>
+              <p>Tutor de conceptos Ladder. Su prompt le prohíbe generar JSON o programas completos. Tiene su propio modelo configurable.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+              <h4>Práctico</h4>
+              <p>Asesor técnico que revisa propuestas y recomienda estructuras, también sin generar programas finales.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-diagram-project"></i></div>
+              <h4>Diseñador</h4>
+              <p>No usa el chat: envía la instrucción a <code>/generar-logica</code> y abre el programa resultante en el editor.</p>
+            </div>
+          </div>
+          <p class="spaced">
+            En los dos modos de chat, el usuario elige además un perfil de respuesta (Genérico, Instantánea, Media o
+            Alta) que define el prompt de sistema, la temperatura y el número máximo de tokens.
+          </p>
+
+          <h3>Interpretación en el maletín</h3>
+          <div class="code-block">
+            <div class="code-head"><div class="code-dots"><span></span><span></span><span></span></div><span class="code-title">flujo-maletin.txt</span></div>
+<pre data-lang="flow"><code>Instrucción
+  → ¿falta salida o entrada?  → sí: preguntas (needs_clarification)
+  → prompt del maletín + guía de expertos + ejemplos validados
+  → gpt-oss-120b → JSON de configuración
+  → validación sintáctica + semántica → si falla, el modelo se corrige (máx. 3 intentos)
+  → normalización (expr, comment, valores por defecto)
+  → respuesta al frontend</code></pre>
+          </div>
+          <p class="spaced">
+            El prompt <code>SYSTEM_PROMPT_LOGICA</code> fija el hardware: salidas Q10 (verde), Q11 (amarilla) y Q12
+            (roja); entradas I1, I2, I3, I4 e I7. Cada salida tiene una lógica base (<code>off</code>,
+            <code>directo</code>, <code>enclavado</code> o <code>combinacional</code>) y capas opcionales de temporizador
+            y contador. Para las secuencias temporizadas, como un semáforo, el prompt indica usar un bloque
+            <code>sequence</code> de hasta 8 pasos.
+          </p>
+
+          <h4 class="sub-h">Ejemplo de instrucción</h4>
           <div class="code-block">
             <div class="code-head"><div class="code-dots"><span></span><span></span><span></span></div><span class="code-title">instrucción del usuario</span></div>
 <pre><code>Usuario:
@@ -1882,7 +2124,7 @@ Usuario
 I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
           </div>
 
-          <h3>Ejemplo de salida esperada</h3>
+          <h4 class="sub-h">Ejemplo de salida esperada</h4>
           <div class="code-block">
             <div class="code-head"><div class="code-dots"><span></span><span></span><span></span></div><span class="code-title">salida-esperada.json</span></div>
 <pre data-lang="json"><code>{
@@ -1910,13 +2152,66 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
 }</code></pre>
           </div>
 
+          <h3>Interpretación en la banda transportadora</h3>
+          <p>
+            En la banda, el modelo no escribe la configuración directamente. <code>SYSTEM_PROMPT_BANDA</code> le pide
+            describir una <strong>intención</strong>: movimiento, paros, eventos de cada sensor (lo que ocurre en cada
+            detección y al llegar a un conteo), luces, lámpara temporizada y plumas. Lo que el equipo no puede hacer
+            se reporta en <code>no_soportado</code>. Después, <code>banda_intent.py</code> traduce esa intención al bloque
+            <code>band</code> con los campos del programa maestro.
+          </p>
+          <div class="code-block">
+            <div class="code-head"><div class="code-dots"><span></span><span></span><span></span></div><span class="code-title">intencion-banda.json (fragmento)</span></div>
+<pre data-lang="json"><code>{
+  "name": "Banda con S1",
+  "intencion": {
+    "movimiento": { "mover": true, "direccion": "derecha", "frecuencia_hz": 30 },
+    "paros": { "i2": false, "software": false },
+    "eventos": [
+      { "sensor": 1, "conteo": null, "banda": "pausa_temporizada",
+        "duracion_s": 5, "luces": ["roja"], "pluma1": "subir", "pluma2": "subir" }
+    ],
+    "no_soportado": []
+  }
+}</code></pre>
+          </div>
+          <p class="spaced">
+            Cuando la instrucción es conceptual (por ejemplo, describe un proceso industrial en lugar de acciones
+            concretas), <code>banda_contexto.py</code> agrega un segundo mensaje de sistema con contexto industrial. Ese
+            contexto solo ayuda a interpretar; nunca decide registros.
+          </p>
+
+          <h3>Contexto y memoria</h3>
+          <ul class="doc-list">
+            <li><strong>Contexto conversacional:</strong> el chat envía hasta 6 instrucciones previas y el programa abierto; el backend usa las últimas 4 y, si se modifica un programa, le pide al modelo conservar lo no solicitado.</li>
+            <li><strong>Memoria de ejemplos:</strong> cada respuesta se guarda como ejemplo pendiente. Los que el usuario aprueba o corrige se inyectan como referencia en peticiones nuevas del mismo equipo.</li>
+            <li><strong>Límite de tokens:</strong> el backend calcula cuántos tokens puede pedir para no superar el límite por minuto del plan de Groq (8000 por defecto).</li>
+          </ul>
+
+          <h3>Manejo de errores del modelo</h3>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 12.</b> Errores del modelo y respuesta del sistema</caption>
+              <thead>
+                <tr><th>Situación</th><th>Comportamiento</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Groq rechaza el JSON (<code>json_validate_failed</code>)</td><td>Se reintenta sin modo JSON y el objeto se extrae del texto.</td></tr>
+                <tr><td>Límite de tokens (413/429)</td><td>Se reintenta con menos tokens; si persiste, se pide esperar un minuto.</td></tr>
+                <tr><td>Respuesta ilegible o inválida</td><td>Se reintenta hasta 3 veces devolviendo los errores al modelo; después, error 422 con los motivos.</td></tr>
+                <tr><td>Servidor sin llave de Groq</td><td>Error 503: la generación solo está disponible en Render.</td></tr>
+                <tr><td>Modelo de chat retirado</td><td>Se responde con el siguiente modelo de respaldo.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
           <h3>Ventajas de este enfoque</h3>
           <ul class="doc-list">
             <li>Reduce respuestas ambiguas del modelo.</li>
-            <li>Evita que la IA invente elementos Ladder no soportados.</li>
-            <li>Permite validar antes de renderizar.</li>
-            <li>Facilita convertir la lógica a registros del PLC.</li>
-            <li>Hace más claro qué entendió el modelo.</li>
+            <li>Evita que la IA invente elementos Ladder o registros no soportados.</li>
+            <li>Permite validar antes de renderizar y antes de escribir al PLC.</li>
+            <li>Facilita convertir la lógica a registros del PLC de forma determinista.</li>
+            <li>Hace más claro qué interpretó el modelo.</li>
             <li>Permite comparar resultados en pruebas repetidas.</li>
           </ul>
         </section>
@@ -1924,7 +2219,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
         <!-- ======================= PARTE V · PLC Y COMUNICACIÓN ======================= -->
         <div class="part" data-group="plc"><span class="part-num">Parte V</span><span class="part-title">PLC y comunicación</span><span class="part-line"></span></div>
 
-        <!-- 10 · PLC -->
+        <!-- 15 · PLC -->
         <section class="doc-section" id="plc" data-group="plc">
           <header class="section-head">
             <div class="section-num">15</div>
@@ -1935,61 +2230,120 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
           </header>
 
           <p>
-            Para el entorno físico se considera un PLC Horner XL4 / XC1E5 usando Cscape. Una decisión clave del
-            proyecto fue no intentar reemplazar Cscape desde Python.En su lugar, se propone dejar cargado en el PLC
-            un programa Ladder maestro que contenga y lea registros de configuración.
+            Cada equipo tiene cargado en su PLC un programa maestro hecho en Cscape. Python no reprograma el
+            controlador: solo escribe valores en registros <code>%R</code> que ese programa lee en cada scan para
+            decidir qué salida se activa, bajo qué modo y con qué condiciones.
           </p>
 
-          <p>
-            Así, Python no tiene que generar y descargar un programa completo cada vez. Solo cambia valores en registros.
-            El PLC ya tiene una lógica base que interpreta esos valores y decide qué salida se activa, bajo qué modo
-            y con qué condiciones.
-          </p>
-
-          <h3>PLC objetivo</h3>
+          <h3>Equipos contemplados</h3>
           <dl class="spec-grid">
-            <div class="spec"><dt><i class="fa-solid fa-microchip spec-icon"></i><strong>PLC:</strong></dt><dd>Horner XL4 / XC1E5.</dd></div>
+            <div class="spec"><dt><i class="fa-solid fa-microchip spec-icon"></i><strong>Maletín:</strong></dt><dd>Horner XL4 / XC1E5, Ladder maestro.</dd></div>
+            <div class="spec"><dt><i class="fa-solid fa-industry spec-icon"></i><strong>Banda:</strong></dt><dd>Horner XL4, programa maestro ST v5.</dd></div>
             <div class="spec"><dt><i class="fa-solid fa-laptop-code spec-icon"></i><strong>Software:</strong></dt><dd>Cscape.</dd></div>
-            <div class="spec"><dt><i class="fa-solid fa-network-wired spec-icon"></i><strong>Comunicación:</strong></dt><dd>Modbus TCP.</dd></div>
-            <div class="spec"><dt><i class="fa-solid fa-ethernet spec-icon"></i><strong>Puerto típico:</strong></dt><dd>502.</dd></div>
-            <div class="spec"><dt><i class="fa-solid fa-right-to-bracket spec-icon"></i><strong>Entradas usadas en pruebas:</strong></dt><dd>I1, I2, I3, I4, I7.</dd></div>
-            <div class="spec"><dt><i class="fa-solid fa-right-from-bracket spec-icon"></i><strong>Salidas usadas en pruebas:</strong></dt><dd>Q10, Q11, Q12.</dd></div>
+            <div class="spec"><dt><i class="fa-solid fa-right-to-bracket spec-icon"></i><strong>Entradas del maletín:</strong></dt><dd>I1, I2, I3, I4, I7.</dd></div>
+            <div class="spec"><dt><i class="fa-solid fa-right-from-bracket spec-icon"></i><strong>Salidas del maletín:</strong></dt><dd>Q10, Q11, Q12.</dd></div>
+            <div class="spec"><dt><i class="fa-solid fa-gauge spec-icon"></i><strong>Banda:</strong></dt><dd>VFD, S1, S2, torreta, 2 plumas.</dd></div>
           </dl>
 
-          <h3>Idea conceptual de registros</h3>
-          <div class="code-block">
-            <div class="code-head"><div class="code-dots"><span></span><span></span><span></span></div><span class="code-title">registros-conceptuales.txt</span></div>
-<pre data-lang="flow"><code>Bloques conceptuales:
-
-Q10 → registros de configuración para salida 1
-Q11 → registros de configuración para salida 2
-Q12 → registros de configuración para salida 3
-
-Cada bloque puede guardar:
-- salida habilitada
-- modo de operación
-- entrada de arranque
-- entrada de paro
-- timer
-- contador
-- reset
-- parámetros auxiliares</code></pre>
-          </div>
-
-          <h3>Modos de operación</h3>
+          <h3>Maletín: mapa de registros</h3>
+          <p>
+            Las entradas se codifican como números (NINGUNA = 0, I1 = 1, I2 = 2, I3 = 3, I4 = 4, I7 = 5). I1, I3 e
+            I4 son normalmente abiertas; I2 e I7, normalmente cerradas.
+          </p>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 9.</b> Modos de operación</caption>
+              <caption><b>Tabla 13.</b> Registros del Ladder maestro del maletín</caption>
+              <thead>
+                <tr><th>Registros</th><th>Contenido</th><th>Acceso</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>%R1 · %R2</td><td>Habilitación general y entrada de paro general.</td><td>Escritura</td></tr>
+                <tr><td>%R3 · %R4</td><td>Estado de las entradas físicas y de las salidas Q10/Q11/Q12.</td><td>Lectura</td></tr>
+                <tr><td>%R10–%R19 (Q10) · %R20–%R29 (Q11) · %R30–%R39 (Q12)</td><td>Por salida: modo, entrada A, entrada B, paro, habilitación, banderas, tipo y tiempo del temporizador, y tipo y preset del contador.</td><td>Escritura</td></tr>
+                <tr><td>%R40–%R45</td><td>Acumulados de temporizador y contador de cada salida.</td><td>Lectura</td></tr>
+                <tr><td>%R46–%R54</td><td>Reset de temporizador y contador, y entrada física que reinicia el contador.</td><td>Escritura</td></tr>
+                <tr><td>%R60–%R64 · %R70–%R87</td><td>Secuenciador: habilitación, entrada de arranque, modo, número de pasos, reset, máscara de salidas y duración de cada paso.</td><td>Escritura</td></tr>
+                <tr><td>%R65–%R67</td><td>Secuencia activa, paso actual y tiempo del paso.</td><td>Lectura</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Maletín: modos de operación</h3>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 14.</b> Modos de operación</caption>
               <thead>
                 <tr><th>Modo</th><th>Descripción</th><th>Ejemplo</th></tr>
               </thead>
               <tbody>
-                <tr><td><span class="tag is-accent">directo</span></td><td>La salida sigue directamente el estado de una entrada.</td><td>I1 activa Q10 mientras I1 esté presionada.</td></tr>
+                <tr><td><span class="tag is-accent">directo</span></td><td>La salida sigue el estado de una entrada.</td><td>I1 activa Q10 mientras I1 esté presionada.</td></tr>
                 <tr><td><span class="tag is-accent">enclavado</span></td><td>La salida queda retenida después del arranque hasta recibir paro.</td><td>I1 enciende Q10; I2 apaga Q10.</td></tr>
-                <tr><td><span class="tag is-accent">timer</span></td><td>Agrega comportamiento temporal como retardo o pulso.</td><td>I1 activa Q10 después de cierto tiempo.</td></tr>
-                <tr><td><span class="tag is-accent">counter</span></td><td>Activa una salida después de cierto número de eventos.</td><td>Después de 3 pulsos en I1, se activa Q10.</td></tr>
+                <tr><td><span class="tag is-accent">combinacional</span></td><td>Dos entradas combinadas con OR o AND, opcionalmente retenidas.</td><td>Q11 enciende con I1 o con I3.</td></tr>
+                <tr><td><span class="tag is-accent">timer</span></td><td>Retardo al encendido (<code>on_delay</code>) o pulso temporizado (<code>pulse</code>).</td><td>I1 activa Q10 después de 5 s.</td></tr>
+                <tr><td><span class="tag is-accent">counter</span></td><td>Activa la salida al llegar a un número de pulsos (<code>up</code>) y puede retenerla (<code>up_held</code>).</td><td>Tras 3 pulsos de I1 se enclava Q10.</td></tr>
+                <tr><td><span class="tag is-accent">sequence</span></td><td>Pasos temporizados que se ejecutan una vez o en ciclo.</td><td>Semáforo: verde 5 s, amarilla 2 s, roja 8 s.</td></tr>
               </tbody>
             </table>
+          </div>
+          <p class="spaced">
+            El orden de escritura es fijo: se reinicia la configuración anterior, se escribe cada salida (base,
+            temporizador y contador), después la secuencia y el paro general, y la habilitación va al final.
+          </p>
+
+          <h3>Banda transportadora: mapa de registros</h3>
+          <p>
+            Las direcciones salen de la tabla de etiquetas del programa maestro. <code>plc_banda.py</code> distingue los
+            registros que el backend puede escribir de los que solo puede leer, y rechaza cualquier escritura fuera de
+            esa lista.
+          </p>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 15.</b> Registros del programa maestro de la banda</caption>
+              <thead>
+                <tr><th>Registros</th><th>Contenido</th><th>Acceso</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>%R2 · %R4</td><td>Dirección (1 o 2) y frecuencia en Hz (1–327).</td><td>Escritura</td></tr>
+                <tr><td>%R5 · %R6</td><td>Nueva configuración y reset del VFD. Se activan al cambiar de valor (1, 2, 3…).</td><td>Disparo</td></tr>
+                <tr><td>%R1 · %R3 · %R7 · %R8</td><td>Habilitación por I1, estado de la banda, configuración lista (<code>CfgReady</code>) y velocidad real.</td><td>Lectura</td></tr>
+                <tr><td>%R9 · %R10 · %R11 · %R15</td><td>Modo de paro, paro por software y paro automático por tiempo.</td><td>Escritura</td></tr>
+                <tr><td>%R16–%R39</td><td>Sensores S1 y S2: acción, tiempos, conteo, luces y plumas de cada evento.</td><td>Escritura / lectura</td></tr>
+                <tr><td>%R40 · %R41 · %R50</td><td>Luces de la torreta con la banda corriendo, detenida y mientras se presiona I1.</td><td>Escritura</td></tr>
+                <tr><td>%R60–%R63</td><td>Comando y estado de las plumas 1 y 2.</td><td>Escritura / lectura</td></tr>
+                <tr><td>%R70–%R95</td><td>Acciones de cada sensor al llegar al conteo y su duración.</td><td>Escritura / lectura</td></tr>
+                <tr><td>%R96–%R99</td><td>Lámpara temporizada: luces, segundos, disparo y estado.</td><td>Escritura / lectura</td></tr>
+                <tr><td>%R100–%R127 · %R500–%R506</td><td>Monitoreo de entradas y salidas, y registros internos del VFD.</td><td>Solo lectura</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="spaced">
+            Para escribir una configuración nueva, el puente detiene la banda, escribe los parámetros y la dirección,
+            dispara el reset del VFD y la nueva configuración (siempre al final) y espera <code>CfgReady = 1</code>.
+            La banda arranca únicamente con el botón físico I1; I3 es el paro prioritario.
+          </p>
+
+          <h3>Qué ejecuta el PLC y qué ejecuta la aplicación</h3>
+          <div class="card-grid cols-2">
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-laptop-code"></i></div>
+              <h4>Aplicación externa (Python)</h4>
+              <ul class="doc-list">
+                <li>Interpreta la instrucción y valida la configuración.</li>
+                <li>Escribe solo registros de configuración y comando.</li>
+                <li>Dispara la nueva configuración y el reset del VFD.</li>
+                <li>Lee el estado y los monitores para informarlos.</li>
+              </ul>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-microchip"></i></div>
+              <h4>Programa maestro del PLC</h4>
+              <ul class="doc-list">
+                <li>Lee entradas y ejecuta la lógica en cada scan.</li>
+                <li>Gobierna salidas, temporizadores, contadores y secuencias.</li>
+                <li>En la banda: arranque, paros, VFD, sensores, torreta y plumas.</li>
+                <li>Decide si una configuración es válida (<code>CfgValid</code>).</li>
+              </ul>
+            </div>
           </div>
 
           <div class="callout callout-note">
@@ -1997,19 +2351,116 @@ Cada bloque puede guardar:
             <div>
               <span class="callout-title">Nota</span>
               Esta estrategia es más realista para un proyecto académico con PLC físico: Cscape sigue siendo la
-              herramienta base de programación, y LAVO funciona como una capa inteligente que modifica parámetros
-              de operación.
+              herramienta base de programación, y LAVO funciona como una capa que modifica parámetros de operación.
+              Los dos equipos no comparten registros ni módulos, por lo que un programa de un equipo no puede
+              escribirse en el otro.
             </div>
+          </div>
+        </section>
+
+        <!-- 16 · COMUNICACIÓN -->
+        <section class="doc-section" id="comunicacion" data-group="plc">
+          <header class="section-head">
+            <div class="section-num">16</div>
+            <div>
+              <div class="section-label">Comunicación</div>
+              <h2>Modbus TCP entre el puente local y los PLC</h2>
+            </div>
+          </header>
+
+          <p>
+            La comunicación con los controladores usa Modbus TCP en el puerto 502, con la librería
+            <code>pymodbus</code> (<code>ModbusTcpClient</code>, unidad 1). Toda la información se maneja como
+            <em>holding registers</em> de 16 bits: el registro <code>%Rn</code> de Cscape corresponde a la dirección
+            Modbus <code>n + 2999</code>. Se escriben de uno en uno y se leen de uno en uno (maletín) o en bloques
+            (banda).
+          </p>
+
+          <figure class="arch" aria-labelledby="fig-comunicacion">
+            <ol class="pipeline">
+              <li class="stage lane-front">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-window-maximize"></i></span></div>
+                <h4>Navegador</h4>
+                <span class="stage-layer">JSON por HTTP</span>
+              </li>
+              <li class="stage lane-plc">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-laptop-code"></i></span></div>
+                <h4>Puente local</h4>
+                <span class="stage-layer">valida y traduce a registros</span>
+              </li>
+              <li class="stage lane-plc">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-network-wired"></i></span></div>
+                <h4>Modbus TCP</h4>
+                <span class="stage-layer">puerto 502, holding registers</span>
+              </li>
+              <li class="stage lane-plc">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-microchip"></i></span></div>
+                <h4>PLC</h4>
+                <span class="stage-layer">registros %R del programa maestro</span>
+              </li>
+            </ol>
+            <figcaption class="arch-caption" id="fig-comunicacion">
+              <b>Figura 15.</b> Camino de la información hacia el PLC. Las lecturas regresan por el mismo camino.
+            </figcaption>
+          </figure>
+
+          <h3>Qué viaja en cada dirección</h3>
+          <div class="card-grid cols-2">
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-arrow-right"></i></div>
+              <h4>Del sistema al PLC</h4>
+              <ul class="doc-list">
+                <li>Maletín: modo y entradas de cada salida, temporizadores, contadores, secuencia, paro general y habilitación.</li>
+                <li>Banda: dirección, frecuencia, paros, sensores, torreta, plumas, acciones por conteo y lámpara temporizada.</li>
+                <li>Disparos de nueva configuración y de reset del VFD.</li>
+                <li>Comandos en vivo de la banda desde su panel.</li>
+              </ul>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-arrow-left"></i></div>
+              <h4>Del PLC al sistema</h4>
+              <ul class="doc-list">
+                <li>Confirmación o error de cada escritura.</li>
+                <li>Banda: <code>CfgReady</code>, estado y velocidad real, conteos, eventos activos, estado de plumas y motivo de paro.</li>
+                <li>Banda: monitores de entradas y salidas y diagnóstico del VFD.</li>
+                <li>Maletín: estado de entradas, salidas y acumulados (disponible en el módulo, no se muestra en la interfaz).</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3>Conexión, estados y errores</h3>
+          <ul class="doc-list">
+            <li><strong>Conexión por petición:</strong> cada operación abre la conexión, escribe o lee y la cierra.</li>
+            <li><strong>Destino elegido por el usuario:</strong> la IP viaja en la petición; si no viene, se usa la configurada para ese equipo (<code>POST /plc/config</code> o variables <code>MALETIN_PLC_IP</code> / <code>BANDA_PLC_IP</code>). El backend no adivina qué PLC es cuál.</li>
+            <li><strong>Diagnóstico:</strong> <code>/plc/probar</code> hace ping y abre el puerto 502; <code>/plc/escanear</code> busca equipos con el puerto 502 abierto en las subredes locales. La dirección del PLC en la barra del editor se marca en verde o rojo según el resultado.</li>
+            <li><strong>Estado en vivo de la banda:</strong> el panel consulta <code>GET /banda/estado</code> cada 1.5 s, que lee el PLC en cinco bloques. Siempre muestra lo que reporta el PLC, no el último comando enviado.</li>
+            <li><strong>Esperas:</strong> tras una nueva configuración, el puente espera hasta 8 s a que <code>CfgReady</code> valga 1 y, después de un reset, exige verlo bajar a 0 antes de aceptar el 1.</li>
+          </ul>
+
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 16.</b> Errores de comunicación y respuesta del sistema</caption>
+              <thead>
+                <tr><th>Código</th><th>Causa</th><th>Qué ve el usuario</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>400</td><td>No hay IP para el equipo.</td><td>Mensaje para elegir el PLC; se ofrece abrir el selector.</td></tr>
+                <tr><td>422</td><td>La configuración no es válida para ese PLC.</td><td>Lista de errores en la terminal del editor; no se escribe nada.</td></tr>
+                <tr><td>503</td><td>No se logró la conexión Modbus.</td><td>Mensaje de conexión y opción de escanear la red.</td></tr>
+                <tr><td>500</td><td>Error durante la escritura o la lectura.</td><td>Detalle del error en la terminal.</td></tr>
+                <tr><td>Sin respuesta</td><td>El puente local no está corriendo.</td><td>Aviso de que no se pudo contactar el servidor PLC.</td></tr>
+              </tbody>
+            </table>
           </div>
         </section>
 
         <!-- ======================= PARTE VI · VALIDACIÓN ======================= -->
         <div class="part" data-group="validacion"><span class="part-num">Parte VI</span><span class="part-title">Validación</span><span class="part-line"></span></div>
 
-        <!-- 11 · SEGURIDAD -->
+        <!-- 17 · VALIDACIÓN -->
         <section class="doc-section" id="seguridad" data-group="validacion">
           <header class="section-head">
-            <div class="section-num">16</div>
+            <div class="section-num">17</div>
             <div>
               <div class="section-label">Validación y seguridad lógica</div>
               <h2>La IA no debe tener control directo sin revisión</h2>
@@ -2017,29 +2468,92 @@ Cada bloque puede guardar:
           </header>
 
           <p>
-            Un sistema que genera lógica para PLC debe ser cuidadoso. Aunque el proyecto funciona como prototipo,
-            la lógica de control puede representar acciones físicas reales. Por eso se usan capas de validación
-            antes de renderizar o aplicar cualquier configuración.
+            Aunque el proyecto funciona como prototipo, la configuración puede representar acciones físicas reales.
+            Por eso la misma configuración se valida varias veces, con reglas equivalentes en el backend, en el
+            frontend y otra vez en el puente justo antes de escribir.
           </p>
 
-          <h3>Validaciones importantes</h3>
-          <ul class="doc-list">
-            <li>Comprobar que las entradas solicitadas existan en el perfil del dispositivo.</li>
-            <li>Comprobar que las salidas solicitadas estén permitidas.</li>
-            <li>Rechazar modos de operación desconocidos.</li>
-            <li>Evitar respuestas que no sean JSON válido.</li>
-            <li>Evitar instrucciones ambiguas que no puedan convertirse de forma segura.</li>
-            <li>Separar generación lógica de aplicación física al PLC.</li>
-            <li>Mostrar al usuario lo que el modelo entendió antes de aplicar cambios.</li>
-          </ul>
+          <h3>Validaciones por etapa</h3>
+          <ol class="timeline">
+            <li>
+              <div class="tl-num">1</div>
+              <div class="tl-body">
+                <strong>Acceso y disponibilidad</strong>
+                <span>Al abrir la página se consulta <code>/health</code>; si el backend exige contraseña, la página se bloquea hasta obtener un token. Toda petición sin token válido recibe 401 y la página vuelve a pedir la contraseña.</span>
+              </div>
+            </li>
+            <li>
+              <div class="tl-num">2</div>
+              <div class="tl-body">
+                <strong>Validación de entrada</strong>
+                <span>Texto vacío o de más de 2000 caracteres → 400. Equipo ambiguo → pregunta «¿maletín o banda?». Maletín sin salida o sin entrada → preguntas con opciones. Banda con un dato imprescindible faltante u órdenes contradictorias → pregunta.</span>
+              </div>
+            </li>
+            <li>
+              <div class="tl-num">3</div>
+              <div class="tl-body">
+                <strong>Validación de la respuesta de la IA (backend)</strong>
+                <span>Maletín: salidas válidas y no repetidas, modos permitidos, entradas existentes, rangos de temporizadores, contadores y pasos, y AND sin habilitación. Después, una validación semántica revisa las capacidades del perfil y que un contador tenga una entrada que contar. Banda: estructura de la intención, cobertura de todas las acciones y reglas del programa maestro (frecuencia 1–327 Hz, dirección 1 o 2, tiempos mayores que 0 en pausas temporizadas, máscaras 0–7, arranque solo con I1).</span>
+              </div>
+            </li>
+            <li>
+              <div class="tl-num">4</div>
+              <div class="tl-body">
+                <strong>Validación lógica (frontend)</strong>
+                <span><code>validateLogicJson</code> repite esas reglas antes de compilar y bloquea el dibujo si encuentra errores. Tras compilar, <code>normalizeAndValidate</code> regenera identificadores duplicados, completa la tabla de símbolos y verifica que ninguna bobina use una dirección de solo lectura. La simulación no inicia si quedan errores.</span>
+              </div>
+            </li>
+            <li>
+              <div class="tl-num">5</div>
+              <div class="tl-body">
+                <strong>Confirmación del usuario</strong>
+                <span>La carga solo ocurre si el usuario la pide: elige equipo e IP, la prueba de comunicación debe ser correcta y el equipo debe coincidir con el programa abierto.</span>
+              </div>
+            </li>
+            <li>
+              <div class="tl-num">6</div>
+              <div class="tl-body">
+                <strong>Validación previa al PLC (puente)</strong>
+                <span>El puente vuelve a validar con el módulo del equipo, rechaza un programa de la banda dirigido al maletín, arma el plan antes de conectar y, en la banda, solo permite escribir registros de su lista blanca.</span>
+              </div>
+            </li>
+            <li>
+              <div class="tl-num">7</div>
+              <div class="tl-body">
+                <strong>Ejecución y verificación</strong>
+                <span>Banda: se espera <code>CfgReady</code>; si no llega, se leen los motivos por los que el PLC rechaza la configuración y se verifica que la consigna del VFD llegó escalada. El arranque sigue dependiendo del botón físico I1.</span>
+              </div>
+            </li>
+          </ol>
+
+          <h3>Qué ocurre cuando una validación falla</h3>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 17.</b> Comportamiento ante fallas de validación</caption>
+              <thead>
+                <tr><th>Falla</th><th>Comportamiento implementado</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Instrucción ambigua</td><td>No se genera nada: se muestran las preguntas como botones y se repone la instrucción para completarla.</td></tr>
+                <tr><td>Errores en la respuesta de la IA</td><td>Regeneración automática: los errores se devuelven al modelo, hasta 3 intentos.</td></tr>
+                <tr><td>Solo problemas semánticos tras los intentos (maletín)</td><td>Se acepta la configuración sintácticamente válida y los problemas se muestran como avisos.</td></tr>
+                <tr><td>Enclavamiento pedido pero no generado</td><td>Se reintenta una vez; si persiste, se avisa al usuario que reformule.</td></tr>
+                <tr><td>Configuración inválida tras los intentos</td><td>Error 422 con los motivos; el usuario puede reformular.</td></tr>
+                <tr><td>Error en el frontend</td><td>No se dibuja el programa y se listan los errores en el chat.</td></tr>
+                <tr><td>Error previo al PLC</td><td>No se escribe ningún registro; el error aparece en la terminal del editor.</td></tr>
+                <tr><td>El usuario cancela</td><td>Se cierra la ventana de carga sin comunicación con el PLC.</td></tr>
+              </tbody>
+            </table>
+          </div>
 
           <h3>Principio de diseño seguro</h3>
           <ol class="chain">
             <li><i class="fa-solid fa-brain"></i>La IA interpreta.</li>
-            <li><i class="fa-solid fa-shield-halved"></i>El frontend valida.</li>
-            <li><i class="fa-solid fa-gears"></i>El compilador estructura.</li>
-            <li><i class="fa-solid fa-user-check"></i>El usuario revisa.</li>
-            <li><i class="fa-solid fa-microchip"></i>El PLC ejecuta solamente una lógica previamente controlada.</li>
+            <li><i class="fa-solid fa-shield-halved"></i>El backend valida y pide correcciones al modelo.</li>
+            <li><i class="fa-solid fa-gears"></i>El frontend valida y compila.</li>
+            <li><i class="fa-solid fa-user-check"></i>El usuario revisa y confirma la carga.</li>
+            <li><i class="fa-solid fa-plug"></i>El puente valida otra vez antes de escribir.</li>
+            <li><i class="fa-solid fa-microchip"></i>El PLC ejecuta solamente una configuración previamente controlada.</li>
           </ol>
 
           <div class="callout callout-warn">
@@ -2056,7 +2570,7 @@ Cada bloque puede guardar:
         <!-- 12 · MANUAL DE BUENAS PRÁCTICAS -->
         <section class="doc-section" id="manual" data-group="validacion">
           <header class="section-head">
-            <div class="section-num">17</div>
+            <div class="section-num">18</div>
             <div>
               <div class="section-label">Manual de buenas prácticas</div>
               <h2>Manual de buenas prácticas para programación y validación de lógica PLC</h2>
@@ -2150,7 +2664,7 @@ Cada bloque puede guardar:
         <!-- 12 · MÉTRICAS -->
         <section class="doc-section" id="metricas" data-group="pruebas">
           <header class="section-head">
-            <div class="section-num">18</div>
+            <div class="section-num">19</div>
             <div>
               <div class="section-label">Métricas evaluadas</div>
               <h2>Comparación de prompts del modo Diseñador</h2>
@@ -2193,7 +2707,7 @@ Cada bloque puede guardar:
         <!-- 13 · RESULTADOS -->
         <section class="doc-section" id="resultados" data-group="pruebas">
           <header class="section-head">
-            <div class="section-num">19</div>
+            <div class="section-num">20</div>
             <div>
               <div class="section-label">Resultados</div>
               <h2>Evidencia de funcionamiento en el PLC físico</h2>
@@ -2265,14 +2779,14 @@ Cada bloque puede guardar:
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/timer.png" alt="Captura del timer" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 15</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 16</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer.png</span></div>
                   <p>Captura de la configuración/estado del temporizador en la interfaz o en el PLC.</p>
                 </figcaption>
               </figure>
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/timer2.png" alt="Segunda captura del timer" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 16</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer2.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 17</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer2.png</span></div>
                   <p>Segunda captura del temporizador, mostrando otra fase o parámetro del mismo comportamiento.</p>
                 </figcaption>
               </figure>
@@ -2293,14 +2807,14 @@ Cada bloque puede guardar:
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/contador1.png" alt="Primera captura del contador" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 17</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador1.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 18</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador1.png</span></div>
                   <p>Captura del contador antes de alcanzar el valor objetivo (conteo en progreso).</p>
                 </figcaption>
               </figure>
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/contador2.png" alt="Segunda captura del contador" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 18</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador2.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 19</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador2.png</span></div>
                   <p>Captura del contador al llegar al valor configurado y activar la salida correspondiente.</p>
                 </figcaption>
               </figure>
@@ -2323,7 +2837,7 @@ Cada bloque puede guardar:
         <!-- 14 · CRÉDITOS -->
         <section class="doc-section" id="creditos" data-group="creditos">
           <header class="section-head">
-            <div class="section-num">20</div>
+            <div class="section-num">21</div>
             <div>
               <div class="section-label">Créditos y herramientas de apoyo</div>
               <h2>Herramientas que apoyaron el desarrollo</h2>
@@ -2400,10 +2914,10 @@ Cada bloque puede guardar:
         <!-- ======================= PARTE IX · REFERENCIAS ======================= -->
         <div class="part" data-group="referencias"><span class="part-num">Parte IX</span><span class="part-title">Referencias</span><span class="part-line"></span></div>
 
-        <!-- 21 · REFERENCIAS -->
+        <!-- 22 · REFERENCIAS -->
         <section class="doc-section" id="referencias" data-group="referencias">
           <header class="section-head">
-            <div class="section-num">21</div>
+            <div class="section-num">22</div>
             <div>
               <h2>Referencias</h2>
             </div>
