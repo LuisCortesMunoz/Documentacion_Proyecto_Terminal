@@ -84,8 +84,11 @@
       tocList.innerHTML = '<li class="toc-empty">Sin subsecciones</li>';
       return;
     }
+    // Si la sección tiene bloques (h3.block-h), los demás h3 se muestran como subsecciones
+    var hasBlocks = !!sec.querySelector('h3.block-h');
     heads.forEach(function (h) {
       var li = document.createElement('li');
+      if (hasBlocks) li.className = h.classList.contains('block-h') ? 'toc-block' : 'toc-sub';
       var a  = document.createElement('a');
       a.href = '#' + h.id;
       a.textContent = h.textContent;

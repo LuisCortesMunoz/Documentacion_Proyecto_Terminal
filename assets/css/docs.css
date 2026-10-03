@@ -920,6 +920,154 @@ strong { color: var(--ink); font-weight: 600; }
 .pdf-viewer iframe { width: 100%; height: 100%; border: 0; display: block; }
 .doc-section .pdf-fallback { margin-top: .6rem; font-size: .82rem; color: var(--text-3); }
 
+/* ---------- 13b. Marco teórico ---------- */
+.doc-section p.spaced { margin-top: 1.25rem; }
+.doc-section h3.block-h {
+  font-family: var(--font-display); font-size: clamp(1.15rem, 2.2vw, 1.35rem); font-weight: 700;
+  margin: 3rem 0 1rem; padding-top: 2rem; border-top: 1px solid var(--line);
+}
+.doc-section h3.block-h::before { width: 4px; height: 1.15em; border-radius: 2px; }
+.section-head + h3.block-h { margin-top: 0; padding-top: 0; border-top: 0; }
+.toc li.toc-sub a { padding-left: 1.5rem; font-size: .76rem; }
+.toc li.toc-block a { color: var(--ink-2); font-weight: 600; }
+.doc-section h4.sub-h {
+  font-family: var(--font-mono); font-size: .74rem; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-2); margin: 1.75rem 0 .6rem;
+}
+
+/* Citas en el texto */
+.cite { color: var(--text-2); text-decoration: none; border-bottom: 1px dotted var(--text-3); }
+.cite:hover { color: var(--red-700); border-bottom-color: var(--red-600); }
+
+/* Variantes de tarjetas */
+.card-grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.info-card .doc-list { margin: .35rem 0 0; }
+.info-card .doc-list li { font-size: .86rem; padding-top: .25rem; padding-bottom: .25rem; color: var(--text-2); }
+.info-card .doc-list li::before { top: .78rem; }
+.info-card p .cite { font-size: inherit; }
+
+/* Variantes del pipeline: 3 columnas, flecha doble y suma */
+.pipeline.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.pipeline.cols-3 .stage::after { content: "\f061"; }
+.pipeline.cols-3 .stage:nth-child(3n)::after,
+.pipeline.cols-3 .stage:last-child::after { content: none; }
+.pipeline.cols-3.both .stage::after { content: "\f337"; } /* fa-arrows-left-right */
+.pipeline.cols-3.plus .stage::after { content: "\2b"; }   /* fa-plus */
+.pipeline.cols-3.both .stage:last-child::after,
+.pipeline.cols-3.plus .stage:last-child::after { content: none; }
+
+/* Flujo vertical */
+.vflow {
+  list-style: none; margin: 0 auto; padding: 0; max-width: 560px;
+  display: grid; gap: 1.35rem;
+}
+.vflow li {
+  position: relative;
+  display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: .85rem; align-items: center;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm);
+  padding: .55rem .9rem .55rem .55rem; box-shadow: var(--shadow-sm);
+}
+.vflow li + li::before {
+  content: "\f063"; /* fa-arrow-down */
+  font-family: "Font Awesome 6 Free"; font-weight: 900;
+  position: absolute; top: -1.2rem; left: 50%; transform: translateX(-50%);
+  font-size: .7rem; color: var(--text-3);
+}
+.vflow-icon {
+  width: 38px; height: 34px; border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--surface-3); color: var(--ink-2); font-size: .88rem;
+}
+.vflow strong { display: block; font-size: .92rem; line-height: 1.3; }
+.vflow .d { display: block; font-size: .82rem; line-height: 1.45; color: var(--text-2); }
+.vflow li.is-key { border-color: var(--red-100); border-left: 3px solid var(--red-600); }
+.vflow li.is-key .vflow-icon { background: var(--red-50); color: var(--red-600); }
+
+/* Conjuntos anidados (jerarquía IA) */
+.nest {
+  border: 1px solid var(--line); border-radius: var(--radius-sm);
+  background: var(--surface); padding: .55rem .7rem .7rem;
+}
+.nest .nest { margin-top: .55rem; background: var(--surface-2); }
+.nest .nest .nest { background: var(--surface); }
+.nest .nest .nest .nest { background: var(--surface-2); }
+.nest .nest .nest .nest .nest { background: var(--surface); }
+.nest.is-core { background: var(--red-50) !important; border-color: var(--red-600); }
+.nest-label {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .2rem .75rem;
+  font-size: .88rem; font-weight: 600; color: var(--ink);
+}
+.nest-label small { font-family: var(--font-mono); font-size: .68rem; font-weight: 400; color: var(--text-3); }
+.nest.is-core .nest-label { color: var(--red-700); }
+
+/* Ejemplo de interpretación */
+.example {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  margin-top: 1.4rem; border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden;
+}
+.example-k {
+  display: block; font-family: var(--font-mono); font-size: .66rem; letter-spacing: .12em;
+  text-transform: uppercase; margin-bottom: .55rem;
+}
+.example-in { background: var(--ink); color: #fff; padding: 1.15rem 1.25rem; }
+.example-in .example-k { color: #f3b6bd; }
+.example-in q { display: block; font-size: 1.02rem; line-height: 1.6; quotes: "“" "”"; }
+.example-out { background: var(--surface-2); padding: 1.15rem 1.25rem; }
+.example-out .example-k { color: var(--text-3); }
+.example-out dl { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .35rem 1rem; font-size: .88rem; }
+.example-out dt { font-weight: 600; color: var(--ink); }
+.example-out dd { margin: 0; color: var(--text-2); }
+
+/* Continuo realidad–virtualidad */
+.continuum-bar {
+  height: 10px; border-radius: 5px;
+  background: linear-gradient(90deg, var(--surface-3), #8a909a 50%, var(--ink-2));
+  border: 1px solid var(--line);
+}
+.continuum-scale {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .5rem;
+  margin-top: .65rem; text-align: center; font-size: .78rem; color: var(--text-2); line-height: 1.4;
+}
+.continuum-scale strong { display: block; font-size: .84rem; color: var(--ink); }
+.continuum-mr {
+  margin: .9rem 12.5% 0; padding: .35rem .5rem; text-align: center;
+  border: 1px solid var(--red-100); border-top: 2px solid var(--red-600); border-radius: 0 0 6px 6px;
+  background: var(--red-50); color: var(--red-700);
+  font-family: var(--font-mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
+}
+
+/* Human-in-the-Loop */
+.hitl {
+  margin-top: 1rem; padding: 1.25rem 1.35rem;
+  border: 1px solid var(--line); border-left: 4px solid var(--red-600);
+  border-radius: var(--radius-sm); background: var(--surface-2);
+}
+.hitl-head { display: flex; align-items: center; gap: .6rem; font-weight: 600; color: var(--ink); margin-bottom: .5rem; }
+.hitl-head i { color: var(--red-600); }
+.hitl p { font-size: .94rem; }
+.hitl .doc-list { margin-bottom: 0; }
+
+/* Idea central */
+.doc-section p.keyline {
+  margin: 1.75rem 0 0; padding: 1.25rem 1.4rem;
+  background: var(--ink); color: #fff;
+  border-left: 4px solid var(--red-500); border-radius: var(--radius-sm);
+  font-family: var(--font-display); font-weight: 600;
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem); line-height: 1.45;
+}
+.keyline span { color: #ff8f99; }
+
+/* Referencias */
+.refs { list-style: none; margin: .5rem 0 0; padding: 0; }
+.refs li {
+  padding: .7rem .5rem .7rem 2.1rem; text-indent: -1.6rem;
+  border-bottom: 1px dashed var(--line-2);
+  font-size: .9rem; line-height: 1.6; color: var(--text); word-break: break-word;
+}
+.refs li:last-child { border-bottom: 0; }
+.refs li:target { background: var(--red-50); border-radius: var(--radius-sm); }
+.refs a { color: var(--red-700); }
+
 /* ---------- 14. Footer ---------- */
 .site-footer {
   margin-top: 3rem; padding: 1.75rem 0 0;
@@ -1017,6 +1165,10 @@ strong { color: var(--ink); font-weight: 600; }
   .section-num { width: 42px; height: 42px; font-size: .9rem; }
   .part { margin-top: 2.5rem; }
   .brand-sub { display: none; }
+  .card-grid.cols-2 { grid-template-columns: minmax(0, 1fr); }
+  .example { grid-template-columns: minmax(0, 1fr); }
+  .continuum-scale { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: .8rem; }
+  .continuum-mr { margin-left: 0; margin-right: 0; }
 }
 
 @media (max-width: 560px) {
@@ -1026,6 +1178,15 @@ strong { color: var(--ink); font-weight: 600; }
     right: auto; left: 50%; top: auto; bottom: -1.35rem; transform: translateX(-50%);
   }
   .stage:last-child::after { content: none; }
+  .pipeline.cols-3 { grid-template-columns: minmax(0, 1fr); }
+  .pipeline.cols-3 .stage::after,
+  .pipeline.cols-3 .stage:nth-child(3n)::after { content: "063"; }
+  .pipeline.cols-3.both .stage::after { content: "338"; } /* fa-up-down */
+  .pipeline.cols-3.plus .stage::after { content: "b"; }
+  .pipeline.cols-3 .stage:last-child::after { content: none; }
+  .nest { padding: .5rem .5rem .55rem; }
+  .example-out dl { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .example-out dd { margin-bottom: .45rem; }
   .arch { padding: 1rem; }
   .card-grid.cols-4 { grid-template-columns: minmax(0, 1fr); }
   .header-gh .lbl { display: none; }

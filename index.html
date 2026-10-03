@@ -68,6 +68,7 @@
             <li><a href="#objetivo"><span class="n">05</span>Objetivo</a></li>
             <li><a href="#alcances"><span class="n">06</span>Alcances y límites</a></li>
             <li><a href="#metodologia"><span class="n">07</span>Metodología</a></li>
+            <li><a href="#marco-teorico"><span class="n">08</span>Marco teórico</a></li>
           </ul>
         </div>
 
@@ -76,8 +77,8 @@
             <span class="nav-group-num">II</span><span class="nav-group-label">Arquitectura</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
-            <li><a href="#arquitectura"><span class="n">08</span>Arquitectura general</a></li>
-            <li><a href="#flujo"><span class="n">09</span>Flujo completo</a></li>
+            <li><a href="#arquitectura"><span class="n">09</span>Arquitectura general</a></li>
+            <li><a href="#flujo"><span class="n">10</span>Flujo completo</a></li>
           </ul>
         </div>
 
@@ -86,9 +87,9 @@
             <span class="nav-group-num">III</span><span class="nav-group-label">Software</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
-            <li><a href="#frontend"><span class="n">10</span>Frontend</a></li>
-            <li><a href="#editor"><span class="n">11</span>Editor Ladder</a></li>
-            <li><a href="#backend"><span class="n">12</span>Backend</a></li>
+            <li><a href="#frontend"><span class="n">11</span>Frontend</a></li>
+            <li><a href="#editor"><span class="n">12</span>Editor Ladder</a></li>
+            <li><a href="#backend"><span class="n">13</span>Backend</a></li>
           </ul>
         </div>
 
@@ -97,7 +98,7 @@
             <span class="nav-group-num">IV</span><span class="nav-group-label">Inteligencia Artificial</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
-            <li><a href="#contrato"><span class="n">13</span>JSON lógico</a></li>
+            <li><a href="#contrato"><span class="n">14</span>JSON lógico</a></li>
           </ul>
         </div>
 
@@ -106,7 +107,7 @@
             <span class="nav-group-num">V</span><span class="nav-group-label">PLC y comunicación</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
-            <li><a href="#plc"><span class="n">14</span>PLC y registros</a></li>
+            <li><a href="#plc"><span class="n">15</span>PLC y registros</a></li>
           </ul>
         </div>
 
@@ -115,8 +116,8 @@
             <span class="nav-group-num">VI</span><span class="nav-group-label">Validación</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
-            <li><a href="#seguridad"><span class="n">15</span>Validación y seguridad</a></li>
-            <li><a href="#manual"><span class="n">16</span>Manual de buenas prácticas</a></li>
+            <li><a href="#seguridad"><span class="n">16</span>Validación y seguridad</a></li>
+            <li><a href="#manual"><span class="n">17</span>Manual de buenas prácticas</a></li>
           </ul>
         </div>
 
@@ -125,8 +126,8 @@
             <span class="nav-group-num">VII</span><span class="nav-group-label">Pruebas y resultados</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
-            <li><a href="#metricas"><span class="n">17</span>Métricas</a></li>
-            <li><a href="#resultados"><span class="n">18</span>Resultados</a></li>
+            <li><a href="#metricas"><span class="n">18</span>Métricas</a></li>
+            <li><a href="#resultados"><span class="n">19</span>Resultados</a></li>
           </ul>
         </div>
 
@@ -135,7 +136,16 @@
             <span class="nav-group-num">VIII</span><span class="nav-group-label">Créditos</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
-            <li><a href="#creditos"><span class="n">19</span>Herramientas de apoyo</a></li>
+            <li><a href="#creditos"><span class="n">20</span>Herramientas de apoyo</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-group" data-group="referencias">
+          <button class="nav-group-btn" aria-expanded="false">
+            <span class="nav-group-num">IX</span><span class="nav-group-label">Referencias</span><i class="fa-solid fa-chevron-right chev"></i>
+          </button>
+          <ul class="nav-sub">
+            <li><a href="#referencias"><span class="n">21</span>Referencias</a></li>
           </ul>
         </div>
       </nav>
@@ -426,13 +436,1164 @@
           </ul>
         </section>
 
+        <!-- 08 · MARCO TEÓRICO -->
+        <section class="doc-section" id="marco-teorico" data-group="introduccion">
+          <header class="section-head">
+            <div class="section-num">08</div>
+            <div>
+              <h2>Marco teórico</h2>
+            </div>
+          </header>
+
+          <h3 class="block-h" id="mt-automatizacion">1. Automatización industrial</h3>
+
+          <p class="lead">
+            La automatización industrial integra sistemas de control, sensores, actuadores, dispositivos
+            computacionales y redes de comunicación para supervisar y controlar procesos productivos con una
+            intervención humana reducida y controlada.
+          </p>
+
+          <p>
+            Desde el punto de vista del control, un proceso automatizado se describe como un lazo: el estado del
+            proceso físico se mide mediante sensores, un controlador evalúa esas señales de acuerdo con una
+            estrategia programada y, como resultado, modifica el estado de los actuadores que intervienen sobre el
+            proceso (<a class="cite" href="#ref-petruzella2022">Petruzella, 2022</a>).
+          </p>
+
+          <figure class="arch" aria-labelledby="fig-mt-lazo">
+            <ol class="pipeline">
+              <li class="stage lane-user">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-industry"></i></span></div>
+                <h4>Proceso físico</h4>
+                <span class="stage-layer">banda, motores, lámparas, mecanismos</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-satellite-dish"></i></span></div>
+                <h4>Sensores / Entradas</h4>
+                <span class="stage-layer">botones, finales de carrera, sensores</span>
+              </li>
+              <li class="stage lane-plc">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-microchip"></i></span></div>
+                <h4>Controlador</h4>
+                <span class="stage-layer">PLC: ejecuta la lógica de control</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-gear"></i></span></div>
+                <h4>Actuadores / Salidas</h4>
+                <span class="stage-layer">motores, relevadores, indicadores</span>
+              </li>
+            </ol>
+            <figcaption class="arch-caption" id="fig-mt-lazo">
+              <b>Figura 1.</b> Flujo conceptual de un sistema automatizado. Las salidas modifican el proceso físico, cuyo nuevo estado vuelve a medirse en las entradas.
+            </figcaption>
+          </figure>
+
+          <div class="callout callout-note">
+            <div class="callout-icon"><i class="fa-solid fa-diagram-project"></i></div>
+            <div>
+              <span class="callout-title">Relación con el proyecto</span>
+              En este proyecto el PLC es el elemento que ejecuta finalmente la lógica de control. El asistente de
+              inteligencia artificial se plantea como una capa externa al lazo de control: facilita la generación y
+              configuración de la lógica, pero no sustituye al controlador ni participa en la ejecución en tiempo real.
+            </div>
+          </div>
+
+          <h3 id="mt-plc">1.1 Controladores Lógicos Programables (PLC)</h3>
+          <p>
+            Un Controlador Lógico Programable (PLC) es un computador industrial diseñado para controlar máquinas y
+            procesos. Recibe señales procedentes del proceso, ejecuta una estrategia de control almacenada en su
+            memoria y actualiza sus salidas para gobernar actuadores. Su construcción está orientada a operar en
+            ambientes industriales y a ser programado por personal técnico mediante lenguajes propios de la
+            automatización (<a class="cite" href="#ref-petruzella2022">Petruzella, 2022</a>).
+          </p>
+
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-microchip"></i></div>
+              <h4>CPU</h4>
+              <p>Ejecuta el programa de usuario, resuelve la lógica y coordina la lectura de entradas y la escritura de salidas.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-memory"></i></div>
+              <h4>Memoria</h4>
+              <p>Almacena el programa, el estado de entradas y salidas, y los datos internos: bits, registros, temporizadores y contadores.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-right-to-bracket"></i></div>
+              <h4>Entradas</h4>
+              <p>Adquieren señales digitales o analógicas de botones, sensores e interruptores del proceso.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-right-from-bracket"></i></div>
+              <h4>Salidas</h4>
+              <p>Entregan las señales que activan actuadores como relevadores, contactores, lámparas o motores.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-network-wired"></i></div>
+              <h4>Módulos de comunicación</h4>
+              <p>Permiten intercambiar datos con otros equipos, estaciones de trabajo o sistemas de supervisión.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-file-code"></i></div>
+              <h4>Programa de usuario</h4>
+              <p>Lógica de control escrita por el programador que define cómo deben responder las salidas a las entradas.</p>
+            </div>
+          </div>
+
+          <div class="callout callout-note">
+            <div class="callout-icon"><i class="fa-solid fa-circle-info"></i></div>
+            <div>
+              <span class="callout-title">Alcance del asistente</span>
+              El asistente de IA no reemplaza la ejecución del PLC. Su función es interpretar las instrucciones del
+              usuario y generar o configurar una representación lógica que, después de ser validada y confirmada,
+              puede aplicarse al controlador.
+            </div>
+          </div>
+
+          <h3 id="mt-ciclo">1.2 Ciclo de operación del PLC</h3>
+          <p>
+            El modelo clásico de ejecución de un PLC es el ciclo de exploración o <em>scan cycle</em>: el
+            controlador repite de forma continua una secuencia fija de etapas
+            (<a class="cite" href="#ref-petruzella2022">Petruzella, 2022</a>).
+          </p>
+
+          <figure class="arch" aria-labelledby="fig-mt-scan">
+            <ol class="pipeline">
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-right-to-bracket"></i></span></div>
+                <h4>Lectura de entradas</h4>
+                <span class="stage-layer">se copia el estado de las entradas físicas a memoria</span>
+              </li>
+              <li class="stage lane-plc">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-code"></i></span></div>
+                <h4>Ejecución del programa</h4>
+                <span class="stage-layer">se evalúa la lógica con los valores leídos</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-right-from-bracket"></i></span></div>
+                <h4>Actualización de salidas</h4>
+                <span class="stage-layer">los resultados se transfieren a las salidas físicas</span>
+              </li>
+              <li class="stage lane-user">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-rotate"></i></span></div>
+                <h4>Repetición</h4>
+                <span class="stage-layer">diagnóstico, comunicación y reinicio del ciclo</span>
+              </li>
+            </ol>
+            <figcaption class="arch-caption" id="fig-mt-scan">
+              <b>Figura 2.</b> Modelo clásico del ciclo de exploración (<em>scan cycle</em>) de un PLC.
+            </figcaption>
+          </figure>
+
+          <p>
+            Este es el modelo clásico de ejecución. Los PLC actuales pueden incorporar además tareas periódicas,
+            tareas disparadas por eventos, interrupciones y otras estrategias de planificación, por lo que el ciclo
+            debe entenderse como un modelo de referencia y no como la única forma de ejecución.
+          </p>
+
+          <p>El ciclo de exploración explica varios conceptos que el asistente debe respetar al generar lógica:</p>
+          <ul class="doc-list">
+            <li><strong>Estados de entradas:</strong> el programa trabaja con la imagen de las entradas leída al inicio del ciclo.</li>
+            <li><strong>Condiciones lógicas:</strong> cada salida se determina por combinaciones de contactos en serie (Y) y en paralelo (O).</li>
+            <li><strong>Prioridad de paro:</strong> la condición de paro debe dominar sobre la de arranque para que el sistema se detenga de forma predecible.</li>
+            <li><strong>Temporizadores:</strong> su valor acumulado avanza entre ciclos, por lo que su comportamiento depende de la ejecución continua.</li>
+            <li><strong>Contadores:</strong> registran flancos o eventos a lo largo de múltiples ciclos.</li>
+            <li><strong>Orden de ejecución:</strong> las redes se evalúan en secuencia; el resultado de una puede afectar a las siguientes dentro del mismo ciclo.</li>
+            <li><strong>Actualización de salidas:</strong> las salidas físicas cambian al finalizar la evaluación, no en el instante en que se resuelve cada red.</li>
+          </ul>
+
+          <h3 id="mt-ladder">1.3 Diagrama de Escalera — Ladder Diagram (LD)</h3>
+          <p>
+            El Diagrama de Escalera es un lenguaje gráfico cuyo origen conceptual se encuentra en los diagramas
+            eléctricos de control por relevadores. Representa la lógica como un conjunto de redes horizontales
+            (<em>rungs</em>) colocadas entre dos rieles verticales de alimentación, lo que facilitó la transición
+            de los tableros de relevadores a los controladores programables y explica su amplio uso en
+            automatización industrial (<a class="cite" href="#ref-petruzella2022">Petruzella, 2022</a>).
+          </p>
+
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 1.</b> Elementos principales de un programa Ladder</caption>
+              <thead>
+                <tr><th>Elemento</th><th>Descripción</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Rungs o redes</td><td>Líneas horizontales que expresan una condición y su resultado.</td></tr>
+                <tr><td>Contactos</td><td>Instrucciones de entrada que evalúan el estado de un bit (normalmente abierto o normalmente cerrado).</td></tr>
+                <tr><td>Bobinas</td><td>Instrucciones de salida que asignan el resultado lógico de la red a un bit o salida física.</td></tr>
+                <tr><td>Condiciones lógicas</td><td>Combinaciones de contactos en serie (Y) y en paralelo (O) que determinan la continuidad lógica.</td></tr>
+                <tr><td>Entradas y salidas</td><td>Direcciones asociadas a señales físicas del proceso o a bits internos del controlador.</td></tr>
+                <tr><td>Temporizadores</td><td>Bloques que activan o desactivan una salida después de un tiempo definido.</td></tr>
+                <tr><td>Contadores</td><td>Bloques que acumulan eventos y comparan el conteo con un valor preestablecido.</td></tr>
+                <tr><td>Bloques de función</td><td>Funciones reutilizables (comparaciones, operaciones, temporización) insertadas dentro de la red.</td></tr>
+                <tr><td>Orden de evaluación</td><td>Las redes se resuelven de arriba hacia abajo y, dentro de cada red, siguiendo la continuidad lógica.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="spaced">
+            Ladder Diagram forma parte de los lenguajes de programación definidos por la norma IEC 61131-3. La
+            edición vigente, <strong>IEC 61131-3:2025 (edición 4.0) — <em>Programmable controllers – Part 3:
+            Programming languages</em></strong>, especifica la sintaxis y semántica de los lenguajes para
+            controladores programables (<a class="cite" href="#ref-iec2025">IEC, 2025</a>).
+          </p>
+
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 2.</b> Lenguajes contemplados en IEC 61131-3</caption>
+              <thead>
+                <tr><th>Lenguaje</th><th>Tipo</th><th>Uso característico</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Ladder Diagram (LD)</td><td>Gráfico</td><td>Lógica discreta basada en contactos y bobinas.</td></tr>
+                <tr><td>Function Block Diagram (FBD)</td><td>Gráfico</td><td>Interconexión de bloques de función mediante señales.</td></tr>
+                <tr><td>Structured Text (ST)</td><td>Textual</td><td>Algoritmos, cálculos y estructuras de control de alto nivel.</td></tr>
+                <tr><td>Sequential Function Chart (SFC)</td><td>Elementos de estructuración</td><td>Organización de secuencias mediante etapas y transiciones.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout callout-note">
+            <div class="callout-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+            <div>
+              <span class="callout-title">Implicación para el asistente</span>
+              La salida del asistente debe corresponder con estructuras de programación industrial formalmente
+              definidas —contactos, bobinas, temporizadores, contadores y redes con un orden de evaluación— y no
+              únicamente producir una representación visual semejante a Ladder.
+            </div>
+          </div>
+
+          <h3 class="block-h" id="mt-ia">2. Inteligencia Artificial y Modelos de Lenguaje</h3>
+
+          <p class="lead">
+            Los modelos de lenguaje utilizados en este proyecto son el resultado de una cadena de desarrollos dentro
+            de la inteligencia artificial. Cada nivel de la jerarquía es un subconjunto del anterior.
+          </p>
+
+          <figure class="arch" aria-labelledby="fig-mt-jerarquia">
+            <div class="nest">
+              <div class="nest-label">Inteligencia Artificial <small>campo general</small></div>
+              <div class="nest">
+                <div class="nest-label">Machine Learning <small>aprende patrones a partir de datos</small></div>
+                <div class="nest">
+                  <div class="nest-label">Redes neuronales <small>capas de unidades interconectadas</small></div>
+                  <div class="nest">
+                    <div class="nest-label">Deep Learning <small>redes con múltiples capas</small></div>
+                    <div class="nest">
+                      <div class="nest-label">Transformers <small>arquitectura basada en atención</small></div>
+                      <div class="nest is-core">
+                        <div class="nest-label">Large Language Models <small>modelos de lenguaje de gran escala</small></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <figcaption class="arch-caption" id="fig-mt-jerarquia">
+              <b>Figura 3.</b> Relación jerárquica entre IA, aprendizaje automático, redes neuronales, aprendizaje profundo, Transformers y LLM.
+            </figcaption>
+          </figure>
+
+          <h3 id="mt-fundamentos-ia">2.1 Fundamentos de Inteligencia Artificial</h3>
+          <p>
+            La Inteligencia Artificial (IA) es el campo orientado al desarrollo de sistemas capaces de procesar
+            información para realizar tareas asociadas con la percepción, el razonamiento, el aprendizaje, la
+            generación de información o la toma de decisiones. Russell y Norvig organizan el campo alrededor del
+            concepto de <strong>agente</strong>: una entidad que percibe su entorno mediante sensores y actúa sobre
+            él mediante actuadores. Un <strong>agente racional</strong> es aquel que selecciona la acción que se
+            espera maximice su medida de desempeño con base en la información disponible
+            (<a class="cite" href="#ref-russell2020">Russell &amp; Norvig, 2020</a>).
+          </p>
+          <p>
+            En el proyecto, la IA permite procesar una solicitud expresada por el usuario y transformarla en
+            información que el resto del sistema puede manipular. Este procesamiento es estadístico: el modelo
+            produce una interpretación probable de la instrucción, no un entendimiento equivalente al de una
+            persona, por lo que su resultado debe verificarse.
+          </p>
+
+          <h3 id="mt-ml">2.2 Aprendizaje automático y redes neuronales</h3>
+          <p>
+            El <strong>Machine Learning</strong> agrupa métodos que aprenden patrones a partir de datos en lugar de
+            depender exclusivamente de reglas programadas de forma explícita. Las <strong>redes neuronales
+            artificiales</strong> son modelos compuestos por unidades organizadas en capas, donde cada capa
+            transforma la representación recibida de la anterior. Al apilar múltiples capas, el modelo puede
+            construir representaciones cada vez más abstractas de los datos; este enfoque es el que da nombre al
+            <strong>Deep Learning</strong> o aprendizaje profundo
+            (<a class="cite" href="#ref-goodfellow2016">Goodfellow et al., 2016</a>).
+          </p>
+          <p>
+            Para este proyecto basta con retener una idea: los modelos de lenguaje son redes neuronales profundas
+            entrenadas con grandes volúmenes de texto, cuyo comportamiento proviene de patrones aprendidos y no de
+            reglas de automatización programadas manualmente.
+          </p>
+
+          <h3 id="mt-nlp">2.3 Procesamiento de Lenguaje Natural</h3>
+          <p>
+            El Procesamiento de Lenguaje Natural (<em>Natural Language Processing</em>, NLP) es el área de la IA
+            orientada al procesamiento computacional del lenguaje humano
+            (<a class="cite" href="#ref-russell2020">Russell &amp; Norvig, 2020</a>). Dentro del proyecto
+            intervienen las siguientes tareas:
+          </p>
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-keyboard"></i></div>
+              <h4>Instrucciones escritas</h4>
+              <p>Recepción y procesamiento del texto ingresado por el usuario.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+              <h4>Speech-to-Text</h4>
+              <p>Conversión de audio a texto cuando la instrucción se dicta por voz.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-bullseye"></i></div>
+              <h4>Identificación de intención</h4>
+              <p>Determinar qué comportamiento de control solicita el usuario.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-filter"></i></div>
+              <h4>Extracción de información</h4>
+              <p>Reconocer entradas, salidas, tiempos, conteos y condiciones.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-comment-dots"></i></div>
+              <h4>Generación de respuestas</h4>
+              <p>Explicar al usuario lo interpretado o solicitar aclaraciones.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-sitemap"></i></div>
+              <h4>Representación estructurada</h4>
+              <p>Transformar la instrucción en datos con un formato definido y verificable.</p>
+            </div>
+          </div>
+
+          <div class="example">
+            <div class="example-in">
+              <span class="example-k">Instrucción del usuario</span>
+              <q>Enciende la lámpara verde cuando presione el botón de arranque y apágala cuando presione paro.</q>
+            </div>
+            <div class="example-out">
+              <span class="example-k">Interpretación necesaria</span>
+              <dl>
+                <dt>Entrada de arranque</dt><dd>botón de arranque</dd>
+                <dt>Entrada de paro</dt><dd>botón de paro</dd>
+                <dt>Salida controlada</dt><dd>lámpara verde</dd>
+                <dt>Activación</dt><dd>pulsación de arranque</dd>
+                <dt>Desactivación</dt><dd>pulsación de paro</dd>
+                <dt>Prioridad</dt><dd>el paro domina sobre el arranque</dd>
+                <dt>Comportamiento</dt><dd>la lámpara permanece encendida al soltar el botón (enclavamiento)</dd>
+              </dl>
+            </div>
+          </div>
+
+          <figure class="arch" aria-labelledby="fig-mt-nlp">
+            <ol class="pipeline cols-3">
+              <li class="stage lane-user">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-comment"></i></span></div>
+                <h4>Lenguaje natural</h4>
+                <span class="stage-layer">instrucción escrita o dictada</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-magnifying-glass"></i></span></div>
+                <h4>Intención y parámetros</h4>
+                <span class="stage-layer">qué se solicita y con qué elementos</span>
+              </li>
+              <li class="stage lane-front">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-sitemap"></i></span></div>
+                <h4>Lógica estructurada</h4>
+                <span class="stage-layer">representación procesable por el sistema</span>
+              </li>
+            </ol>
+            <figcaption class="arch-caption" id="fig-mt-nlp">
+              <b>Figura 4.</b> Transformación de una instrucción en lenguaje natural a una lógica estructurada.
+            </figcaption>
+          </figure>
+
+          <h3 id="mt-llm">2.4 Modelos de Lenguaje de Gran Escala</h3>
+          <p>
+            La arquitectura <strong>Transformer</strong> procesa secuencias mediante mecanismos de
+            <strong>atención</strong>, que permiten ponderar la relación entre todos los elementos de una secuencia
+            sin recurrir a redes recurrentes ni convolucionales
+            (<a class="cite" href="#ref-vaswani2017">Vaswani et al., 2017</a>). Esta arquitectura es la base de
+            los modelos de lenguaje preentrenados actuales.
+          </p>
+          <p>
+            Los <strong>Large Language Models</strong> (LLM) son modelos neuronales entrenados con grandes
+            volúmenes de texto que operan sobre secuencias de <em>tokens</em>. Mediante preentrenamiento, ajuste
+            fino o instrucciones (<em>prompting</em>), un mismo modelo puede aplicarse a múltiples tareas de NLP
+            (<a class="cite" href="#ref-min2023">Min et al., 2023</a>):
+          </p>
+          <div class="tags">
+            <span class="tag">Generación</span>
+            <span class="tag">Clasificación</span>
+            <span class="tag">Extracción de información</span>
+            <span class="tag">Resumen</span>
+            <span class="tag">Transformación de texto</span>
+            <span class="tag">Interacción conversacional</span>
+            <span class="tag is-accent">Representaciones estructuradas</span>
+          </div>
+
+          <figure class="arch" aria-labelledby="fig-mt-llm">
+            <ol class="pipeline cols-3">
+              <li class="stage lane-user">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-comment"></i></span></div>
+                <h4>Instrucción en lenguaje natural</h4>
+                <span class="stage-layer">solicitud del usuario</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-brain"></i></span></div>
+                <h4>LLM</h4>
+                <span class="stage-layer">interpreta la solicitud mediante un prompt definido</span>
+              </li>
+              <li class="stage lane-front">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-code"></i></span></div>
+                <h4>Representación estructurada</h4>
+                <span class="stage-layer">intención de automatización en JSON lógico</span>
+              </li>
+            </ol>
+            <figcaption class="arch-caption" id="fig-mt-llm">
+              <b>Figura 5.</b> Papel del LLM dentro del proyecto.
+            </figcaption>
+          </figure>
+
+          <h4 class="sub-h">Limitaciones de los LLM</h4>
+          <p>
+            Las respuestas de un modelo generativo no deben considerarse automáticamente correctas. El
+            <em>AI Risk Management Framework</em> de NIST establece que los sistemas de IA deben ser válidos y
+            confiables, y que sus riesgos deben gestionarse durante todo su ciclo de vida
+            (<a class="cite" href="#ref-nist2023">NIST, 2023</a>). Su perfil para IA generativa identifica riesgos
+            como la <em>confabulación</em>: la producción de contenido erróneo o falso presentado con aparente
+            seguridad (<a class="cite" href="#ref-nist2024">NIST, 2024</a>). En el contexto del proyecto, esto
+            puede manifestarse como:
+          </p>
+          <div class="callout callout-warn">
+            <div class="callout-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            <div>
+              <span class="callout-title">Riesgos de la salida generativa</span>
+              <ul class="doc-list" style="margin:.3rem 0 0">
+                <li>Inconsistencias entre lo solicitado y lo generado.</li>
+                <li>Interpretaciones incorrectas de la instrucción.</li>
+                <li>Información incompleta, como entradas o condiciones omitidas.</li>
+                <li>Respuestas que no cumplen el formato esperado.</li>
+                <li>Estructuras técnicamente incompatibles con el controlador o con las reglas de programación.</li>
+              </ul>
+            </div>
+          </div>
+          <p class="spaced">
+            Estas limitaciones justifican que el proyecto incorpore una etapa de validación entre la generación
+            mediante IA y cualquier modificación del sistema físico.
+          </p>
+
+          <h3 id="mt-hai">2.5 Interacción humano–IA mediante lenguaje natural</h3>
+          <p>
+            El lenguaje natural funciona como una capa de abstracción entre la intención del usuario y los
+            elementos técnicos necesarios para programar el proceso. El usuario describe el comportamiento
+            deseado y el sistema se encarga de traducirlo a estructuras de control, manteniendo al usuario en las
+            decisiones críticas.
+          </p>
+
+          <figure class="arch" aria-labelledby="fig-mt-hai">
+            <ol class="pipeline">
+              <li class="stage lane-user">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-user"></i></span></div>
+                <h4>Usuario</h4>
+                <span class="stage-layer">define el comportamiento deseado</span>
+              </li>
+              <li class="stage lane-user">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-comment"></i></span></div>
+                <h4>Instrucción natural</h4>
+                <span class="stage-layer">texto o voz</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-brain"></i></span></div>
+                <h4>Interpretación IA</h4>
+                <span class="stage-layer">LLM</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-code"></i></span></div>
+                <h4>Representación estructurada</h4>
+                <span class="stage-layer">JSON lógico</span>
+              </li>
+              <li class="stage lane-front">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-shield-halved"></i></span></div>
+                <h4>Validación</h4>
+                <span class="stage-layer">reglas técnicas</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-eye"></i></span></div>
+                <h4>Visualización</h4>
+                <span class="stage-layer">vista Ladder y simulación</span>
+              </li>
+              <li class="stage lane-user">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-user-check"></i></span></div>
+                <h4>Confirmación</h4>
+                <span class="stage-layer">el usuario autoriza</span>
+              </li>
+              <li class="stage lane-plc">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-microchip"></i></span></div>
+                <h4>Aplicación</h4>
+                <span class="stage-layer">escritura en el PLC</span>
+              </li>
+            </ol>
+            <figcaption class="arch-caption" id="fig-mt-hai">
+              <b>Figura 6.</b> Flujo de interacción humano–IA propuesto para el asistente.
+            </figcaption>
+          </figure>
+
+          <p>
+            Este flujo corresponde al enfoque <strong>Human-in-the-Loop</strong> (HITL): el usuario permanece
+            involucrado en las etapas críticas y puede revisar la interpretación antes de que se modifique el
+            sistema físico. Amershi et al. (<a class="cite" href="#ref-amershi2019">2019</a>) proponen 18
+            lineamientos para el diseño de sistemas con IA, agrupados según el momento de la interacción. La
+            Tabla 3 relaciona los más pertinentes con el funcionamiento de LAVO.
+          </p>
+
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 3.</b> Lineamientos de interacción humano–IA aplicados al asistente</caption>
+              <thead>
+                <tr><th>Aspecto</th><th>Lineamiento (Amershi et al., 2019)</th><th>Aplicación en LAVO</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Capacidades y límites</td><td>G1 · Aclarar qué puede hacer el sistema; G2 · Aclarar qué tan bien puede hacerlo</td><td>Indicar qué tipo de instrucciones procesa el asistente y que sus propuestas pueden contener errores.</td></tr>
+                <tr><td>Qué interpretó la IA</td><td>G11 · Aclarar por qué el sistema hizo lo que hizo</td><td>Mostrar la interpretación y la lógica propuesta antes de aplicarla.</td></tr>
+                <tr><td>Errores</td><td>G9 · Facilitar la corrección eficiente</td><td>Comunicar los errores de validación y permitir reformular la instrucción.</td></tr>
+                <tr><td>Ambigüedades</td><td>G10 · Acotar el servicio en caso de duda</td><td>Solicitar información adicional cuando la instrucción no puede determinarse correctamente.</td></tr>
+                <tr><td>Revisión</td><td>G8 · Facilitar el descarte eficiente</td><td>Permitir revisar y descartar la propuesta sin consecuencias en el PLC.</td></tr>
+                <tr><td>Confirmación</td><td>G16 · Comunicar las consecuencias de las acciones del usuario</td><td>Requerir confirmación explícita antes de escribir en el controlador.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 id="mt-aplicaciones">2.6 Aplicaciones de IA en sistemas industriales</h3>
+          <p>La IA se emplea actualmente en distintas áreas de la industria, entre ellas:</p>
+          <div class="tags">
+            <span class="tag">Mantenimiento predictivo</span>
+            <span class="tag">Detección de anomalías</span>
+            <span class="tag">Visión artificial</span>
+            <span class="tag">Inspección de calidad</span>
+            <span class="tag">Optimización de procesos</span>
+            <span class="tag">Robótica</span>
+            <span class="tag">Asistencia a operadores</span>
+            <span class="tag is-accent">Generación y asistencia de código</span>
+            <span class="tag">Soporte a decisiones</span>
+          </div>
+          <p class="spaced">
+            La mayoría de estas aplicaciones utilizan la IA para <em>analizar</em> un proceso. Este proyecto se
+            ubica en un caso distinto: la IA se usa para <em>ayudar a configurar o modificar</em> la lógica que
+            controla el proceso. Este cambio de paradigma aumenta los requisitos de control.
+          </p>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 4.</b> IA para analizar frente a IA para configurar la lógica de control</caption>
+              <thead>
+                <tr><th>Criterio</th><th>IA para analizar un proceso</th><th>IA para configurar la lógica</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Resultado</td><td>Información, predicciones o alertas.</td><td>Cambios en el comportamiento del controlador.</td></tr>
+                <tr><td>Efecto de un error</td><td>Una recomendación incorrecta que una persona puede descartar.</td><td>Una lógica incorrecta que puede actuar sobre el proceso físico.</td></tr>
+                <tr><td>Validación requerida</td><td>Evaluación de la precisión del modelo.</td><td>Validación técnica de cada propuesta antes de aplicarla.</td></tr>
+                <tr><td>Supervisión humana</td><td>Recomendable.</td><td>Necesaria, con confirmación explícita.</td></tr>
+                <tr><td>Restricciones</td><td>Sobre el uso de los datos.</td><td>Sobre las estructuras, direcciones y acciones permitidas.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="block-h" id="mt-sistemas">3. Arquitectura e integración de sistemas</h3>
+
+          <h3 id="mt-arquitectura">3.1 Arquitectura de sistemas</h3>
+          <p>
+            La norma ISO/IEC/IEEE 42010:2022 define los requisitos para describir la arquitectura de un sistema:
+            sus conceptos fundamentales, los elementos que lo componen y los principios que rigen su desarrollo y
+            evolución. Una descripción arquitectónica se organiza en vistas que responden a las inquietudes de las
+            partes interesadas (<a class="cite" href="#ref-iso2022">ISO/IEC/IEEE, 2022</a>). En la práctica,
+            permite representar:
+          </p>
+          <div class="tags">
+            <span class="tag">Componentes</span>
+            <span class="tag">Responsabilidades</span>
+            <span class="tag">Interfaces</span>
+            <span class="tag">Relaciones</span>
+            <span class="tag">Flujo de datos</span>
+            <span class="tag">Dependencias</span>
+          </div>
+
+          <figure class="arch" aria-labelledby="fig-mt-capas">
+            <ol class="vflow">
+              <li><span class="vflow-icon"><i class="fa-solid fa-user"></i></span><div><strong>Usuario / Interfaz</strong><span class="d">ingresa instrucciones y revisa resultados</span></div></li>
+              <li><span class="vflow-icon"><i class="fa-solid fa-window-maximize"></i></span><div><strong>Frontend</strong><span class="d">captura, visualización y simulación</span></div></li>
+              <li><span class="vflow-icon"><i class="fa-solid fa-server"></i></span><div><strong>Backend</strong><span class="d">orquesta servicios y solicitudes</span></div></li>
+              <li><span class="vflow-icon"><i class="fa-solid fa-brain"></i></span><div><strong>Servicios de IA / LLM</strong><span class="d">transcripción e interpretación</span></div></li>
+              <li class="is-key"><span class="vflow-icon"><i class="fa-solid fa-shield-halved"></i></span><div><strong>Validación</strong><span class="d">restricciones técnicas y consistencia</span></div></li>
+              <li><span class="vflow-icon"><i class="fa-solid fa-code"></i></span><div><strong>Representación estructurada</strong><span class="d">lógica lista para Ladder o registros</span></div></li>
+              <li><span class="vflow-icon"><i class="fa-solid fa-network-wired"></i></span><div><strong>Comunicación industrial</strong><span class="d">Modbus TCP</span></div></li>
+              <li class="is-key"><span class="vflow-icon"><i class="fa-solid fa-microchip"></i></span><div><strong>PLC</strong><span class="d">ejecuta la lógica de control</span></div></li>
+              <li><span class="vflow-icon"><i class="fa-solid fa-industry"></i></span><div><strong>Proceso físico</strong><span class="d">banda transportadora y actuadores</span></div></li>
+            </ol>
+            <figcaption class="arch-caption" id="fig-mt-capas">
+              <b>Figura 7.</b> Vista conceptual de la arquitectura del asistente.
+            </figcaption>
+          </figure>
+
+          <p class="spaced">
+            Cada componente tiene una responsabilidad delimitada. La arquitectura separa la interacción con el
+            usuario, el procesamiento mediante IA, la validación y el control industrial, de modo que una falla o
+            un resultado incorrecto en una capa pueda detectarse antes de llegar al controlador. El detalle de
+            esta arquitectura se describe en la <a href="#arquitectura">Parte II</a>.
+          </p>
+
+          <h3 id="mt-hw-sw">3.2 Integración hardware–software</h3>
+          <p>
+            Los sistemas industriales actuales combinan componentes físicos y digitales. La integración consiste
+            en definir cómo ambos dominios intercambian información a través de protocolos de comunicación.
+          </p>
+          <div class="card-grid cols-2">
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-microchip"></i></div>
+              <h4>Hardware</h4>
+              <ul class="doc-list">
+                <li>PLC Horner XL4 / XC1E5</li>
+                <li>Sensores y entradas</li>
+                <li>Salidas y actuadores</li>
+                <li>Computadora o estación de trabajo</li>
+                <li>Dispositivos de visualización (pantalla, Meta Quest 3)</li>
+              </ul>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-code"></i></div>
+              <h4>Software</h4>
+              <ul class="doc-list">
+                <li>Interfaz de usuario</li>
+                <li>Backend y lógica de comunicación</li>
+                <li>Modelo de lenguaje</li>
+                <li>Módulo de validación</li>
+                <li>Representación Ladder</li>
+                <li>Servicios de comunicación industrial</li>
+              </ul>
+            </div>
+          </div>
+
+          <figure class="arch" aria-labelledby="fig-mt-hwsw">
+            <ol class="pipeline cols-3 both">
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-code"></i></span></div>
+                <h4>Software</h4>
+                <span class="stage-layer">interfaz, backend, IA y validación</span>
+              </li>
+              <li class="stage lane-front">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-network-wired"></i></span></div>
+                <h4>Protocolos de comunicación</h4>
+                <span class="stage-layer">reglas de intercambio de datos</span>
+              </li>
+              <li class="stage lane-plc">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-microchip"></i></span></div>
+                <h4>Hardware</h4>
+                <span class="stage-layer">PLC, entradas, salidas y proceso</span>
+              </li>
+            </ol>
+            <figcaption class="arch-caption" id="fig-mt-hwsw">
+              <b>Figura 8.</b> Integración bidireccional entre software y hardware mediante protocolos de comunicación.
+            </figcaption>
+          </figure>
+
+          <h3 id="mt-protocolos">3.3 Protocolos de comunicación industrial</h3>
+          <p>
+            Un protocolo de comunicación industrial establece las reglas con las que controladores, sistemas de
+            supervisión, computadoras, sensores y otros dispositivos intercambian información: formato de los
+            mensajes, direccionamiento, secuencia de solicitudes y respuestas, y tratamiento de errores.
+          </p>
+
+          <h4 class="sub-h">Modbus</h4>
+          <p>
+            Modbus es un protocolo de mensajería de capa de aplicación basado en un modelo
+            <strong>cliente/servidor</strong> de solicitud y respuesta. El cliente envía una solicitud que incluye
+            un <strong>código de función</strong>; el servidor ejecuta la acción y devuelve una respuesta normal o
+            una respuesta de excepción. Su modelo de datos se organiza en cuatro tablas
+            (<a class="cite" href="#ref-modbus2012">Modbus Organization, 2012</a>):
+          </p>
+
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 5.</b> Modelo de datos de Modbus</caption>
+              <thead>
+                <tr><th>Tabla</th><th>Tipo</th><th>Acceso</th><th>Códigos de función típicos</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Discrete Inputs</td><td>Bit</td><td>Solo lectura</td><td>02 · Read Discrete Inputs</td></tr>
+                <tr><td>Coils</td><td>Bit</td><td>Lectura / escritura</td><td>01 · Read Coils; 05 · Write Single Coil; 15 · Write Multiple Coils</td></tr>
+                <tr><td>Input Registers</td><td>Palabra de 16 bits</td><td>Solo lectura</td><td>04 · Read Input Registers</td></tr>
+                <tr><td>Holding Registers</td><td>Palabra de 16 bits</td><td>Lectura / escritura</td><td>03 · Read Holding Registers; 06 · Write Single Register; 16 · Write Multiple Registers</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <figure class="arch" aria-labelledby="fig-mt-modbus">
+            <ol class="pipeline">
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-laptop-code"></i></span></div>
+                <h4>Aplicación externa</h4>
+                <span class="stage-layer">cliente Modbus</span>
+              </li>
+              <li class="stage lane-front">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-paper-plane"></i></span></div>
+                <h4>Solicitud Modbus</h4>
+                <span class="stage-layer">código de función + dirección + datos</span>
+              </li>
+              <li class="stage lane-plc">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-microchip"></i></span></div>
+                <h4>PLC</h4>
+                <span class="stage-layer">servidor: lee o escribe registros</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-reply"></i></span></div>
+                <h4>Respuesta</h4>
+                <span class="stage-layer">datos solicitados o excepción</span>
+              </li>
+            </ol>
+            <figcaption class="arch-caption" id="fig-mt-modbus">
+              <b>Figura 9.</b> Modelo de solicitud y respuesta de Modbus.
+            </figcaption>
+          </figure>
+
+          <p class="spaced">
+            Este modelo permite que un sistema de software externo consulte o modifique registros del controlador
+            bajo condiciones definidas. En LAVO, esta capacidad se utiliza para escribir registros de
+            configuración en el PLC mediante Modbus TCP, en lugar de descargar un programa nuevo en cada cambio.
+          </p>
+
+          <h4 class="sub-h">Otros protocolos industriales</h4>
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-cubes"></i></div>
+              <h4>OPC UA</h4>
+              <p>Arquitectura orientada a la interoperabilidad y al intercambio estructurado y seguro de información entre sistemas industriales, normalizada como IEC 62541 (<a class="cite" href="#ref-iec2020">IEC, 2020</a>).</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-ethernet"></i></div>
+              <h4>PROFINET</h4>
+              <p>Protocolo de comunicación industrial basado en Ethernet, de uso extendido en sistemas de control distribuido.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-ethernet"></i></div>
+              <h4>EtherNet/IP</h4>
+              <p>Protocolo industrial que implementa el Common Industrial Protocol (CIP) sobre Ethernet estándar.</p>
+            </div>
+          </div>
+
+          <h3 id="mt-ciberseguridad">3.4 Ciberseguridad industrial</h3>
+          <p>
+            La ciberseguridad de los sistemas de automatización y control industrial (<em>Industrial Automation
+            and Control Systems</em>, IACS) se aborda en la serie de normas <strong>ISA/IEC 62443</strong>, que
+            define requisitos y procesos para proteger estos sistemas a lo largo de su ciclo de vida
+            (<a class="cite" href="#ref-isa">ISA, s. f.</a>). A diferencia de la seguridad informática
+            tradicional, en un IACS un incidente puede traducirse en un efecto físico sobre el proceso.
+          </p>
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-user-lock"></i></div>
+              <h4>Identidad y acceso</h4>
+              <p>Autenticación, autorización y control de acceso a los equipos y funciones.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-layer-group"></i></div>
+              <h4>Segmentación</h4>
+              <p>Separación de la red en zonas y conductos con niveles de seguridad definidos.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-lock"></i></div>
+              <h4>Comunicaciones seguras</h4>
+              <p>Protección de la confidencialidad y la integridad de los datos intercambiados.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+              <h4>Gestión del riesgo</h4>
+              <p>Identificación y evaluación de riesgos para definir las medidas de protección necesarias.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-check-double"></i></div>
+              <h4>Integridad</h4>
+              <p>La lógica y los parámetros del PLC solo deben cambiar mediante acciones autorizadas y verificadas.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-power-off"></i></div>
+              <h4>Disponibilidad</h4>
+              <p>El sistema de control debe mantenerse operativo; una modificación incorrecta puede detener el proceso.</p>
+            </div>
+          </div>
+
+          <div class="callout callout-note">
+            <div class="callout-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div>
+              <span class="callout-title">Integridad y disponibilidad</span>
+              Junto con la confidencialidad, la integridad y la disponibilidad son especialmente relevantes en este
+              proyecto: una modificación incorrecta o no autorizada de la lógica o de los parámetros de un PLC puede
+              alterar el comportamiento de un proceso físico.
+            </div>
+          </div>
+
+          <figure class="arch" aria-labelledby="fig-mt-riesgo">
+            <ol class="pipeline cols-3">
+              <li class="stage lane-user">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-user"></i></span></div>
+                <h4>Usuario</h4>
+                <span class="stage-layer">instrucciones erróneas o acceso no autorizado</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-brain"></i></span></div>
+                <h4>IA</h4>
+                <span class="stage-layer">interpretaciones incorrectas</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-code"></i></span></div>
+                <h4>Software</h4>
+                <span class="stage-layer">fallas de validación o de implementación</span>
+              </li>
+              <li class="stage lane-front">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-network-wired"></i></span></div>
+                <h4>Red industrial</h4>
+                <span class="stage-layer">mensajes alterados o no autorizados</span>
+              </li>
+              <li class="stage lane-plc">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-microchip"></i></span></div>
+                <h4>PLC</h4>
+                <span class="stage-layer">parámetros o lógica modificados</span>
+              </li>
+              <li class="stage lane-plc">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-industry"></i></span></div>
+                <h4>Proceso físico</h4>
+                <span class="stage-layer">comportamiento no previsto</span>
+              </li>
+            </ol>
+            <figcaption class="arch-caption" id="fig-mt-riesgo">
+              <b>Figura 10.</b> Cadena de elementos entre el usuario y el proceso físico, con un riesgo representativo en cada uno.
+            </figcaption>
+          </figure>
+
+          <p class="spaced">
+            Cada elemento de la cadena introduce riesgos propios. Por ello, un asistente basado en IA debe
+            incorporar controles —validación, restricciones sobre las acciones permitidas y confirmación del
+            usuario— antes de permitir una modificación sobre el controlador.
+          </p>
+
+          <h3 class="block-h" id="mt-hmi">4. Interacción humano–máquina y Realidad Aumentada</h3>
+
+          <h3 id="mt-hmi-concepto">4.1 Interacción Humano–Máquina</h3>
+          <p>
+            La interfaz humano–máquina (<em>Human Machine Interface</em>, HMI) es el conjunto de mecanismos
+            mediante los cuales un operador visualiza información e interactúa con un sistema automatizado. La
+            norma IEC 63303:2024 establece requisitos y recomendaciones para el ciclo de vida de los sistemas HMI
+            en automatización de procesos —diseño, uso y mantenimiento— así como para sus funciones y desempeño
+            (<a class="cite" href="#ref-iec2024">IEC, 2024</a>).
+          </p>
+          <p>Una HMI industrial debe facilitar:</p>
+          <div class="tags">
+            <span class="tag">Comprensión del estado del proceso</span>
+            <span class="tag">Identificación de situaciones relevantes</span>
+            <span class="tag">Diagnóstico</span>
+            <span class="tag">Interacción</span>
+            <span class="tag">Respuesta del operador</span>
+          </div>
+          <p class="spaced">En el asistente, la interfaz debe permitir visualizar:</p>
+          <ul class="doc-list manual-toc">
+            <li>Estado del backend</li>
+            <li>Estado del servicio de IA</li>
+            <li>Estado de comunicación con el PLC</li>
+            <li>Instrucción ingresada</li>
+            <li>Interpretación realizada</li>
+            <li>Lógica propuesta</li>
+            <li>Resultado de las validaciones</li>
+            <li>Errores o advertencias</li>
+            <li>Opción de confirmar o cancelar la operación</li>
+          </ul>
+          <div class="callout callout-note">
+            <div class="callout-icon"><i class="fa-solid fa-display"></i></div>
+            <div>
+              <span class="callout-title">Función de la interfaz</span>
+              La interfaz no funciona únicamente como un elemento visual: forma parte del mecanismo de supervisión
+              y control de la interacción, porque es el punto donde el usuario revisa, corrige y autoriza lo que
+              propone la IA.
+            </div>
+          </div>
+
+          <h3 id="mt-ui">4.2 Diseño de interfaces de usuario</h3>
+          <p>
+            Los principios de diseño relevantes para el asistente coinciden con los lineamientos de interacción
+            humano–IA de Amershi et al. (<a class="cite" href="#ref-amershi2019">2019</a>): la interfaz debe
+            informar al usuario qué está ocurriendo en cada etapa.
+          </p>
+          <div class="card-grid cols-4">
+            <div class="info-card"><h4>Claridad y simplicidad</h4><p>Mostrar solo la información necesaria en cada paso.</p></div>
+            <div class="info-card"><h4>Consistencia</h4><p>Usar los mismos términos, colores y símbolos en todo el sistema.</p></div>
+            <div class="info-card"><h4>Jerarquía visual</h4><p>Destacar estados, errores y acciones críticas.</p></div>
+            <div class="info-card"><h4>Visibilidad del estado</h4><p>Indicar el estado de cada servicio y etapa.</p></div>
+            <div class="info-card"><h4>Retroalimentación</h4><p>Responder a cada acción del usuario.</p></div>
+            <div class="info-card"><h4>Prevención de errores</h4><p>Bloquear acciones no válidas antes de ejecutarlas.</p></div>
+            <div class="info-card"><h4>Confirmación</h4><p>Solicitar autorización para acciones críticas.</p></div>
+            <div class="info-card"><h4>Corrección</h4><p>Permitir reformular o descartar una propuesta.</p></div>
+          </div>
+
+          <figure class="arch" aria-labelledby="fig-mt-ui">
+            <ol class="pipeline cols-3">
+              <li class="stage lane-user">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-comment"></i></span></div>
+                <h4>Instrucción</h4>
+                <span class="stage-layer">texto o voz</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-brain"></i></span></div>
+                <h4>Interpretación</h4>
+                <span class="stage-layer">resultado de la IA</span>
+              </li>
+              <li class="stage lane-front">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-shield-halved"></i></span></div>
+                <h4>Validación</h4>
+                <span class="stage-layer">errores y advertencias</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-table-cells"></i></span></div>
+                <h4>Vista Ladder</h4>
+                <span class="stage-layer">lógica y simulación</span>
+              </li>
+              <li class="stage lane-user">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-user-check"></i></span></div>
+                <h4>Confirmación</h4>
+                <span class="stage-layer">aceptar o cancelar</span>
+              </li>
+              <li class="stage lane-plc">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-play"></i></span></div>
+                <h4>Ejecución</h4>
+                <span class="stage-layer">aplicación al PLC</span>
+              </li>
+            </ol>
+            <figcaption class="arch-caption" id="fig-mt-ui">
+              <b>Figura 11.</b> Etapas que la interfaz debe hacer visibles al usuario.
+            </figcaption>
+          </figure>
+
+          <h3 id="mt-xr">4.3 Realidad Virtual, Realidad Aumentada y Realidad Mixta</h3>
+          <p>
+            Milgram y Kishino (<a class="cite" href="#ref-milgram1994">1994</a>) propusieron el
+            <strong>continuo realidad–virtualidad</strong>, una escala que va desde un entorno completamente real
+            hasta uno completamente virtual. En su taxonomía, la Realidad Mixta abarca todo el espacio intermedio
+            entre ambos extremos, incluyendo la Realidad Aumentada y la Virtualidad Aumentada.
+          </p>
+
+          <figure class="arch" aria-labelledby="fig-mt-continuo">
+            <div class="continuum">
+              <div class="continuum-bar"></div>
+              <div class="continuum-scale">
+                <span><strong>Entorno real</strong>mundo físico</span>
+                <span><strong>Realidad Aumentada</strong>real + elementos virtuales</span>
+                <span><strong>Virtualidad Aumentada</strong>virtual + elementos reales</span>
+                <span><strong>Entorno virtual</strong>totalmente sintético</span>
+              </div>
+              <div class="continuum-mr">Realidad Mixta (MR)</div>
+            </div>
+            <figcaption class="arch-caption" id="fig-mt-continuo">
+              <b>Figura 12.</b> Continuo realidad–virtualidad, adaptado de Milgram y Kishino (1994).
+            </figcaption>
+          </figure>
+
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 6.</b> Comparación entre VR, AR y MR</caption>
+              <thead>
+                <tr><th>Tecnología</th><th>Característica principal</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Realidad Virtual (VR)</td><td>El usuario interactúa principalmente con un entorno virtual que sustituye su percepción del entorno físico.</td></tr>
+                <tr><td>Realidad Aumentada (AR)</td><td>La información digital se superpone sobre el entorno físico, que sigue siendo el referente principal.</td></tr>
+                <tr><td>Realidad Mixta (MR)</td><td>Elementos físicos y digitales coexisten e interactúan. En la taxonomía de Milgram y Kishino designa todo el rango intermedio del continuo; en el uso comercial actual suele referirse a sistemas donde el contenido virtual responde al entorno físico.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="spaced">Por ello, VR, AR y MR no se consideran términos equivalentes en este documento.</p>
+
+          <h3 id="mt-ar">4.4 Realidad Aumentada</h3>
+          <p>
+            Azuma (<a class="cite" href="#ref-azuma1997">1997</a>) define la Realidad Aumentada como un sistema
+            que combina elementos reales y virtuales, es interactivo en tiempo real y mantiene los objetos virtuales
+            registrados en tres dimensiones respecto del entorno real. De esta definición se derivan los conceptos
+            principales:
+          </p>
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-layer-group"></i></div>
+              <h4>Superposición</h4>
+              <p>Presentación de información digital sobre la vista del entorno físico.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-crosshairs"></i></div>
+              <h4>Registro y alineación</h4>
+              <p>Colocación del contenido virtual en una posición coherente con los objetos reales.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-location-arrow"></i></div>
+              <h4>Seguimiento</h4>
+              <p>Estimación continua de la posición del usuario o del dispositivo para mantener el registro.</p>
+            </div>
+          </div>
+          <p class="spaced">
+            En automatización industrial, una interfaz de AR puede mostrar información relacionada con un proceso
+            —estados, variables o instrucciones— de forma contextual, mientras el operador permanece consciente de
+            su entorno físico.
+          </p>
+
+          <h3 id="mt-inmersivas">4.5 Interfaces inmersivas para automatización</h3>
+          <p>Las interfaces inmersivas pueden emplearse para:</p>
+          <div class="tags">
+            <span class="tag">Supervisión</span>
+            <span class="tag">Visualización contextual</span>
+            <span class="tag">Mantenimiento</span>
+            <span class="tag">Entrenamiento</span>
+            <span class="tag">Asistencia de operadores</span>
+            <span class="tag">Visualización de variables</span>
+            <span class="tag">Instrucciones</span>
+            <span class="tag">Interacción con sistemas digitales</span>
+          </div>
+          <p class="spaced">
+            En este proyecto, la interfaz inmersiva se plantea como una extensión de la interfaz convencional:
+            permite visualizar la lógica propuesta y simular su comportamiento con los Meta Quest 3 antes de
+            aplicarla al sistema físico.
+          </p>
+
+          <figure class="arch" aria-labelledby="fig-mt-inmersiva">
+            <ol class="pipeline cols-3 plus">
+              <li class="stage lane-plc">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-industry"></i></span></div>
+                <h4>Proceso físico</h4>
+                <span class="stage-layer">PLC y banda transportadora</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-brain"></i></span></div>
+                <h4>Información digital</h4>
+                <span class="stage-layer">lógica, estados y validaciones del asistente</span>
+              </li>
+              <li class="stage lane-front">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-vr-cardboard"></i></span></div>
+                <h4>Interfaz inmersiva</h4>
+                <span class="stage-layer">visualización e interacción en AR</span>
+              </li>
+            </ol>
+            <figcaption class="arch-caption" id="fig-mt-inmersiva">
+              <b>Figura 13.</b> Componentes de la visualización inmersiva propuesta.
+            </figcaption>
+          </figure>
+
+          <div class="callout callout-warn">
+            <div class="callout-icon"><i class="fa-solid fa-flask"></i></div>
+            <div>
+              <span class="callout-title">Consideración metodológica</span>
+              Este documento no asume que AR o MR incrementen por sí mismas la productividad, la seguridad o la
+              eficiencia. Cualquier efecto de la interfaz inmersiva sobre estas variables deberá evaluarse
+              experimentalmente en la fase de validación.
+            </div>
+          </div>
+
+          <h3 class="block-h" id="mt-sintesis">Relación del marco teórico con LAVO</h3>
+
+          <p class="lead">
+            Los conceptos anteriores no son independientes: cada uno sustenta una parte del funcionamiento del
+            asistente. La siguiente cadena muestra cómo se conectan, desde el proceso físico hasta la interfaz.
+          </p>
+
+          <figure class="arch" aria-labelledby="fig-mt-sintesis">
+            <ol class="vflow">
+              <li><span class="vflow-icon"><i class="fa-solid fa-industry"></i></span><div><strong>Automatización industrial</strong><span class="d">el proceso utiliza sensores y actuadores</span></div></li>
+              <li class="is-key"><span class="vflow-icon"><i class="fa-solid fa-microchip"></i></span><div><strong>PLC</strong><span class="d">ejecuta la lógica de control</span></div></li>
+              <li><span class="vflow-icon"><i class="fa-solid fa-table-cells"></i></span><div><strong>IEC 61131-3 / Ladder Diagram</strong><span class="d">define las estructuras para programar el controlador</span></div></li>
+              <li><span class="vflow-icon"><i class="fa-solid fa-language"></i></span><div><strong>Procesamiento de Lenguaje Natural</strong><span class="d">permite procesar instrucciones humanas</span></div></li>
+              <li><span class="vflow-icon"><i class="fa-solid fa-brain"></i></span><div><strong>LLM</strong><span class="d">interpreta la solicitud y genera una representación estructurada</span></div></li>
+              <li class="is-key"><span class="vflow-icon"><i class="fa-solid fa-shield-halved"></i></span><div><strong>Validación</strong><span class="d">verifica restricciones técnicas y consistencia</span></div></li>
+              <li><span class="vflow-icon"><i class="fa-solid fa-user-gear"></i></span><div><strong>Interacción Human-in-the-Loop</strong><span class="d">el usuario revisa la propuesta</span></div></li>
+              <li class="is-key"><span class="vflow-icon"><i class="fa-solid fa-user-check"></i></span><div><strong>Confirmación</strong><span class="d">el usuario autoriza la aplicación</span></div></li>
+              <li><span class="vflow-icon"><i class="fa-solid fa-diagram-project"></i></span><div><strong>Arquitectura hardware–software</strong><span class="d">comunica los diferentes módulos</span></div></li>
+              <li><span class="vflow-icon"><i class="fa-solid fa-network-wired"></i></span><div><strong>Modbus / comunicación industrial</strong><span class="d">permite intercambiar datos con el PLC</span></div></li>
+              <li class="is-key"><span class="vflow-icon"><i class="fa-solid fa-microchip"></i></span><div><strong>PLC</strong><span class="d">ejecuta el comportamiento sobre el proceso físico</span></div></li>
+              <li><span class="vflow-icon"><i class="fa-solid fa-vr-cardboard"></i></span><div><strong>HMI / AR</strong><span class="d">permiten visualizar e interactuar con el sistema</span></div></li>
+            </ol>
+            <figcaption class="arch-caption" id="fig-mt-sintesis">
+              <b>Figura 14.</b> Relación entre los conceptos del marco teórico y el funcionamiento de LAVO.
+            </figcaption>
+          </figure>
+
+          <h3 id="mt-validacion">Representación estructurada y validación</h3>
+          <p>
+            El proyecto no considera la respuesta textual del LLM como una instrucción directamente ejecutable. La
+            respuesta se convierte primero en una representación estructurada con un formato definido, que puede
+            verificarse con reglas propias del sistema. La validación funciona así como una capa intermedia entre
+            la generación mediante IA y la modificación del sistema físico.
+          </p>
+          <figure class="arch" aria-labelledby="fig-mt-capa-validacion">
+            <ol class="pipeline">
+              <li class="stage lane-user">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-comment"></i></span></div>
+                <h4>Lenguaje natural</h4>
+                <span class="stage-layer">instrucción del usuario</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-brain"></i></span></div>
+                <h4>Interpretación LLM</h4>
+                <span class="stage-layer">propuesta generativa</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-code"></i></span></div>
+                <h4>Representación estructurada</h4>
+                <span class="stage-layer">JSON lógico</span>
+              </li>
+              <li class="stage lane-front">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-shield-halved"></i></span></div>
+                <h4>Validación</h4>
+                <span class="stage-layer">reglas técnicas</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-table-cells"></i></span></div>
+                <h4>Representación Ladder</h4>
+                <span class="stage-layer">compilación y simulación</span>
+              </li>
+              <li class="stage lane-user">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-user-check"></i></span></div>
+                <h4>Confirmación</h4>
+                <span class="stage-layer">autorización del usuario</span>
+              </li>
+              <li class="stage lane-plc">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-microchip"></i></span></div>
+                <h4>PLC</h4>
+                <span class="stage-layer">ejecución</span>
+              </li>
+            </ol>
+            <figcaption class="arch-caption" id="fig-mt-capa-validacion">
+              <b>Figura 15.</b> La validación como capa intermedia entre la IA y el sistema físico.
+            </figcaption>
+          </figure>
+
+          <h3 id="mt-hitl">Human-in-the-Loop</h3>
+          <div class="hitl">
+            <div class="hitl-head"><i class="fa-solid fa-user-shield"></i> El usuario dentro del proceso de decisión</div>
+            <p>La arquitectura mantiene al usuario en las decisiones críticas. Antes de que cualquier cambio llegue al PLC, el usuario debe poder:</p>
+            <ul class="doc-list manual-toc">
+              <li>Visualizar lo interpretado por la IA</li>
+              <li>Visualizar la lógica generada</li>
+              <li>Conocer el resultado de las validaciones</li>
+              <li>Recibir advertencias</li>
+              <li>Cancelar una acción</li>
+              <li>Confirmar explícitamente antes de aplicar modificaciones</li>
+            </ul>
+          </div>
+
+          <p class="keyline">
+            La IA <span>propone e interpreta</span>; el sistema <span>valida</span>; el usuario
+            <span>supervisa y autoriza</span>; el PLC <span>ejecuta</span>.
+          </p>
+        </section>
+
         <!-- ======================= PARTE II · ARQUITECTURA ======================= -->
         <div class="part" data-group="arquitectura"><span class="part-num">Parte II</span><span class="part-title">Arquitectura</span><span class="part-line"></span></div>
 
         <!-- 04 · ARQUITECTURA -->
         <section class="doc-section" id="arquitectura" data-group="arquitectura">
           <header class="section-head">
-            <div class="section-num">08</div>
+            <div class="section-num">09</div>
             <div>
               <div class="section-label">Arquitectura general</div>
               <h2>Separación entre interfaz, inteligencia artificial y control físico</h2>
@@ -498,7 +1659,7 @@
             </ol>
 
             <figcaption class="arch-caption" id="arch-cap">
-              <b>Figura 1.</b> Flujo general del sistema LAVO, desde la instrucción del usuario hasta el PLC.
+              <b>Figura 16.</b> Flujo general del sistema LAVO, desde la instrucción del usuario hasta el PLC.
             </figcaption>
           </figure>
 
@@ -561,7 +1722,7 @@ Usuario
         <!-- 05 · FLUJO -->
         <section class="doc-section" id="flujo" data-group="arquitectura">
           <header class="section-head">
-            <div class="section-num">09</div>
+            <div class="section-num">10</div>
             <div>
               <div class="section-label">Flujo completo de operación</div>
               <h2>De una frase hablada a un programa Ladder visual</h2>
@@ -634,7 +1795,7 @@ Usuario
         <!-- 06 · FRONTEND -->
         <section class="doc-section" id="frontend" data-group="software">
           <header class="section-head">
-            <div class="section-num">10</div>
+            <div class="section-num">11</div>
             <div>
               <div class="section-label">Frontend</div>
               <h2>La parte visual del proyecto</h2>
@@ -650,7 +1811,7 @@ Usuario
           <h3>Páginas principales del frontend</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 1.</b> Páginas principales del frontend</caption>
+              <caption><b>Tabla 7.</b> Páginas principales del frontend</caption>
               <thead>
                 <tr><th>Página</th><th>Función dentro del proyecto</th></tr>
               </thead>
@@ -693,7 +1854,7 @@ Usuario
         <!-- 07 · EDITOR LADDER -->
         <section class="doc-section" id="editor" data-group="software">
           <header class="section-head">
-            <div class="section-num">11</div>
+            <div class="section-num">12</div>
             <div>
               <div class="section-label">Editor Ladder</div>
               <h2>Visualización, simulación y validación del programa</h2>
@@ -736,7 +1897,7 @@ Usuario
         <!-- 08 · BACKEND -->
         <section class="doc-section" id="backend" data-group="software">
           <header class="section-head">
-            <div class="section-num">12</div>
+            <div class="section-num">13</div>
             <div>
               <div class="section-label">Backend</div>
               <h2>Servicios de IA y comunicación</h2>
@@ -763,7 +1924,7 @@ Usuario
           <h3>Endpoints documentados</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 2.</b> Endpoints documentados del backend</caption>
+              <caption><b>Tabla 8.</b> Endpoints documentados del backend</caption>
               <thead>
                 <tr><th>Endpoint</th><th>Descripción</th></tr>
               </thead>
@@ -796,7 +1957,7 @@ Usuario
         <!-- 09 · CONTRATO JSON -->
         <section class="doc-section" id="contrato" data-group="ia">
           <header class="section-head">
-            <div class="section-num">13</div>
+            <div class="section-num">14</div>
             <div>
               <div class="section-label">Contrato de JSON lógico</div>
               <h2>La IA responde con una estructura limitada y revisable</h2>
@@ -862,7 +2023,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
         <!-- 10 · PLC -->
         <section class="doc-section" id="plc" data-group="plc">
           <header class="section-head">
-            <div class="section-num">14</div>
+            <div class="section-num">15</div>
             <div>
               <div class="section-label">PLC, Cscape y registros maestros</div>
               <h2>Control físico sin descargar un programa nuevo cada vez</h2>
@@ -914,7 +2075,7 @@ Cada bloque puede guardar:
           <h3>Modos de operación</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 3.</b> Modos de operación</caption>
+              <caption><b>Tabla 9.</b> Modos de operación</caption>
               <thead>
                 <tr><th>Modo</th><th>Descripción</th><th>Ejemplo</th></tr>
               </thead>
@@ -944,7 +2105,7 @@ Cada bloque puede guardar:
         <!-- 11 · SEGURIDAD -->
         <section class="doc-section" id="seguridad" data-group="validacion">
           <header class="section-head">
-            <div class="section-num">15</div>
+            <div class="section-num">16</div>
             <div>
               <div class="section-label">Validación y seguridad lógica</div>
               <h2>La IA no debe tener control directo sin revisión</h2>
@@ -991,7 +2152,7 @@ Cada bloque puede guardar:
         <!-- 12 · MANUAL DE BUENAS PRÁCTICAS -->
         <section class="doc-section" id="manual" data-group="validacion">
           <header class="section-head">
-            <div class="section-num">16</div>
+            <div class="section-num">17</div>
             <div>
               <div class="section-label">Manual de buenas prácticas</div>
               <h2>Manual de buenas prácticas para programación y validación de lógica PLC</h2>
@@ -1085,7 +2246,7 @@ Cada bloque puede guardar:
         <!-- 12 · MÉTRICAS -->
         <section class="doc-section" id="metricas" data-group="pruebas">
           <header class="section-head">
-            <div class="section-num">17</div>
+            <div class="section-num">18</div>
             <div>
               <div class="section-label">Métricas evaluadas</div>
               <h2>Comparación de prompts del modo Diseñador</h2>
@@ -1128,7 +2289,7 @@ Cada bloque puede guardar:
         <!-- 13 · RESULTADOS -->
         <section class="doc-section" id="resultados" data-group="pruebas">
           <header class="section-head">
-            <div class="section-num">18</div>
+            <div class="section-num">19</div>
             <div>
               <div class="section-label">Resultados</div>
               <h2>Evidencia de funcionamiento en el PLC físico</h2>
@@ -1200,14 +2361,14 @@ Cada bloque puede guardar:
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/timer.png" alt="Captura del timer" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 2</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 17</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer.png</span></div>
                   <p>Captura de la configuración/estado del temporizador en la interfaz o en el PLC.</p>
                 </figcaption>
               </figure>
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/timer2.png" alt="Segunda captura del timer" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 3</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer2.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 18</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer2.png</span></div>
                   <p>Segunda captura del temporizador, mostrando otra fase o parámetro del mismo comportamiento.</p>
                 </figcaption>
               </figure>
@@ -1228,14 +2389,14 @@ Cada bloque puede guardar:
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/contador1.png" alt="Primera captura del contador" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 4</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador1.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 19</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador1.png</span></div>
                   <p>Captura del contador antes de alcanzar el valor objetivo (conteo en progreso).</p>
                 </figcaption>
               </figure>
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/contador2.png" alt="Segunda captura del contador" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 5</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador2.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 20</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador2.png</span></div>
                   <p>Captura del contador al llegar al valor configurado y activar la salida correspondiente.</p>
                 </figcaption>
               </figure>
@@ -1258,7 +2419,7 @@ Cada bloque puede guardar:
         <!-- 14 · CRÉDITOS -->
         <section class="doc-section" id="creditos" data-group="creditos">
           <header class="section-head">
-            <div class="section-num">19</div>
+            <div class="section-num">20</div>
             <div>
               <div class="section-label">Créditos y herramientas de apoyo</div>
               <h2>Herramientas que apoyaron el desarrollo</h2>
@@ -1330,6 +2491,41 @@ Cada bloque puede guardar:
               <i class="fa-solid fa-chart-simple"></i> Ver métricas
             </a>
           </div>
+        </section>
+
+        <!-- ======================= PARTE IX · REFERENCIAS ======================= -->
+        <div class="part" data-group="referencias"><span class="part-num">Parte IX</span><span class="part-title">Referencias</span><span class="part-line"></span></div>
+
+        <!-- 21 · REFERENCIAS -->
+        <section class="doc-section" id="referencias" data-group="referencias">
+          <header class="section-head">
+            <div class="section-num">21</div>
+            <div>
+              <h2>Referencias</h2>
+            </div>
+          </header>
+
+          <p>Referencias en formato APA 7, ordenadas alfabéticamente.</p>
+
+          <h3 id="referencias-marco-teorico">Marco teórico</h3>
+          <ol class="refs">
+            <li id="ref-amershi2019">Amershi, S., Weld, D., Vorvoreanu, M., Fourney, A., Nushi, B., Collisson, P., Suh, J., Iqbal, S., Bennett, P. N., Inkpen, K., Teevan, J., Kikin-Gil, R., &amp; Horvitz, E. (2019). Guidelines for human-AI interaction. En <em>Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems</em>. Association for Computing Machinery. <a href="https://doi.org/10.1145/3290605.3300233" target="_blank" rel="noopener noreferrer">https://doi.org/10.1145/3290605.3300233</a></li>
+            <li id="ref-azuma1997">Azuma, R. T. (1997). A survey of augmented reality. <em>Presence: Teleoperators and Virtual Environments, 6</em>(4), 355–385. <a href="https://doi.org/10.1162/pres.1997.6.4.355" target="_blank" rel="noopener noreferrer">https://doi.org/10.1162/pres.1997.6.4.355</a></li>
+            <li id="ref-goodfellow2016">Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016). <em>Deep learning</em>. MIT Press. <a href="https://www.deeplearningbook.org/" target="_blank" rel="noopener noreferrer">https://www.deeplearningbook.org/</a></li>
+            <li id="ref-iec2020">International Electrotechnical Commission. (2020). <em>OPC unified architecture – Part 1: Overview and concepts</em> (IEC TR 62541-1:2020, ed. 3.0). <a href="https://webstore.iec.ch/en/publication/61109" target="_blank" rel="noopener noreferrer">https://webstore.iec.ch/en/publication/61109</a></li>
+            <li id="ref-iec2024">International Electrotechnical Commission. (2024). <em>Human machine interfaces for process automation systems</em> (IEC 63303:2024, ed. 1.0). <a href="https://webstore.iec.ch/en/publication/66298" target="_blank" rel="noopener noreferrer">https://webstore.iec.ch/en/publication/66298</a></li>
+            <li id="ref-iec2025">International Electrotechnical Commission. (2025). <em>Programmable controllers – Part 3: Programming languages</em> (IEC 61131-3:2025, ed. 4.0). <a href="https://webstore.iec.ch/en/publication/68533" target="_blank" rel="noopener noreferrer">https://webstore.iec.ch/en/publication/68533</a></li>
+            <li id="ref-isa">International Society of Automation. (s. f.). <em>ISA/IEC 62443 series of standards: Security for industrial automation and control systems</em>. <a href="https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards" target="_blank" rel="noopener noreferrer">https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards</a></li>
+            <li id="ref-iso2022">ISO/IEC/IEEE. (2022). <em>Software, systems and enterprise — Architecture description</em> (ISO/IEC/IEEE 42010:2022). International Organization for Standardization. <a href="https://www.iso.org/standard/74393.html" target="_blank" rel="noopener noreferrer">https://www.iso.org/standard/74393.html</a></li>
+            <li id="ref-milgram1994">Milgram, P., &amp; Kishino, F. (1994). A taxonomy of mixed reality visual displays. <em>IEICE Transactions on Information and Systems, E77-D</em>(12), 1321–1329. <a href="https://global.ieice.org/en_transactions/information/10.1587/e77-d_12_1321/_p" target="_blank" rel="noopener noreferrer">https://global.ieice.org/en_transactions/information/10.1587/e77-d_12_1321/_p</a></li>
+            <li id="ref-min2023">Min, B., Ross, H., Sulem, E., Pouran Ben Veyseh, A., Nguyen, T. H., Sainz, O., Agirre, E., Heintz, I., &amp; Roth, D. (2023). Recent advances in natural language processing via large pre-trained language models: A survey. <em>ACM Computing Surveys, 56</em>(2). <a href="https://doi.org/10.1145/3605943" target="_blank" rel="noopener noreferrer">https://doi.org/10.1145/3605943</a></li>
+            <li id="ref-modbus2012">Modbus Organization. (2012). <em>MODBUS application protocol specification V1.1b3</em>. <a href="https://modbus.org/modbus-specifications" target="_blank" rel="noopener noreferrer">https://modbus.org/modbus-specifications</a></li>
+            <li id="ref-nist2023">National Institute of Standards and Technology. (2023). <em>Artificial intelligence risk management framework (AI RMF 1.0)</em> (NIST AI 100-1). U.S. Department of Commerce. <a href="https://doi.org/10.6028/NIST.AI.100-1" target="_blank" rel="noopener noreferrer">https://doi.org/10.6028/NIST.AI.100-1</a></li>
+            <li id="ref-nist2024">National Institute of Standards and Technology. (2024). <em>Artificial intelligence risk management framework: Generative artificial intelligence profile</em> (NIST AI 600-1). U.S. Department of Commerce. <a href="https://doi.org/10.6028/NIST.AI.600-1" target="_blank" rel="noopener noreferrer">https://doi.org/10.6028/NIST.AI.600-1</a></li>
+            <li id="ref-petruzella2022">Petruzella, F. D. (2022). <em>Programmable logic controllers</em> (6.ª ed.). McGraw-Hill.</li>
+            <li id="ref-russell2020">Russell, S. J., &amp; Norvig, P. (2020). <em>Artificial intelligence: A modern approach</em> (4.ª ed.). Pearson.</li>
+            <li id="ref-vaswani2017">Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., &amp; Polosukhin, I. (2017). Attention is all you need. En <em>Advances in Neural Information Processing Systems 30</em> (pp. 5998–6008). <a href="https://papers.nips.cc/paper/7181-attention-is-all-you-need" target="_blank" rel="noopener noreferrer">https://papers.nips.cc/paper/7181-attention-is-all-you-need</a></li>
+          </ol>
         </section>
 
         <!-- FOOTER -->
