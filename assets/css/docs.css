@@ -1036,27 +1036,6 @@ strong { color: var(--ink); font-weight: 600; }
   font-family: var(--font-mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
 }
 
-/* Human-in-the-Loop */
-.hitl {
-  margin-top: 1rem; padding: 1.25rem 1.35rem;
-  border: 1px solid var(--line); border-left: 4px solid var(--red-600);
-  border-radius: var(--radius-sm); background: var(--surface-2);
-}
-.hitl-head { display: flex; align-items: center; gap: .6rem; font-weight: 600; color: var(--ink); margin-bottom: .5rem; }
-.hitl-head i { color: var(--red-600); }
-.hitl p { font-size: .94rem; }
-.hitl .doc-list { margin-bottom: 0; }
-
-/* Idea central */
-.doc-section p.keyline {
-  margin: 1.75rem 0 0; padding: 1.25rem 1.4rem;
-  background: var(--ink); color: #fff;
-  border-left: 4px solid var(--red-500); border-radius: var(--radius-sm);
-  font-family: var(--font-display); font-weight: 600;
-  font-size: clamp(1.05rem, 2.2vw, 1.3rem); line-height: 1.45;
-}
-.keyline span { color: #ff8f99; }
-
 /* Referencias */
 .refs { list-style: none; margin: .5rem 0 0; padding: 0; }
 .refs li {

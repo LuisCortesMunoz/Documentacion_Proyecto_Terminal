@@ -1489,102 +1489,6 @@
               experimentalmente en la fase de validación.
             </div>
           </div>
-
-          <h3 class="block-h" id="mt-sintesis">Relación del marco teórico con LAVO</h3>
-
-          <p class="lead">
-            Los conceptos anteriores no son independientes: cada uno sustenta una parte del funcionamiento del
-            asistente. La siguiente cadena muestra cómo se conectan, desde el proceso físico hasta la interfaz.
-          </p>
-
-          <figure class="arch" aria-labelledby="fig-mt-sintesis">
-            <ol class="vflow">
-              <li><span class="vflow-icon"><i class="fa-solid fa-industry"></i></span><div><strong>Automatización industrial</strong><span class="d">el proceso utiliza sensores y actuadores</span></div></li>
-              <li class="is-key"><span class="vflow-icon"><i class="fa-solid fa-microchip"></i></span><div><strong>PLC</strong><span class="d">ejecuta la lógica de control</span></div></li>
-              <li><span class="vflow-icon"><i class="fa-solid fa-table-cells"></i></span><div><strong>IEC 61131-3 / Ladder Diagram</strong><span class="d">define las estructuras para programar el controlador</span></div></li>
-              <li><span class="vflow-icon"><i class="fa-solid fa-language"></i></span><div><strong>Procesamiento de Lenguaje Natural</strong><span class="d">permite procesar instrucciones humanas</span></div></li>
-              <li><span class="vflow-icon"><i class="fa-solid fa-brain"></i></span><div><strong>LLM</strong><span class="d">interpreta la solicitud y genera una representación estructurada</span></div></li>
-              <li class="is-key"><span class="vflow-icon"><i class="fa-solid fa-shield-halved"></i></span><div><strong>Validación</strong><span class="d">verifica restricciones técnicas y consistencia</span></div></li>
-              <li><span class="vflow-icon"><i class="fa-solid fa-user-gear"></i></span><div><strong>Interacción Human-in-the-Loop</strong><span class="d">el usuario revisa la propuesta</span></div></li>
-              <li class="is-key"><span class="vflow-icon"><i class="fa-solid fa-user-check"></i></span><div><strong>Confirmación</strong><span class="d">el usuario autoriza la aplicación</span></div></li>
-              <li><span class="vflow-icon"><i class="fa-solid fa-diagram-project"></i></span><div><strong>Arquitectura hardware–software</strong><span class="d">comunica los diferentes módulos</span></div></li>
-              <li><span class="vflow-icon"><i class="fa-solid fa-network-wired"></i></span><div><strong>Modbus / comunicación industrial</strong><span class="d">permite intercambiar datos con el PLC</span></div></li>
-              <li class="is-key"><span class="vflow-icon"><i class="fa-solid fa-microchip"></i></span><div><strong>PLC</strong><span class="d">ejecuta el comportamiento sobre el proceso físico</span></div></li>
-              <li><span class="vflow-icon"><i class="fa-solid fa-vr-cardboard"></i></span><div><strong>HMI / AR</strong><span class="d">permiten visualizar e interactuar con el sistema</span></div></li>
-            </ol>
-            <figcaption class="arch-caption" id="fig-mt-sintesis">
-              <b>Figura 14.</b> Relación entre los conceptos del marco teórico y el funcionamiento de LAVO.
-            </figcaption>
-          </figure>
-
-          <h3 id="mt-validacion">Representación estructurada y validación</h3>
-          <p>
-            El proyecto no considera la respuesta textual del LLM como una instrucción directamente ejecutable. La
-            respuesta se convierte primero en una representación estructurada con un formato definido, que puede
-            verificarse con reglas propias del sistema. La validación funciona así como una capa intermedia entre
-            la generación mediante IA y la modificación del sistema físico.
-          </p>
-          <figure class="arch" aria-labelledby="fig-mt-capa-validacion">
-            <ol class="pipeline">
-              <li class="stage lane-user">
-                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-comment"></i></span></div>
-                <h4>Lenguaje natural</h4>
-                <span class="stage-layer">instrucción del usuario</span>
-              </li>
-              <li class="stage lane-back">
-                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-brain"></i></span></div>
-                <h4>Interpretación LLM</h4>
-                <span class="stage-layer">propuesta generativa</span>
-              </li>
-              <li class="stage lane-back">
-                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-code"></i></span></div>
-                <h4>Representación estructurada</h4>
-                <span class="stage-layer">JSON lógico</span>
-              </li>
-              <li class="stage lane-front">
-                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-shield-halved"></i></span></div>
-                <h4>Validación</h4>
-                <span class="stage-layer">reglas técnicas</span>
-              </li>
-              <li class="stage lane-back">
-                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-table-cells"></i></span></div>
-                <h4>Representación Ladder</h4>
-                <span class="stage-layer">compilación y simulación</span>
-              </li>
-              <li class="stage lane-user">
-                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-user-check"></i></span></div>
-                <h4>Confirmación</h4>
-                <span class="stage-layer">autorización del usuario</span>
-              </li>
-              <li class="stage lane-plc">
-                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-microchip"></i></span></div>
-                <h4>PLC</h4>
-                <span class="stage-layer">ejecución</span>
-              </li>
-            </ol>
-            <figcaption class="arch-caption" id="fig-mt-capa-validacion">
-              <b>Figura 15.</b> La validación como capa intermedia entre la IA y el sistema físico.
-            </figcaption>
-          </figure>
-
-          <h3 id="mt-hitl">Human-in-the-Loop</h3>
-          <div class="hitl">
-            <div class="hitl-head"><i class="fa-solid fa-user-shield"></i> El usuario dentro del proceso de decisión</div>
-            <p>La arquitectura mantiene al usuario en las decisiones críticas. Antes de que cualquier cambio llegue al PLC, el usuario debe poder:</p>
-            <ul class="doc-list manual-toc">
-              <li>Visualizar lo interpretado por la IA</li>
-              <li>Visualizar la lógica generada</li>
-              <li>Conocer el resultado de las validaciones</li>
-              <li>Recibir advertencias</li>
-              <li>Cancelar una acción</li>
-              <li>Confirmar explícitamente antes de aplicar modificaciones</li>
-            </ul>
-          </div>
-
-          <p class="keyline">
-            La IA <span>propone e interpreta</span>; el sistema <span>valida</span>; el usuario
-            <span>supervisa y autoriza</span>; el PLC <span>ejecuta</span>.
-          </p>
         </section>
 
         <!-- ======================= PARTE II · ARQUITECTURA ======================= -->
@@ -1659,7 +1563,7 @@
             </ol>
 
             <figcaption class="arch-caption" id="arch-cap">
-              <b>Figura 16.</b> Flujo general del sistema LAVO, desde la instrucción del usuario hasta el PLC.
+              <b>Figura 14.</b> Flujo general del sistema LAVO, desde la instrucción del usuario hasta el PLC.
             </figcaption>
           </figure>
 
@@ -2361,14 +2265,14 @@ Cada bloque puede guardar:
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/timer.png" alt="Captura del timer" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 17</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 15</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer.png</span></div>
                   <p>Captura de la configuración/estado del temporizador en la interfaz o en el PLC.</p>
                 </figcaption>
               </figure>
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/timer2.png" alt="Segunda captura del timer" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 18</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer2.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 16</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer2.png</span></div>
                   <p>Segunda captura del temporizador, mostrando otra fase o parámetro del mismo comportamiento.</p>
                 </figcaption>
               </figure>
@@ -2389,14 +2293,14 @@ Cada bloque puede guardar:
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/contador1.png" alt="Primera captura del contador" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 19</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador1.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 17</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador1.png</span></div>
                   <p>Captura del contador antes de alcanzar el valor objetivo (conteo en progreso).</p>
                 </figcaption>
               </figure>
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/contador2.png" alt="Segunda captura del contador" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 20</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador2.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 18</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador2.png</span></div>
                   <p>Captura del contador al llegar al valor configurado y activar la salida correspondiente.</p>
                 </figcaption>
               </figure>
@@ -2505,26 +2409,26 @@ Cada bloque puede guardar:
             </div>
           </header>
 
-          <p>Referencias en formato APA 7, ordenadas alfabéticamente.</p>
+          <p>Referencias en formato APA 7, ordenadas según su orden de aparición en el documento.</p>
 
           <h3 id="referencias-marco-teorico">Marco teórico</h3>
           <ol class="refs">
-            <li id="ref-amershi2019">Amershi, S., Weld, D., Vorvoreanu, M., Fourney, A., Nushi, B., Collisson, P., Suh, J., Iqbal, S., Bennett, P. N., Inkpen, K., Teevan, J., Kikin-Gil, R., &amp; Horvitz, E. (2019). Guidelines for human-AI interaction. En <em>Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems</em>. Association for Computing Machinery. <a href="https://doi.org/10.1145/3290605.3300233" target="_blank" rel="noopener noreferrer">https://doi.org/10.1145/3290605.3300233</a></li>
-            <li id="ref-azuma1997">Azuma, R. T. (1997). A survey of augmented reality. <em>Presence: Teleoperators and Virtual Environments, 6</em>(4), 355–385. <a href="https://doi.org/10.1162/pres.1997.6.4.355" target="_blank" rel="noopener noreferrer">https://doi.org/10.1162/pres.1997.6.4.355</a></li>
-            <li id="ref-goodfellow2016">Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016). <em>Deep learning</em>. MIT Press. <a href="https://www.deeplearningbook.org/" target="_blank" rel="noopener noreferrer">https://www.deeplearningbook.org/</a></li>
-            <li id="ref-iec2020">International Electrotechnical Commission. (2020). <em>OPC unified architecture – Part 1: Overview and concepts</em> (IEC TR 62541-1:2020, ed. 3.0). <a href="https://webstore.iec.ch/en/publication/61109" target="_blank" rel="noopener noreferrer">https://webstore.iec.ch/en/publication/61109</a></li>
-            <li id="ref-iec2024">International Electrotechnical Commission. (2024). <em>Human machine interfaces for process automation systems</em> (IEC 63303:2024, ed. 1.0). <a href="https://webstore.iec.ch/en/publication/66298" target="_blank" rel="noopener noreferrer">https://webstore.iec.ch/en/publication/66298</a></li>
+            <li id="ref-petruzella2022">Petruzella, F. D. (2022). <em>Programmable logic controllers</em> (6.ª ed.). McGraw-Hill.</li>
             <li id="ref-iec2025">International Electrotechnical Commission. (2025). <em>Programmable controllers – Part 3: Programming languages</em> (IEC 61131-3:2025, ed. 4.0). <a href="https://webstore.iec.ch/en/publication/68533" target="_blank" rel="noopener noreferrer">https://webstore.iec.ch/en/publication/68533</a></li>
-            <li id="ref-isa">International Society of Automation. (s. f.). <em>ISA/IEC 62443 series of standards: Security for industrial automation and control systems</em>. <a href="https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards" target="_blank" rel="noopener noreferrer">https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards</a></li>
-            <li id="ref-iso2022">ISO/IEC/IEEE. (2022). <em>Software, systems and enterprise — Architecture description</em> (ISO/IEC/IEEE 42010:2022). International Organization for Standardization. <a href="https://www.iso.org/standard/74393.html" target="_blank" rel="noopener noreferrer">https://www.iso.org/standard/74393.html</a></li>
-            <li id="ref-milgram1994">Milgram, P., &amp; Kishino, F. (1994). A taxonomy of mixed reality visual displays. <em>IEICE Transactions on Information and Systems, E77-D</em>(12), 1321–1329. <a href="https://global.ieice.org/en_transactions/information/10.1587/e77-d_12_1321/_p" target="_blank" rel="noopener noreferrer">https://global.ieice.org/en_transactions/information/10.1587/e77-d_12_1321/_p</a></li>
+            <li id="ref-russell2020">Russell, S. J., &amp; Norvig, P. (2020). <em>Artificial intelligence: A modern approach</em> (4.ª ed.). Pearson.</li>
+            <li id="ref-goodfellow2016">Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016). <em>Deep learning</em>. MIT Press. <a href="https://www.deeplearningbook.org/" target="_blank" rel="noopener noreferrer">https://www.deeplearningbook.org/</a></li>
+            <li id="ref-vaswani2017">Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., &amp; Polosukhin, I. (2017). Attention is all you need. En <em>Advances in Neural Information Processing Systems 30</em> (pp. 5998–6008). <a href="https://papers.nips.cc/paper/7181-attention-is-all-you-need" target="_blank" rel="noopener noreferrer">https://papers.nips.cc/paper/7181-attention-is-all-you-need</a></li>
             <li id="ref-min2023">Min, B., Ross, H., Sulem, E., Pouran Ben Veyseh, A., Nguyen, T. H., Sainz, O., Agirre, E., Heintz, I., &amp; Roth, D. (2023). Recent advances in natural language processing via large pre-trained language models: A survey. <em>ACM Computing Surveys, 56</em>(2). <a href="https://doi.org/10.1145/3605943" target="_blank" rel="noopener noreferrer">https://doi.org/10.1145/3605943</a></li>
-            <li id="ref-modbus2012">Modbus Organization. (2012). <em>MODBUS application protocol specification V1.1b3</em>. <a href="https://modbus.org/modbus-specifications" target="_blank" rel="noopener noreferrer">https://modbus.org/modbus-specifications</a></li>
             <li id="ref-nist2023">National Institute of Standards and Technology. (2023). <em>Artificial intelligence risk management framework (AI RMF 1.0)</em> (NIST AI 100-1). U.S. Department of Commerce. <a href="https://doi.org/10.6028/NIST.AI.100-1" target="_blank" rel="noopener noreferrer">https://doi.org/10.6028/NIST.AI.100-1</a></li>
             <li id="ref-nist2024">National Institute of Standards and Technology. (2024). <em>Artificial intelligence risk management framework: Generative artificial intelligence profile</em> (NIST AI 600-1). U.S. Department of Commerce. <a href="https://doi.org/10.6028/NIST.AI.600-1" target="_blank" rel="noopener noreferrer">https://doi.org/10.6028/NIST.AI.600-1</a></li>
-            <li id="ref-petruzella2022">Petruzella, F. D. (2022). <em>Programmable logic controllers</em> (6.ª ed.). McGraw-Hill.</li>
-            <li id="ref-russell2020">Russell, S. J., &amp; Norvig, P. (2020). <em>Artificial intelligence: A modern approach</em> (4.ª ed.). Pearson.</li>
-            <li id="ref-vaswani2017">Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., &amp; Polosukhin, I. (2017). Attention is all you need. En <em>Advances in Neural Information Processing Systems 30</em> (pp. 5998–6008). <a href="https://papers.nips.cc/paper/7181-attention-is-all-you-need" target="_blank" rel="noopener noreferrer">https://papers.nips.cc/paper/7181-attention-is-all-you-need</a></li>
+            <li id="ref-amershi2019">Amershi, S., Weld, D., Vorvoreanu, M., Fourney, A., Nushi, B., Collisson, P., Suh, J., Iqbal, S., Bennett, P. N., Inkpen, K., Teevan, J., Kikin-Gil, R., &amp; Horvitz, E. (2019). Guidelines for human-AI interaction. En <em>Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems</em>. Association for Computing Machinery. <a href="https://doi.org/10.1145/3290605.3300233" target="_blank" rel="noopener noreferrer">https://doi.org/10.1145/3290605.3300233</a></li>
+            <li id="ref-iso2022">ISO/IEC/IEEE. (2022). <em>Software, systems and enterprise — Architecture description</em> (ISO/IEC/IEEE 42010:2022). International Organization for Standardization. <a href="https://www.iso.org/standard/74393.html" target="_blank" rel="noopener noreferrer">https://www.iso.org/standard/74393.html</a></li>
+            <li id="ref-modbus2012">Modbus Organization. (2012). <em>MODBUS application protocol specification V1.1b3</em>. <a href="https://modbus.org/modbus-specifications" target="_blank" rel="noopener noreferrer">https://modbus.org/modbus-specifications</a></li>
+            <li id="ref-iec2020">International Electrotechnical Commission. (2020). <em>OPC unified architecture – Part 1: Overview and concepts</em> (IEC TR 62541-1:2020, ed. 3.0). <a href="https://webstore.iec.ch/en/publication/61109" target="_blank" rel="noopener noreferrer">https://webstore.iec.ch/en/publication/61109</a></li>
+            <li id="ref-isa">International Society of Automation. (s. f.). <em>ISA/IEC 62443 series of standards: Security for industrial automation and control systems</em>. <a href="https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards" target="_blank" rel="noopener noreferrer">https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards</a></li>
+            <li id="ref-iec2024">International Electrotechnical Commission. (2024). <em>Human machine interfaces for process automation systems</em> (IEC 63303:2024, ed. 1.0). <a href="https://webstore.iec.ch/en/publication/66298" target="_blank" rel="noopener noreferrer">https://webstore.iec.ch/en/publication/66298</a></li>
+            <li id="ref-milgram1994">Milgram, P., &amp; Kishino, F. (1994). A taxonomy of mixed reality visual displays. <em>IEICE Transactions on Information and Systems, E77-D</em>(12), 1321–1329. <a href="https://global.ieice.org/en_transactions/information/10.1587/e77-d_12_1321/_p" target="_blank" rel="noopener noreferrer">https://global.ieice.org/en_transactions/information/10.1587/e77-d_12_1321/_p</a></li>
+            <li id="ref-azuma1997">Azuma, R. T. (1997). A survey of augmented reality. <em>Presence: Teleoperators and Virtual Environments, 6</em>(4), 355–385. <a href="https://doi.org/10.1162/pres.1997.6.4.355" target="_blank" rel="noopener noreferrer">https://doi.org/10.1162/pres.1997.6.4.355</a></li>
           </ol>
         </section>
 
