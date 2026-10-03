@@ -397,6 +397,15 @@ strong { color: var(--ink); font-weight: 600; }
   margin: 0 0 1.25rem;
   max-width: 680px;
 }
+.cover-author {
+  display: flex; align-items: center; gap: .85rem;
+  margin: 0 0 1.5rem; padding-left: .9rem;
+  border-left: 3px solid var(--red-500);
+}
+.cover-author > i { font-size: 1.35rem; color: #ff6b78; }
+.cover-author-name { font-size: 1.05rem; font-weight: 600; color: #fff; }
+.cover-author-info { font-size: .88rem; color: rgba(255,255,255,.7); line-height: 1.5; }
+.cover-author-info .sep { color: rgba(255,255,255,.35); margin: 0 .3rem; }
 .cover-desc {
   color: rgba(255,255,255,.78);
   font-size: 1rem; line-height: 1.75;
