@@ -112,6 +112,7 @@
           </button>
           <ul class="nav-sub">
             <li><a href="#seguridad"><span class="n">11</span>Validación y seguridad</a></li>
+            <li><a href="#manual"><span class="n">12</span>Manual de buenas prácticas</a></li>
           </ul>
         </div>
 
@@ -120,8 +121,8 @@
             <span class="nav-group-num">VII</span><span class="nav-group-label">Pruebas y resultados</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
-            <li><a href="#metricas"><span class="n">12</span>Métricas</a></li>
-            <li><a href="#resultados"><span class="n">13</span>Resultados</a></li>
+            <li><a href="#metricas"><span class="n">13</span>Métricas</a></li>
+            <li><a href="#resultados"><span class="n">14</span>Resultados</a></li>
           </ul>
         </div>
 
@@ -130,7 +131,7 @@
             <span class="nav-group-num">VIII</span><span class="nav-group-label">Créditos</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
-            <li><a href="#creditos"><span class="n">14</span>Herramientas de apoyo</a></li>
+            <li><a href="#creditos"><span class="n">15</span>Herramientas de apoyo</a></li>
           </ul>
         </div>
       </nav>
@@ -139,6 +140,7 @@
         <a href="https://luiscortesmunoz.github.io/Proyecto_Final_Prospectiva_Tecnologia/index.html"><i class="fa-solid fa-comments"></i> Chat IA</a>
         <a href="https://luiscortesmunoz.github.io/Proyecto_Final_Prospectiva_Tecnologia/ladder.html"><i class="fa-solid fa-table-cells"></i> Editor Ladder</a>
         <a href="https://luiscortesmunoz.github.io/Proyecto_Final_Prospectiva_Tecnologia/Comparacion_Prompts_Disenador.html" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-chart-line"></i> Métricas evaluadas</a>
+        <a href="assets/docs/Manual_Buenas_Practicas_PLC_LAVO.pdf" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-book-open"></i> Manual de buenas prácticas</a>
         <a href="https://github.com/LuisCortesMunoz/Proyecto_Final_Prospectiva_Tecnologia" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Repositorio</a>
       </div>
     </aside>
@@ -875,13 +877,104 @@ Cada bloque puede guardar:
           </div>
         </section>
 
+        <!-- 12 · MANUAL DE BUENAS PRÁCTICAS -->
+        <section class="doc-section" id="manual" data-group="validacion">
+          <header class="section-head">
+            <div class="section-num">12</div>
+            <div>
+              <div class="section-label">Manual de buenas prácticas</div>
+              <h2>Manual de buenas prácticas para programación y validación de lógica PLC</h2>
+            </div>
+          </header>
+
+          <p class="lead">
+            Este manual reúne y sintetiza criterios útiles para diseñar, revisar y validar lógica de automatización basada
+            en PLC, con énfasis en aplicaciones Ladder y en la arquitectura de LAVO. La síntesis se apoya en IEC
+            61131-3, PLCopen Coding Guidelines, normas de seguridad industrial, documentación de fabricantes y
+            especificaciones de comunicación industrial.
+          </p>
+
+          <div class="doc-file">
+            <div class="doc-file-icon"><i class="fa-solid fa-file-lines"></i><span>PDF</span></div>
+            <div class="doc-file-body">
+              <span class="doc-file-kicker">Documento PDF · Versión 1.0 · Octubre 2026 · 18 páginas</span>
+              <strong>Manual de buenas prácticas para programación y validación de lógica PLC</strong>
+              <p>Síntesis aplicada al proyecto LAVO — Logic Automation, Validation &amp; Operation</p>
+              <div class="tags">
+                <span class="tag">Buenas prácticas</span>
+                <span class="tag">Entradas/Salidas</span>
+                <span class="tag">Variables</span>
+                <span class="tag">Ladder</span>
+                <span class="tag">Timers/Counters</span>
+                <span class="tag">Interbloqueos</span>
+                <span class="tag is-accent">Modbus</span>
+                <span class="tag is-accent">Seguridad</span>
+              </div>
+            </div>
+            <div class="doc-file-actions">
+              <a href="assets/docs/Manual_Buenas_Practicas_PLC_LAVO.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                <i class="fa-solid fa-up-right-from-square"></i> Abrir PDF
+              </a>
+              <a href="assets/docs/Manual_Buenas_Practicas_PLC_LAVO.pdf" download class="btn btn-outline">
+                <i class="fa-solid fa-download"></i> Descargar
+              </a>
+            </div>
+          </div>
+
+          <div class="callout callout-note">
+            <div class="callout-icon"><i class="fa-solid fa-quote-left"></i></div>
+            <div>
+              <span class="callout-title">Idea central del manual</span>
+              Convertir conocimiento de ingeniería, recomendaciones de programación y requisitos de seguridad en
+              criterios verificables antes de que una lógica llegue al PLC.
+            </div>
+          </div>
+
+          <h3>Contenido del manual</h3>
+          <ol class="doc-list numbered manual-toc">
+            <li>Propósito, alcance y criterio de uso</li>
+            <li>Base normativa y documental</li>
+            <li>Principios generales de programación PLC</li>
+            <li>Entradas, salidas y variables</li>
+            <li>Estructura de lógica Ladder</li>
+            <li>Temporizadores y contadores</li>
+            <li>Secuencias, enclavamientos y condiciones de paro</li>
+            <li>Arranque, reinicio, retentividad y estados seguros</li>
+            <li>Comunicación industrial y Modbus TCP</li>
+            <li>Ciberseguridad en la integración IA-PLC</li>
+            <li>Validación antes de la ejecución</li>
+            <li>Reglas concretas para el validador de LAVO</li>
+            <li>Ejemplo aplicado al PLC Horner XL4</li>
+            <li>Lista de verificación final</li>
+            <li>Límites de aplicación</li>
+          </ol>
+          <p class="manual-refs"><i class="fa-solid fa-book"></i> Incluye referencias en formato APA 7.</p>
+
+          <h3>Vista previa</h3>
+          <div class="pdf-viewer">
+            <iframe src="assets/docs/Manual_Buenas_Practicas_PLC_LAVO.pdf#view=FitH" title="Manual de buenas prácticas de programación PLC — LAVO" loading="lazy"></iframe>
+          </div>
+          <p class="pdf-fallback">
+            Si la vista previa no se muestra en tu dispositivo, usa el botón <strong>Abrir PDF</strong>.
+          </p>
+
+          <div class="callout callout-warn">
+            <div class="callout-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            <div>
+              <span class="callout-title">Alcance del documento</span>
+              Documento de síntesis técnica. No sustituye la consulta de las normas completas, las instrucciones del fabricante
+              ni una evaluación de seguridad funcional certificada.
+            </div>
+          </div>
+        </section>
+
         <!-- ======================= PARTE VII · PRUEBAS Y RESULTADOS ======================= -->
         <div class="part" data-group="pruebas"><span class="part-num">Parte VII</span><span class="part-title">Pruebas y resultados</span><span class="part-line"></span></div>
 
         <!-- 12 · MÉTRICAS -->
         <section class="doc-section" id="metricas" data-group="pruebas">
           <header class="section-head">
-            <div class="section-num">12</div>
+            <div class="section-num">13</div>
             <div>
               <div class="section-label">Métricas evaluadas</div>
               <h2>Comparación de prompts del modo Diseñador</h2>
@@ -924,7 +1017,7 @@ Cada bloque puede guardar:
         <!-- 13 · RESULTADOS -->
         <section class="doc-section" id="resultados" data-group="pruebas">
           <header class="section-head">
-            <div class="section-num">13</div>
+            <div class="section-num">14</div>
             <div>
               <div class="section-label">Resultados</div>
               <h2>Evidencia de funcionamiento en el PLC físico</h2>
@@ -1054,7 +1147,7 @@ Cada bloque puede guardar:
         <!-- 14 · CRÉDITOS -->
         <section class="doc-section" id="creditos" data-group="creditos">
           <header class="section-head">
-            <div class="section-num">14</div>
+            <div class="section-num">15</div>
             <div>
               <div class="section-label">Créditos y herramientas de apoyo</div>
               <h2>Herramientas que apoyaron el desarrollo</h2>
