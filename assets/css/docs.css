@@ -527,6 +527,12 @@ strong { color: var(--ink); font-weight: 600; }
   border: 0; transform: none; width: auto; height: auto; top: .45rem; left: 0;
   font-family: var(--font-mono); font-size: .74rem; color: var(--red-600); font-weight: 500;
 }
+.doc-list.phase li { padding-left: 2.4rem; }
+.doc-list.phase li::before {
+  content: attr(data-n);
+  border: 0; transform: none; width: auto; height: auto; top: .45rem; left: 0;
+  font-family: var(--font-mono); font-size: .74rem; color: var(--red-600); font-weight: 500;
+}
 
 /* Etiquetas */
 .tags { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.4rem; }
