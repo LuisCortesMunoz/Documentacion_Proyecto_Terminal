@@ -1823,6 +1823,57 @@
             </table>
           </div>
 
+          <h3>Copiloto: modos de operación</h3>
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+              <h4>Aprendizaje</h4>
+              <p>Tutor de conceptos Ladder y PLC para principiantes: contactos NO/NC, bobinas, set/reset, temporizadores, contadores y enclavamientos, con ejemplos sencillos y una pregunta final para practicar. No genera JSON ni programas completos; si se le pide, sugiere el modo Diseñador. Usa <code>/chat</code> con su propio modelo configurable.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+              <h4>Práctico</h4>
+              <p>Asesor técnico para usuarios intermedios: resuelve dudas específicas, recomienda estructuras (enclavamiento, prioridad de paro, interlocks, secuencias) y revisa propuestas señalando errores y buenas prácticas. Describe en texto qué elementos usar, pero no genera programas finales. Usa <code>/chat</code>.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-diagram-project"></i></div>
+              <h4>Diseñador</h4>
+              <p>No usa el chat: envía la instrucción a <code>/generar-logica</code>, el mismo generador del editor, y abre el programa Ladder resultante en el editor.</p>
+            </div>
+          </div>
+
+          <h3>Copiloto: esfuerzo de razonamiento</h3>
+          <p>
+            En los modos Aprendizaje y Práctico, el menú «Esfuerzo de razonamiento» elige un perfil de respuesta.
+            El prompt que se envía a <code>/chat</code> combina primero las instrucciones del modo, que son
+            prioritarias, y después las del perfil (<code>effectiveSystemPrompt()</code> en <code>copilot.js</code>).
+            El modo Diseñador no usa este ajuste.
+          </p>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 9.</b> Perfiles de esfuerzo del copiloto</caption>
+              <thead>
+                <tr><th>Perfil</th><th>Instrucciones al modelo</th><th>Temperatura</th><th>Máx. tokens</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Instantánea</td><td>Responder breve y directo (idealmente 5 líneas o menos); en tareas complejas, sugerir subir de nivel.</td><td>0.4</td><td>180</td></tr>
+                <tr><td>Media</td><td>Explicaciones paso a paso, comparar opciones, errores sencillos de código y Ladder básico.</td><td>0.7</td><td>450</td></tr>
+                <tr><td>Alta</td><td>Analizar antes de responder y mostrar el razonamiento en pasos; separar hechos, inferencias y recomendaciones con secciones Análisis, Propuesta, Pasos y Riesgos.</td><td>0.7</td><td>900</td></tr>
+                <tr><td>Genérico</td><td>Asistente académico sin especializar, usado como línea base para comparar.</td><td>0.7</td><td>300</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout callout-note">
+            <div class="callout-icon"><i class="fa-solid fa-circle-info"></i></div>
+            <div>
+              <span class="callout-title">Alcance del ajuste</span>
+              El nivel de esfuerzo no activa un razonamiento interno distinto en el modelo: el backend llama a Groq
+              con <code>reasoning_effort: "none"</code> y el modelo del chat (<code>llama-3.3-70b-versatile</code>) no es
+              un modelo razonador. Lo que cambia es cuánto se le pide razonar de forma explícita, la longitud máxima
+              de la respuesta y su variabilidad (temperatura).
+            </div>
+          </div>
+
           <h3>Tecnologías del frontend</h3>
           <div class="card-grid">
             <div class="info-card">
@@ -1960,7 +2011,7 @@
 
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 9.</b> Roles del backend</caption>
+              <caption><b>Tabla 10.</b> Roles del backend</caption>
               <thead>
                 <tr><th>Rol</th><th>Dónde corre</th><th>Qué hace</th><th>Necesita</th></tr>
               </thead>
@@ -1999,7 +2050,7 @@
           <h3>Endpoints principales</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 10.</b> Endpoints del backend</caption>
+              <caption><b>Tabla 11.</b> Endpoints del backend</caption>
               <thead>
                 <tr><th>Endpoint</th><th>Descripción</th></tr>
               </thead>
@@ -2057,7 +2108,7 @@
           <h3>Modelos utilizados</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 11.</b> Modelos de IA y su responsabilidad</caption>
+              <caption><b>Tabla 12.</b> Modelos de IA y su responsabilidad</caption>
               <thead>
                 <tr><th>Modelo (Groq)</th><th>Dónde se usa</th><th>Responsabilidad</th></tr>
               </thead>
@@ -2191,7 +2242,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
           <h3>Manejo de errores del modelo</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 12.</b> Errores del modelo y respuesta del sistema</caption>
+              <caption><b>Tabla 13.</b> Errores del modelo y respuesta del sistema</caption>
               <thead>
                 <tr><th>Situación</th><th>Comportamiento</th></tr>
               </thead>
@@ -2252,7 +2303,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
           </p>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 13.</b> Registros del Ladder maestro del maletín</caption>
+              <caption><b>Tabla 14.</b> Registros del Ladder maestro del maletín</caption>
               <thead>
                 <tr><th>Registros</th><th>Contenido</th><th>Acceso</th></tr>
               </thead>
@@ -2271,7 +2322,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
           <h3>Maletín: modos de operación</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 14.</b> Modos de operación</caption>
+              <caption><b>Tabla 15.</b> Modos de operación</caption>
               <thead>
                 <tr><th>Modo</th><th>Descripción</th><th>Ejemplo</th></tr>
               </thead>
@@ -2298,7 +2349,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
           </p>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 15.</b> Registros del programa maestro de la banda</caption>
+              <caption><b>Tabla 16.</b> Registros del programa maestro de la banda</caption>
               <thead>
                 <tr><th>Registros</th><th>Contenido</th><th>Acceso</th></tr>
               </thead>
@@ -2439,7 +2490,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
 
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 16.</b> Errores de comunicación y respuesta del sistema</caption>
+              <caption><b>Tabla 17.</b> Errores de comunicación y respuesta del sistema</caption>
               <thead>
                 <tr><th>Código</th><th>Causa</th><th>Qué ve el usuario</th></tr>
               </thead>
@@ -2529,7 +2580,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
           <h3>Qué ocurre cuando una validación falla</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 17.</b> Comportamiento ante fallas de validación</caption>
+              <caption><b>Tabla 18.</b> Comportamiento ante fallas de validación</caption>
               <thead>
                 <tr><th>Falla</th><th>Comportamiento implementado</th></tr>
               </thead>
