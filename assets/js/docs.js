@@ -77,7 +77,7 @@
       tocList.innerHTML = '';
       return;
     }
-    tocCurrent.textContent = sec.querySelector('.section-num').textContent + ' · ' + sec.querySelector('h2').textContent;
+    tocCurrent.textContent = sec.querySelector('h2').textContent;
     var heads = sec.querySelectorAll('h3');
     tocList.innerHTML = '';
     if (!heads.length) {
