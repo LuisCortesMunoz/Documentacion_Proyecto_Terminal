@@ -1143,6 +1143,53 @@ strong { color: var(--ink); font-weight: 600; }
 .evo li.is-end { background: var(--ink); border-color: var(--ink); color: #fff; }
 .evo li.is-end i { background: var(--red-600); color: #fff; }
 
+/* ---------- 13d. Problemática ---------- */
+.figure-media.is-auto { aspect-ratio: auto; background: #fff; }
+.figure-media.is-auto img { height: auto; display: block; }
+.figure-wide { margin-top: 1rem; }
+.spaced-top { margin-top: 1.5rem; }
+.src-line { margin: .6rem 0 0; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .03em; color: var(--text-3); }
+.src-line .cite { color: var(--red-700); }
+.stat-grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+/* Cuadrantes (misma disposición que el mapa) */
+.quad-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+.quad {
+  border: 1px solid var(--line); border-left: 3px solid var(--red-100);
+  border-radius: var(--radius-sm); background: var(--surface-2); padding: .9rem 1rem;
+}
+.quad.is-lead { border-left-color: var(--red-600); background: var(--red-50); }
+.quad-name { display: block; font-family: var(--font-mono); font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--red-700); margin-bottom: .3rem; }
+.quad p { margin: 0; font-size: .88rem; line-height: 1.5; color: var(--text-2); }
+
+/* Interpretación por empresa */
+.vendor-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+.vendor { border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); padding: .95rem 1rem; }
+.vendor-head { display: flex; align-items: center; justify-content: space-between; gap: .6rem; margin-bottom: .4rem; }
+.vendor-head strong { font-size: .98rem; }
+.vendor-tag {
+  flex: none; font-family: var(--font-mono); font-size: .64rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  padding: .12rem .45rem; border-radius: 3px; color: var(--red-700); background: var(--red-50); border: 1px solid var(--red-100);
+}
+.vendor-tag.is-lead { color: #fff; background: var(--red-600); border-color: var(--red-600); }
+.vendor-tag.is-niche { color: var(--ink-2); background: var(--surface-3); border-color: var(--line); }
+.vendor p { margin: 0; font-size: .86rem; line-height: 1.55; color: var(--text-2); }
+
+/* Tabla de capacitación */
+.vendor-table td[rowspan] { background: var(--surface) !important; border-right: 1px solid var(--line); }
+.vendor-table tr.grp-start { border-top: 2px solid var(--line-2); }
+.vendor-table tr:not(.grp-start) td:first-child { font-weight: 400; color: var(--text); }
+.vendor-table td.cost { font-family: var(--font-mono); font-size: .84rem; white-space: nowrap; color: var(--red-700); font-weight: 600; }
+.vendor-table td.cost.is-na { color: var(--text-3); font-weight: 400; }
+
+/* Normas */
+.norm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .75rem; margin-top: .75rem; }
+.norm { border: 1px solid var(--line); border-top: 3px solid var(--red-600); border-radius: var(--radius-sm); background: var(--surface-2); padding: .95rem 1rem; }
+.norm-code { display: block; font-family: var(--font-mono); font-size: .8rem; font-weight: 600; color: var(--ink); margin-bottom: .35rem; }
+.norm p { margin: 0; font-size: .86rem; line-height: 1.5; color: var(--text-2); }
+
+.benefit-grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
 /* ---------- 14. Footer ---------- */
 .site-footer {
   margin-top: 3rem; padding: 1.75rem 0 0;
@@ -1242,6 +1289,7 @@ strong { color: var(--ink); font-weight: 600; }
   .card-grid.cols-2 { grid-template-columns: minmax(0, 1fr); }
   .example { grid-template-columns: minmax(0, 1fr); }
   .stat-grid.cols-2 { grid-template-columns: minmax(0, 1fr); }
+  .stat-grid.cols-3, .vendor-grid, .benefit-grid.cols-3 { grid-template-columns: minmax(0, 1fr); }
   .benefit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .stat-grid.cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .maker-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -1275,6 +1323,7 @@ strong { color: var(--ink); font-weight: 600; }
   .arch { padding: 1rem; }
   .card-grid.cols-4 { grid-template-columns: minmax(0, 1fr); }
   .maker-grid { grid-template-columns: minmax(0, 1fr); }
+  .quad-grid { grid-template-columns: minmax(0, 1fr); }
   .benefit-grid { grid-template-columns: minmax(0, 1fr); }
   .stat-grid.cols-4 { grid-template-columns: minmax(0, 1fr); }
   .header-gh .lbl { display: none; }

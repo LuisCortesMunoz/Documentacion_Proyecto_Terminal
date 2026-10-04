@@ -63,7 +63,7 @@
           <ul class="nav-sub">
             <li><a href="#resumen"><span class="n">01</span>Resumen</a></li>
             <li><a href="#contexto"><span class="n">02</span>Contexto</a></li>
-            <li><a href="#problema"><span class="n">03</span>Problema</a></li>
+            <li><a href="#problema"><span class="n">03</span>Problemática</a></li>
             <li><a href="#pregunta"><span class="n">04</span>Pregunta de investigación</a></li>
             <li><a href="#justificacion"><span class="n">05</span>Justificación</a></li>
             <li><a href="#objetivo"><span class="n">06</span>Objetivo</a></li>
@@ -480,43 +480,304 @@
           </div>
         </section>
 
-        <!-- 02 · PROBLEMA -->
+        <!-- 03 · PROBLEMÁTICA -->
         <section class="doc-section" id="problema" data-group="introduccion">
           <header class="section-head">
             <div>
-              <div class="section-label">Problema que atiende</div>
-              <h2>La programación PLC puede ser poco accesible para usuarios nuevos</h2>
+              <h2>Problemática</h2>
             </div>
           </header>
 
-          <p>
-            Los PLCs se programan normalmente con herramientas especializadas como Cscape. Estas herramientas
-            son potentes, pero requieren conocer símbolos, contactos, bobinas, enclavamientos, timers,
-            contadores, direcciones de entradas y salidas, y el flujo de escaneo del PLC.
+          <p class="lead">
+            Desarrollar y validar soluciones de automatización industrial es complejo: intervienen muchos
+            fabricantes, cada uno con su propia plataforma, normas que cumplir, errores de programación difíciles
+            de detectar y pocas formas seguras de probar los cambios antes de llevarlos a planta.
           </p>
 
-          <p>
-            En un entorno educativo o de prototipado, muchas veces la persona sabe qué quiere que haga el
-            sistema, pero no sabe todavía cómo convertirlo en lógica Ladder. Por ejemplo, puede saber que quiere
-            “un botón de arranque, un botón de paro y una lámpara que quede encendida”, pero no necesariamente
-            sabe construir el enclavamiento con contacto de retención.
+          <!-- 1 · Panorama de fabricantes -->
+          <h3 id="problema-fabricantes">1. Panorama de fabricantes en México</h3>
+          <figure class="figure figure-wide">
+            <div class="figure-media is-auto"><img src="assets/problematica/cuadrante-fabricantes.png" alt="Cuadrante competitivo de fabricantes de automatización en México" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
+            <figcaption>
+              <div class="fig-label"><span class="fig-num">Figura 2</span></div>
+              <p>Cuadrante competitivo de fabricantes de automatización en México según su presencia local y su amplitud tecnológica.</p>
+            </figcaption>
+          </figure>
+
+          <h4 class="sub-h">Cómo se interpreta</h4>
+          <div class="quad-grid">
+            <div class="quad">
+              <span class="quad-name">Retadores</span>
+              <p>Fuerte presencia local, pero una oferta tecnológica más limitada o menos diversa.</p>
+            </div>
+            <div class="quad is-lead">
+              <span class="quad-name">Líderes</span>
+              <p>Alta presencia en México y una oferta tecnológica muy amplia.</p>
+            </div>
+            <div class="quad">
+              <span class="quad-name">Jugadores de nicho</span>
+              <p>Soluciones más específicas, menor presencia local y un portafolio más especializado.</p>
+            </div>
+            <div class="quad">
+              <span class="quad-name">Visionarios</span>
+              <p>Tecnología avanzada y amplia, pero menor presencia o capacidad de ejecución en México.</p>
+            </div>
+          </div>
+
+          <p class="spaced">
+            Las posiciones no se construyeron únicamente por ventas, sino comparando dos dimensiones:
+          </p>
+          <div class="card-grid cols-2">
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-arrows-up-down"></i></div>
+              <h4>Eje Y — Presencia y capacidad de ejecución en México</h4>
+              <p>Oficinas, plantas, soporte técnico, capacitación, personal y red de socios.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-arrows-left-right"></i></div>
+              <h4>Eje X — Amplitud y capacidad tecnológica</h4>
+              <p>Qué tanto cubre la marca en PLC, HMI/SCADA, motion, drives, robótica, safety, software, simulación, digitalización e IIoT.</p>
+            </div>
+          </div>
+
+          <h4 class="sub-h">Interpretación por empresa</h4>
+          <div class="vendor-grid">
+            <div class="vendor">
+              <div class="vendor-head"><strong>Siemens</strong><span class="vendor-tag is-lead">Líder</span></div>
+              <p>Prácticamente en el extremo superior derecho: combina una presencia muy fuerte en México con uno de los ecosistemas más amplios: SIMATIC, TIA Portal, WinCC, SINAMICS, motion, safety, CNC, simulación y software industrial.</p>
+            </div>
+            <div class="vendor">
+              <div class="vendor-head"><strong>ABB</strong><span class="vendor-tag is-lead">Líder</span></div>
+              <p>Presencia física enorme en México —más de 6,000 empleados, 15 ubicaciones y 8 sitios manufactureros— y un portafolio muy amplio en automatización, drives, DCS, robótica, electrificación y software. Por eso está muy arriba y muy a la derecha.</p>
+            </div>
+            <div class="vendor">
+              <div class="vendor-head"><strong>Schneider Electric</strong><span class="vendor-tag is-lead">Líder</span></div>
+              <p>Presencia local muy alta —alrededor de 80 años en México y expansión hacia 12 plantas—; tecnológicamente cubre PLC/PAC, HMI, drives, automatización de procesos, software y gestión energética.</p>
+            </div>
+            <div class="vendor">
+              <div class="vendor-head"><strong>Rockwell Automation</strong><span class="vendor-tag is-lead">Líder</span></div>
+              <p>Muy fuerte en automatización de fábrica, especialmente con Allen-Bradley, ControlLogix, Studio 5000 y FactoryTalk. Tiene presencia, soporte y capacitación en México. Su ecosistema es muy amplio, aunque algo más concentrado en automatización industrial que Siemens o ABB.</p>
+            </div>
+            <div class="vendor">
+              <div class="vendor-head"><strong>Mitsubishi Electric</strong><span class="vendor-tag">Visionario</span></div>
+              <p>Tecnológicamente casi tan amplio como los líderes: PLC, HMI, servos, motion, VFD, robots, CNC y SCADA. Tiene oficinas en CDMX, Querétaro y Monterrey, pero su infraestructura pública en México es menor que la de ABB, Schneider o Siemens. Por eso queda un poco más abajo.</p>
+            </div>
+            <div class="vendor">
+              <div class="vendor-head"><strong>Omron</strong><span class="vendor-tag">Visionario</span></div>
+              <p>Tecnología fuerte en PLC, motion, sensores, machine vision, safety y robótica. Cuenta con presencia en México y un Proof of Concept Center en Guadalajara; sin embargo, su escala local es menor que la de los líderes tradicionales.</p>
+            </div>
+            <div class="vendor">
+              <div class="vendor-head"><strong>Beckhoff</strong><span class="vendor-tag">Visionario</span></div>
+              <p>Bastante a la derecha porque tecnológicamente es muy fuerte: TwinCAT, EtherCAT, PC-based control, motion, safety y visión. Pero su filial mexicana es relativamente reciente —desde 2018— y su presencia local es más pequeña, por eso aparece más abajo.</p>
+            </div>
+            <div class="vendor">
+              <div class="vendor-head"><strong>Horner</strong><span class="vendor-tag is-niche">Nicho</span></div>
+              <p>Ecosistema más especializado: principalmente PLC/HMI All-in-One, OCS, I/O y Cscape. En México su presencia se apoya más en canal y distribución que en una infraestructura propia grande. Por eso queda en la zona de nicho.</p>
+            </div>
+          </div>
+          <p class="src-line">
+            Fuentes: <a class="cite" href="#ref-35">Schneider Electric, 2026</a>; <a class="cite" href="#ref-36">Mitsubishi Electric, s. f.</a>;
+            <a class="cite" href="#ref-37">OMRON, 2024</a>; <a class="cite" href="#ref-38">Beckhoff, 2026</a>; <a class="cite" href="#ref-39">Horner, 2026</a>.
           </p>
 
-          <div class="card-grid">
-            <div class="info-card">
-              <div class="info-card-icon"><i class="fa-solid fa-keyboard"></i></div>
-              <h4>Barrera técnica</h4>
-              <p>El usuario debe conocer sintaxis, direcciones, estructura Ladder y lógica de control.</p>
+          <div class="figure-grid spaced-top">
+            <figure class="figure">
+              <div class="figure-media is-auto"><img src="assets/problematica/escasez-ingenieros-mundo.png" alt="Gráfica de escasez de ingenieros en el mundo por región" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
+              <figcaption>
+                <div class="fig-label"><span class="fig-num">Figura 3</span></div>
+                <p>Escasez de ingenieros en el mundo: porcentaje de empresas con dificultad para encontrar ingenieros calificados, por región.</p>
+              </figcaption>
+            </figure>
+            <figure class="figure">
+              <div class="figure-media is-auto"><img src="assets/problematica/ingenieros-mexico.png" alt="Gráfica de distribución de ingenieros en México por perfil profesional" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
+              <figcaption>
+                <div class="fig-label"><span class="fig-num">Figura 4</span></div>
+                <p>Distribución de ingenieros en México por perfil profesional.</p>
+              </figcaption>
+            </figure>
+          </div>
+
+          <!-- 2 · Capacitación -->
+          <h3 id="problema-capacitacion">2. Capacitación especializada por fabricante</h3>
+          <div class="stat-grid">
+            <div class="stat is-hero is-inline">
+              <span class="stat-num">$18–24 K</span>
+              <span class="stat-txt">MXN por nivel. La capacitación en PLC depende del fabricante, por lo que se requiere especialización por plataforma.</span>
             </div>
-            <div class="info-card">
-              <div class="info-card-icon"><i class="fa-solid fa-bug"></i></div>
-              <h4>Errores comunes</h4>
-              <p>Una mala interpretación puede activar salidas incorrectas o generar lógica incompleta.</p>
+          </div>
+
+          <div class="table-wrap">
+            <table class="doc-table vendor-table">
+              <caption><b>Tabla 1.</b> Cursos de capacitación PLC por fabricante</caption>
+              <thead>
+                <tr><th>Empresa</th><th>Nivel / Curso</th><th>Duración</th><th>Qué se ofrece</th><th>Costo publicado</th></tr>
+              </thead>
+              <tbody>
+                <tr class="grp-start"><td rowspan="6">Siemens</td><td>TIA Portal S7-1500</td><td>4.5 días / 36 h</td><td>Fundamentos de S7-1500</td><td class="cost">$23,243 MXN</td></tr>
+                <tr><td>TIA Portal S7-1500</td><td>4.5 días / 36 h</td><td>Programación más avanzada</td><td class="cost">$23,243 MXN</td></tr>
+                <tr><td>TIA Portal S7-1500</td><td>4.5 días / 36 h</td><td>Programación estructurada</td><td class="cost">$23,243 MXN</td></tr>
+                <tr><td>Programming Expert</td><td>3 días / 24 h</td><td>Programación avanzada</td><td class="cost">$18,557 MXN</td></tr>
+                <tr><td>S7-1500 Safety – TIA Portal</td><td>3 días / 24 h</td><td>PLC de seguridad</td><td class="cost">$18,557 MXN</td></tr>
+                <tr><td>TIA Motion Control – TIA Portal</td><td>4.5 días / 36 h</td><td>Control de velocidad y movimiento</td><td class="cost">$36,450 MXN</td></tr>
+                <tr class="grp-start"><td rowspan="5">Rockwell</td><td>Nivel 1 – CCP146</td><td>2 días</td><td>Fundamentos de control</td><td class="cost is-na">—</td></tr>
+                <tr><td>Nivel 2 – CCP151</td><td>2 días / 16 h</td><td>Programación ladder</td><td class="cost is-na">—</td></tr>
+                <tr><td>Nivel 3 – CCP143</td><td>4 días</td><td>Desarrollo completo de aplicaciones</td><td class="cost is-na">—</td></tr>
+                <tr><td>Accelerated Programmer</td><td>5 días / 40 h</td><td>Ruta intensiva</td><td class="cost is-na">—</td></tr>
+                <tr><td>Advanced Programmer</td><td>4 días / 32 h</td><td>Programación avanzada</td><td class="cost is-na">—</td></tr>
+                <tr class="grp-start"><td rowspan="2">Horner</td><td>Basic OCS Factory Training</td><td>2.5 días</td><td>Cscape, configuración y uso de OCS</td><td class="cost">US$457</td></tr>
+                <tr><td>Advanced OCS Factory Training</td><td>2.5 días</td><td>PID, subrutinas y estructuras</td><td class="cost">US$457</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="src-line">
+            Fuentes: <a class="cite" href="#ref-29">Siemens, 2026</a>; <a class="cite" href="#ref-30">Rockwell Automation, s. f.</a>;
+            <a class="cite" href="#ref-31">Horner Automation Group, 2025</a>.
+          </p>
+          <div class="callout callout-note">
+            <div class="callout-icon"><i class="fa-solid fa-door-closed"></i></div>
+            <div>
+              <span class="callout-title">Barrera de entrada</span>
+              Cada fabricante utiliza herramientas y plataformas propias, por lo que dominar más de una implica
+              repetir la capacitación y su costo.
             </div>
-            <div class="info-card">
-              <div class="info-card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-              <h4>Uso educativo</h4>
-              <p>El proyecto ayuda a explicar cómo una instrucción humana se convierte en lógica Ladder.</p>
+          </div>
+
+          <!-- 3 · Normas -->
+          <h3 id="problema-normas">3. Estándares y normas aplicadas</h3>
+          <div class="norm-grid">
+            <div class="norm">
+              <span class="norm-code">IEC 61131-3:2025</span>
+              <p>Estandariza la programación PLC: Ladder, ST, FBD, etc.</p>
+            </div>
+            <div class="norm">
+              <span class="norm-code">ISO 10218-1/2:2025</span>
+              <p>Requisitos de seguridad para robots industriales y su integración en aplicaciones y celdas robóticas.</p>
+            </div>
+            <div class="norm">
+              <span class="norm-code">IEC 62061</span>
+              <p>Requisitos de seguridad funcional para los sistemas de control relacionados con la seguridad de maquinaria.</p>
+            </div>
+            <div class="norm">
+              <span class="norm-code">IEC 62443</span>
+              <p>Ciberseguridad de sistemas industriales de automatización y control.</p>
+            </div>
+            <div class="norm">
+              <span class="norm-code">NOM-004-STPS-1999</span>
+              <p>Seguridad en maquinaria y equipo en México.</p>
+            </div>
+          </div>
+          <p class="src-line">
+            Fuentes: <a class="cite" href="#ref-23">IEC, 2025</a>; <a class="cite" href="#ref-24">ISO, 2025a</a>; <a class="cite" href="#ref-25">ISO, 2025b</a>;
+            <a class="cite" href="#ref-26">IEC, 2026</a>; <a class="cite" href="#ref-27">IEC, 2024</a>; <a class="cite" href="#ref-28">STPS, 1999</a>.
+          </p>
+          <p class="spaced">
+            El entorno industrial exige no solo programar, sino también cumplir normas técnicas, funcionales y de seguridad.
+          </p>
+
+          <!-- 4 · Fallas en la lógica -->
+          <h3 id="problema-fallas">4. Fallas en la lógica</h3>
+          <p>Un estudio recopilado por la OECD/NEA analizó <strong>30 fallas de software en PLC</strong> y encontró que:</p>
+          <div class="stat-grid cols-2">
+            <div class="stat is-hero">
+              <span class="stat-num">46.7 %</span>
+              <div class="stat-meter" role="img" aria-label="46.7 %"><span style="width:46.7%"></span></div>
+              <span class="stat-txt">de las fallas PLC se originan en errores de diseño o codificación.</span>
+            </div>
+            <div class="stat is-hero">
+              <span class="stat-num">16.7 %</span>
+              <div class="stat-meter" role="img" aria-label="16.7 %"><span style="width:16.7%"></span></div>
+              <span class="stat-txt">de las fallas se relacionaron con errores en la especificación de instrucciones.</span>
+            </div>
+          </div>
+          <p class="spaced">También se identificaron fallas asociadas a modificaciones durante la operación.</p>
+          <p class="src-line">Fuente: <a class="cite" href="#ref-20">Nuclear Energy Agency, 1998</a>.</p>
+
+          <!-- 5 · Retrabajos -->
+          <h3 id="problema-retrabajos">5. Retrabajos</h3>
+          <p>Un estudio de la German Machine Tool Builders’ Association (VDW) encontró que:</p>
+          <div class="stat-grid cols-2">
+            <div class="stat is-hero">
+              <span class="stat-num">60 %</span>
+              <div class="stat-meter" role="img" aria-label="60 %"><span style="width:60%"></span></div>
+              <span class="stat-txt">del tiempo de puesta en marcha puede perderse corrigiendo errores en el software de control.</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">15 %</span>
+              <div class="stat-meter" role="img" aria-label="15 %"><span style="width:15%"></span></div>
+              <span class="stat-txt">del tiempo total del proyecto puede consumirse en esas correcciones.</span>
+            </div>
+          </div>
+          <p class="spaced">Los errores en la lógica no solo afectan el funcionamiento, sino también los tiempos y costos del proyecto.</p>
+          <p class="src-line">Fuente: <a class="cite" href="#ref-21">Reinhart &amp; Wünsch, 2007</a>.</p>
+
+          <!-- 6 · Riesgos -->
+          <h3 id="problema-riesgos">6. Riesgos en la seguridad</h3>
+          <div class="stat-grid">
+            <div class="stat is-hero is-inline">
+              <span class="stat-num">20 %</span>
+              <span class="stat-txt">de las causas de accidentes en sistemas automatizados estuvieron relacionadas con errores de programación, según el organismo del Ministerio francés encargado de analizarlos.</span>
+            </div>
+          </div>
+          <h4 class="sub-h">Ejemplos de este tipo de errores</h4>
+          <div class="benefit-grid cols-3">
+            <div class="benefit"><i class="fa-solid fa-shuffle" aria-hidden="true"></i><span>Secuencia sobre el equipo equivocado.</span></div>
+            <div class="benefit"><i class="fa-solid fa-sliders" aria-hidden="true"></i><span>Valor de activación incorrecto.</span></div>
+            <div class="benefit"><i class="fa-solid fa-arrow-rotate-left" aria-hidden="true"></i><span>Acción programada en sentido contrario.</span></div>
+          </div>
+          <p class="spaced">Los errores de software no solo generan retrabajos, sino también riesgos reales de seguridad.</p>
+          <p class="src-line">Fuente: <a class="cite" href="#ref-22">BARPI, 2013</a>.</p>
+
+          <!-- 7 · Integración -->
+          <h3 id="problema-integracion">7. Poca integración entre plataformas de simulación</h3>
+          <p>
+            PLC, robots, HMI, sensores y simuladores pueden pertenecer a fabricantes diferentes y no siempre
+            intercambian información fácilmente. En un estudio de 2026, solo 7 % reportó que sus herramientas de
+            simulación estaban “muy bien integradas”, 37 % no tenía integración y 26 % requería mucho trabajo manual.
+          </p>
+          <div class="stat-grid cols-3">
+            <div class="stat">
+              <span class="stat-num">7 %</span>
+              <div class="stat-meter" role="img" aria-label="7 %"><span style="width:7%"></span></div>
+              <span class="stat-txt">muy bien integradas</span>
+            </div>
+            <div class="stat is-hero">
+              <span class="stat-num">37 %</span>
+              <div class="stat-meter" role="img" aria-label="37 %"><span style="width:37%"></span></div>
+              <span class="stat-txt">sin integración</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">26 %</span>
+              <div class="stat-meter" role="img" aria-label="26 %"><span style="width:26%"></span></div>
+              <span class="stat-txt">con mucho trabajo manual</span>
+            </div>
+          </div>
+          <p class="src-line">Fuente: <a class="cite" href="#ref-33">Goyal et al., 2026</a>.</p>
+
+          <!-- 8 · Costo de probar en línea real -->
+          <h3 id="problema-costo">8. Probar directamente sobre una línea real puede tener un costo elevado</h3>
+          <p>
+            Una línea que está produciendo no puede detenerse libremente cada vez que se desea probar una modificación.
+          </p>
+          <div class="stat-grid">
+            <div class="stat is-hero is-inline">
+              <span class="stat-num">US$2.3 M</span>
+              <span class="stat-txt">por hora de downtime no planeado en las grandes plantas automotrices estudiadas por Siemens, incluyendo producción perdida y costos asociados.</span>
+            </div>
+          </div>
+          <p class="spaced">
+            No significa que cada prueba de PLC cueste esa cantidad, sino que muestra por qué la disponibilidad de
+            una línea de producción es crítica.
+          </p>
+          <p class="src-line">Fuente: <a class="cite" href="#ref-32">Siemens, 2024</a>.</p>
+
+          <div class="callout callout-note">
+            <div class="callout-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            <div>
+              <span class="callout-title">En síntesis</span>
+              Probar cambios directamente en planta es costoso, riesgoso y poco viable. Sumado a la diversidad de
+              fabricantes, la especialización requerida, el cumplimiento normativo, los errores de programación y la
+              falta de integración entre herramientas, esto hace que desarrollar y validar soluciones de
+              automatización industrial sea complejo.
             </div>
           </div>
         </section>
@@ -701,7 +962,7 @@
               </li>
             </ol>
             <figcaption class="arch-caption" id="fig-mt-lazo">
-              <b>Figura 2.</b> Flujo conceptual de un sistema automatizado. Las salidas modifican el proceso físico, cuyo nuevo estado vuelve a medirse en las entradas.
+              <b>Figura 5.</b> Flujo conceptual de un sistema automatizado. Las salidas modifican el proceso físico, cuyo nuevo estado vuelve a medirse en las entradas.
             </figcaption>
           </figure>
 
@@ -798,7 +1059,7 @@
               </li>
             </ol>
             <figcaption class="arch-caption" id="fig-mt-scan">
-              <b>Figura 3.</b> Modelo clásico del ciclo de exploración (<em>scan cycle</em>) de un PLC.
+              <b>Figura 6.</b> Modelo clásico del ciclo de exploración (<em>scan cycle</em>) de un PLC.
             </figcaption>
           </figure>
 
@@ -830,7 +1091,7 @@
 
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 1.</b> Elementos principales de un programa Ladder</caption>
+              <caption><b>Tabla 2.</b> Elementos principales de un programa Ladder</caption>
               <thead>
                 <tr><th>Elemento</th><th>Descripción</th></tr>
               </thead>
@@ -857,7 +1118,7 @@
 
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 2.</b> Lenguajes contemplados en IEC 61131-3</caption>
+              <caption><b>Tabla 3.</b> Lenguajes contemplados en IEC 61131-3</caption>
               <thead>
                 <tr><th>Lenguaje</th><th>Tipo</th><th>Uso característico</th></tr>
               </thead>
@@ -907,7 +1168,7 @@
               </div>
             </div>
             <figcaption class="arch-caption" id="fig-mt-jerarquia">
-              <b>Figura 4.</b> Relación jerárquica entre IA, aprendizaje automático, redes neuronales, aprendizaje profundo, Transformers y LLM.
+              <b>Figura 7.</b> Relación jerárquica entre IA, aprendizaje automático, redes neuronales, aprendizaje profundo, Transformers y LLM.
             </figcaption>
           </figure>
 
@@ -1022,7 +1283,7 @@
               </li>
             </ol>
             <figcaption class="arch-caption" id="fig-mt-nlp">
-              <b>Figura 5.</b> Transformación de una instrucción en lenguaje natural a una lógica estructurada.
+              <b>Figura 8.</b> Transformación de una instrucción en lenguaje natural a una lógica estructurada.
             </figcaption>
           </figure>
 
@@ -1069,7 +1330,7 @@
               </li>
             </ol>
             <figcaption class="arch-caption" id="fig-mt-llm">
-              <b>Figura 6.</b> Papel del LLM dentro del proyecto.
+              <b>Figura 9.</b> Papel del LLM dentro del proyecto.
             </figcaption>
           </figure>
 
@@ -1153,7 +1414,7 @@
               </li>
             </ol>
             <figcaption class="arch-caption" id="fig-mt-hai">
-              <b>Figura 7.</b> Flujo de interacción humano–IA propuesto para el asistente.
+              <b>Figura 10.</b> Flujo de interacción humano–IA propuesto para el asistente.
             </figcaption>
           </figure>
 
@@ -1162,12 +1423,12 @@
             involucrado en las etapas críticas y puede revisar la interpretación antes de que se modifique el
             sistema físico. Amershi et al. (<a class="cite" href="#ref-amershi2019">2019</a>) proponen 18
             lineamientos para el diseño de sistemas con IA, agrupados según el momento de la interacción. La
-            Tabla 3 relaciona los más pertinentes con el funcionamiento de LAVO.
+            Tabla 4 relaciona los más pertinentes con el funcionamiento de LAVO.
           </p>
 
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 3.</b> Lineamientos de interacción humano–IA aplicados al asistente</caption>
+              <caption><b>Tabla 4.</b> Lineamientos de interacción humano–IA aplicados al asistente</caption>
               <thead>
                 <tr><th>Aspecto</th><th>Lineamiento (Amershi et al., 2019)</th><th>Aplicación en LAVO</th></tr>
               </thead>
@@ -1202,7 +1463,7 @@
           </p>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 4.</b> IA para analizar frente a IA para configurar la lógica de control</caption>
+              <caption><b>Tabla 5.</b> IA para analizar frente a IA para configurar la lógica de control</caption>
               <thead>
                 <tr><th>Criterio</th><th>IA para analizar un proceso</th><th>IA para configurar la lógica</th></tr>
               </thead>
@@ -1248,7 +1509,7 @@
               <li><span class="vflow-icon"><i class="fa-solid fa-industry"></i></span><div><strong>Proceso físico</strong><span class="d">banda transportadora y actuadores</span></div></li>
             </ol>
             <figcaption class="arch-caption" id="fig-mt-capas">
-              <b>Figura 8.</b> Vista conceptual de la arquitectura del asistente.
+              <b>Figura 11.</b> Vista conceptual de la arquitectura del asistente.
             </figcaption>
           </figure>
 
@@ -1309,7 +1570,7 @@
               </li>
             </ol>
             <figcaption class="arch-caption" id="fig-mt-hwsw">
-              <b>Figura 9.</b> Integración bidireccional entre software y hardware mediante protocolos de comunicación.
+              <b>Figura 12.</b> Integración bidireccional entre software y hardware mediante protocolos de comunicación.
             </figcaption>
           </figure>
 
@@ -1331,7 +1592,7 @@
 
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 5.</b> Modelo de datos de Modbus</caption>
+              <caption><b>Tabla 6.</b> Modelo de datos de Modbus</caption>
               <thead>
                 <tr><th>Tabla</th><th>Tipo</th><th>Acceso</th><th>Códigos de función típicos</th></tr>
               </thead>
@@ -1368,7 +1629,7 @@
               </li>
             </ol>
             <figcaption class="arch-caption" id="fig-mt-modbus">
-              <b>Figura 10.</b> Modelo de solicitud y respuesta de Modbus.
+              <b>Figura 13.</b> Modelo de solicitud y respuesta de Modbus.
             </figcaption>
           </figure>
 
@@ -1482,7 +1743,7 @@
               </li>
             </ol>
             <figcaption class="arch-caption" id="fig-mt-riesgo">
-              <b>Figura 11.</b> Cadena de elementos entre el usuario y el proceso físico, con un riesgo representativo en cada uno.
+              <b>Figura 14.</b> Cadena de elementos entre el usuario y el proceso físico, con un riesgo representativo en cada uno.
             </figcaption>
           </figure>
 
@@ -1583,7 +1844,7 @@
               </li>
             </ol>
             <figcaption class="arch-caption" id="fig-mt-ui">
-              <b>Figura 12.</b> Etapas que la interfaz debe hacer visibles al usuario.
+              <b>Figura 15.</b> Etapas que la interfaz debe hacer visibles al usuario.
             </figcaption>
           </figure>
 
@@ -1607,13 +1868,13 @@
               <div class="continuum-mr">Realidad Mixta (MR)</div>
             </div>
             <figcaption class="arch-caption" id="fig-mt-continuo">
-              <b>Figura 13.</b> Continuo realidad–virtualidad, adaptado de Milgram y Kishino (1994).
+              <b>Figura 16.</b> Continuo realidad–virtualidad, adaptado de Milgram y Kishino (1994).
             </figcaption>
           </figure>
 
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 6.</b> Comparación entre VR, AR y MR</caption>
+              <caption><b>Tabla 7.</b> Comparación entre VR, AR y MR</caption>
               <thead>
                 <tr><th>Tecnología</th><th>Característica principal</th></tr>
               </thead>
@@ -1693,7 +1954,7 @@
               </li>
             </ol>
             <figcaption class="arch-caption" id="fig-mt-inmersiva">
-              <b>Figura 14.</b> Componentes de la visualización inmersiva propuesta.
+              <b>Figura 17.</b> Componentes de la visualización inmersiva propuesta.
             </figcaption>
           </figure>
 
@@ -1802,7 +2063,7 @@
             </ol>
 
             <figcaption class="arch-caption" id="arch-cap">
-              <b>Figura 15.</b> Relación entre los módulos de LAVO, desde la instrucción del usuario hasta el PLC.
+              <b>Figura 18.</b> Relación entre los módulos de LAVO, desde la instrucción del usuario hasta el PLC.
               Las respuestas regresan por el mismo camino (ver la tabla siguiente).
             </figcaption>
           </figure>
@@ -1810,7 +2071,7 @@
           <h3>Mensajes entre módulos</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 7.</b> Qué inicia cada operación, qué viaja y qué regresa</caption>
+              <caption><b>Tabla 8.</b> Qué inicia cada operación, qué viaja y qué regresa</caption>
               <thead>
                 <tr><th>Origen → destino</th><th>Información enviada</th><th>Respuesta</th></tr>
               </thead>
@@ -2011,7 +2272,7 @@
           <h3>Páginas principales del frontend</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 8.</b> Páginas principales del frontend</caption>
+              <caption><b>Tabla 9.</b> Páginas principales del frontend</caption>
               <thead>
                 <tr><th>Página</th><th>Función dentro del proyecto</th></tr>
               </thead>
@@ -2064,7 +2325,7 @@
           </p>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 9.</b> Perfiles de esfuerzo del copiloto</caption>
+              <caption><b>Tabla 10.</b> Perfiles de esfuerzo del copiloto</caption>
               <thead>
                 <tr><th>Perfil</th><th>Instrucciones al modelo</th><th>Temperatura</th><th>Máx. tokens</th></tr>
               </thead>
@@ -2222,7 +2483,7 @@
 
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 10.</b> Roles del backend</caption>
+              <caption><b>Tabla 11.</b> Roles del backend</caption>
               <thead>
                 <tr><th>Rol</th><th>Dónde corre</th><th>Qué hace</th><th>Necesita</th></tr>
               </thead>
@@ -2261,7 +2522,7 @@
           <h3>Endpoints principales</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 11.</b> Endpoints del backend</caption>
+              <caption><b>Tabla 12.</b> Endpoints del backend</caption>
               <thead>
                 <tr><th>Endpoint</th><th>Descripción</th></tr>
               </thead>
@@ -2318,7 +2579,7 @@
           <h3>Modelos utilizados</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 12.</b> Modelos de IA y su responsabilidad</caption>
+              <caption><b>Tabla 13.</b> Modelos de IA y su responsabilidad</caption>
               <thead>
                 <tr><th>Modelo (Groq)</th><th>Dónde se usa</th><th>Responsabilidad</th></tr>
               </thead>
@@ -2452,7 +2713,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
           <h3>Manejo de errores del modelo</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 13.</b> Errores del modelo y respuesta del sistema</caption>
+              <caption><b>Tabla 14.</b> Errores del modelo y respuesta del sistema</caption>
               <thead>
                 <tr><th>Situación</th><th>Comportamiento</th></tr>
               </thead>
@@ -2512,7 +2773,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
           </p>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 14.</b> Registros del Ladder maestro del maletín</caption>
+              <caption><b>Tabla 15.</b> Registros del Ladder maestro del maletín</caption>
               <thead>
                 <tr><th>Registros</th><th>Contenido</th><th>Acceso</th></tr>
               </thead>
@@ -2531,7 +2792,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
           <h3>Maletín: modos de operación</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 15.</b> Modos de operación</caption>
+              <caption><b>Tabla 16.</b> Modos de operación</caption>
               <thead>
                 <tr><th>Modo</th><th>Descripción</th><th>Ejemplo</th></tr>
               </thead>
@@ -2558,7 +2819,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
           </p>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 16.</b> Registros del programa maestro de la banda</caption>
+              <caption><b>Tabla 17.</b> Registros del programa maestro de la banda</caption>
               <thead>
                 <tr><th>Registros</th><th>Contenido</th><th>Acceso</th></tr>
               </thead>
@@ -2659,7 +2920,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
               </li>
             </ol>
             <figcaption class="arch-caption" id="fig-comunicacion">
-              <b>Figura 16.</b> Camino de la información hacia el PLC. Las lecturas regresan por el mismo camino.
+              <b>Figura 19.</b> Camino de la información hacia el PLC. Las lecturas regresan por el mismo camino.
             </figcaption>
           </figure>
 
@@ -2698,7 +2959,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
 
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 17.</b> Errores de comunicación y respuesta del sistema</caption>
+              <caption><b>Tabla 18.</b> Errores de comunicación y respuesta del sistema</caption>
               <thead>
                 <tr><th>Código</th><th>Causa</th><th>Qué ve el usuario</th></tr>
               </thead>
@@ -2787,7 +3048,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
           <h3>Qué ocurre cuando una validación falla</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 18.</b> Comportamiento ante fallas de validación</caption>
+              <caption><b>Tabla 19.</b> Comportamiento ante fallas de validación</caption>
               <thead>
                 <tr><th>Falla</th><th>Comportamiento implementado</th></tr>
               </thead>
@@ -3034,14 +3295,14 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/timer.png" alt="Captura del timer" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 17</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 20</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer.png</span></div>
                   <p>Captura de la configuración/estado del temporizador en la interfaz o en el PLC.</p>
                 </figcaption>
               </figure>
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/timer2.png" alt="Segunda captura del timer" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 18</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer2.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 21</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer2.png</span></div>
                   <p>Segunda captura del temporizador, mostrando otra fase o parámetro del mismo comportamiento.</p>
                 </figcaption>
               </figure>
@@ -3062,14 +3323,14 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/contador1.png" alt="Primera captura del contador" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 19</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador1.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 22</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador1.png</span></div>
                   <p>Captura del contador antes de alcanzar el valor objetivo (conteo en progreso).</p>
                 </figcaption>
               </figure>
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/contador2.png" alt="Segunda captura del contador" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 20</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador2.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 23</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador2.png</span></div>
                   <p>Captura del contador al llegar al valor configurado y activar la salida correspondiente.</p>
                 </figcaption>
               </figure>

@@ -233,7 +233,7 @@
     if (lastFocus) lastFocus.focus();
   }
 
-  document.querySelectorAll('#resultados .figure-media img').forEach(function (img) {
+  document.querySelectorAll('#resultados .figure-media img, #problema .figure-media img').forEach(function (img) {
     img.setAttribute('tabindex', '0');
     img.addEventListener('click', function () { openLightbox(img); });
     img.addEventListener('keydown', function (e) {
