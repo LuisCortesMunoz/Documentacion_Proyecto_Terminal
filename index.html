@@ -1143,6 +1143,135 @@
             </div>
           </div>
 
+          <h3 id="mt-sensores">1.4 Sensores y captadores</h3>
+          <p>
+            Un sistema automatizado necesita elementos que informen sobre el estado del proceso. Martín Castillo y
+            García García (<a class="cite" href="#ref-martin2009">2009</a>) emplean el término
+            <em>captadores</em> para referirse a los dispositivos conectados a las entradas del sistema de control:
+            su función es detectar una condición física o una acción y entregar una señal que el PLC pueda procesar.
+            Los captadores se conectan a los módulos de entrada, que ponen esa información a disposición de la CPU
+            para evaluarla conforme al programa almacenado; en las entradas digitales, las señales representan
+            estados discretos interpretados como un 0 o un 1 lógico.
+          </p>
+
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-toggle-on"></i></div>
+              <h4>Electromecánicos</h4>
+              <p>Interruptores, pulsadores e interruptores de posición (finales de carrera).</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-wave-square"></i></div>
+              <h4>Estado sólido</h4>
+              <p>Detectores fotoeléctricos, inductivos, capacitivos y ultrasónicos.</p>
+            </div>
+          </div>
+
+          <p>
+            Los sensores o captadores constituyen, por tanto, los elementos de entrada del sistema de
+            automatización: detectan condiciones del proceso y proporcionan al PLC la información necesaria para
+            determinar las acciones de control. Esta definición abarca tanto los sensores de la banda como los
+            botones, finales de carrera u otros elementos de entrada utilizados en el proyecto.
+          </p>
+
+          <h3 id="mt-actuadores">1.5 Actuadores</h3>
+          <p>
+            Los actuadores representan la parte de salida del sistema de automatización. Después de procesar las
+            señales de entrada conforme al programa, la CPU genera órdenes hacia los módulos de salida, que envían
+            las señales necesarias para activar o desactivar los elementos que actúan sobre el proceso
+            (<a class="cite" href="#ref-martin2009">Martín Castillo &amp; García García, 2009</a>). Entre los
+            elementos accionados desde salidas digitales se encuentran bobinas de contactores, relés y lámparas;
+            estas salidas trabajan con señales discretas de activación o desactivación y pueden implementarse
+            mediante relés o transistores, según la aplicación y el tipo de carga.
+          </p>
+          <p>
+            Se distingue además el concepto de <strong>preactuador</strong>: un dispositivo que recibe una señal de
+            control y permite manejar un elemento de mayor potencia o de otra tecnología. Un ejemplo es un contactor
+            gobernado por una salida del PLC que, a su vez, acciona un motor. En síntesis, los actuadores reciben
+            las órdenes generadas por el sistema de control y las convierten en una acción sobre el proceso físico,
+            como movimiento, accionamiento o señalización.
+          </p>
+
+          <h3 id="mt-vfd">1.6 Variador de frecuencia (VFD)</h3>
+          <p>
+            Un variador de frecuencia (VFD, <em>Variable Frequency Drive</em>) es un dispositivo de electrónica de
+            potencia que regula la velocidad de motores de corriente alterna modificando la frecuencia de su
+            alimentación. Este método permite trabajar dentro de un intervalo de frecuencias y ajustar con
+            flexibilidad la velocidad del motor sin requerir modificaciones especiales en sus devanados
+            (<a class="cite" href="#ref-martin2009">Martín Castillo &amp; García García, 2009</a>).
+          </p>
+          <p>
+            Además de regular la velocidad, el variador incorpora parámetros de configuración que adaptan el
+            funcionamiento del motor al proceso, entre ellos las rampas de aceleración y desaceleración, la
+            velocidad mínima y máxima, las velocidades preseleccionadas, la operación por impulsos (JOG) y distintas
+            formas de frenado. Estos parámetros determinan cómo inicia, cambia de velocidad y se detiene el motor.
+          </p>
+
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-bolt"></i></div>
+              <h4>Potencia</h4>
+              <p>Conexión entre la red eléctrica, el variador y el motor.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-sliders"></i></div>
+              <h4>Mando</h4>
+              <p>Señales que controlan funciones como la marcha, el paro y otras condiciones de operación.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-gauge-high"></i></div>
+              <h4>Consigna de velocidad</h4>
+              <p>Referencia que indica al variador la velocidad a la que debe operar el motor.</p>
+            </div>
+          </div>
+
+          <p>
+            Los propios autores utilizan una cinta transportadora como ejemplo de aplicación de un variador para
+            controlar la velocidad del motor, lo que se relaciona directamente con el sistema físico utilizado en
+            LAVO. En este contexto, el VFD actúa como elemento de control del motor y permite modificar su velocidad
+            y sus características de operación de acuerdo con las órdenes que recibe del sistema de automatización.
+          </p>
+
+          <h3 id="mt-relacion-es">1.7 Relación entre sensores, PLC y actuadores</h3>
+          <p>
+            Los conceptos anteriores se integran en el funcionamiento básico de un sistema automatizado: los
+            sensores o captadores proporcionan información mediante las entradas; el PLC la procesa conforme a la
+            lógica programada; y las salidas transmiten las órdenes hacia los actuadores o preactuadores, que
+            modifican el estado del proceso. Este recorrido de la información va de las entradas a la CPU y de ahí
+            a las salidas (<a class="cite" href="#ref-martin2009">Martín Castillo &amp; García García, 2009</a>).
+            Cuando el motor se controla mediante un variador, la cadena se extiende como se muestra en la
+            Figura 7: el sensor informa del estado del proceso, el PLC determina la acción que debe realizarse y el
+            VFD controla las características de operación del motor.
+          </p>
+
+          <figure class="arch" aria-labelledby="fig-mt-vfd">
+            <ol class="pipeline">
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-satellite-dish"></i></span></div>
+                <h4>Sensor</h4>
+                <span class="stage-layer">detecta el estado del proceso</span>
+              </li>
+              <li class="stage lane-plc">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-microchip"></i></span></div>
+                <h4>PLC</h4>
+                <span class="stage-layer">determina la acción de control</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-sliders"></i></span></div>
+                <h4>VFD</h4>
+                <span class="stage-layer">ajusta frecuencia y rampas</span>
+              </li>
+              <li class="stage lane-user">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-gear"></i></span></div>
+                <h4>Motor</h4>
+                <span class="stage-layer">mueve la banda transportadora</span>
+              </li>
+            </ol>
+            <figcaption class="arch-caption" id="fig-mt-vfd">
+              <b>Figura 7.</b> Cadena de control de un motor mediante variador de frecuencia: sensor → PLC → VFD → motor.
+            </figcaption>
+          </figure>
+
           <h3 class="block-h" id="mt-ia">2. Inteligencia Artificial y Modelos de Lenguaje</h3>
 
           <p class="lead">
@@ -1170,7 +1299,7 @@
               </div>
             </div>
             <figcaption class="arch-caption" id="fig-mt-jerarquia">
-              <b>Figura 7.</b> Relación jerárquica entre IA, aprendizaje automático, redes neuronales, aprendizaje profundo, Transformers y LLM.
+              <b>Figura 8.</b> Relación jerárquica entre IA, aprendizaje automático, redes neuronales, aprendizaje profundo, Transformers y LLM.
             </figcaption>
           </figure>
 
@@ -1285,7 +1414,7 @@
               </li>
             </ol>
             <figcaption class="arch-caption" id="fig-mt-nlp">
-              <b>Figura 8.</b> Transformación de una instrucción en lenguaje natural a una lógica estructurada.
+              <b>Figura 9.</b> Transformación de una instrucción en lenguaje natural a una lógica estructurada.
             </figcaption>
           </figure>
 
@@ -1332,7 +1461,7 @@
               </li>
             </ol>
             <figcaption class="arch-caption" id="fig-mt-llm">
-              <b>Figura 9.</b> Papel del LLM dentro del proyecto.
+              <b>Figura 10.</b> Papel del LLM dentro del proyecto.
             </figcaption>
           </figure>
 
@@ -1416,7 +1545,7 @@
               </li>
             </ol>
             <figcaption class="arch-caption" id="fig-mt-hai">
-              <b>Figura 10.</b> Flujo de interacción humano–IA propuesto para el asistente.
+              <b>Figura 11.</b> Flujo de interacción humano–IA propuesto para el asistente.
             </figcaption>
           </figure>
 
@@ -1511,7 +1640,7 @@
               <li><span class="vflow-icon"><i class="fa-solid fa-industry"></i></span><div><strong>Proceso físico</strong><span class="d">banda transportadora y actuadores</span></div></li>
             </ol>
             <figcaption class="arch-caption" id="fig-mt-capas">
-              <b>Figura 11.</b> Vista conceptual de la arquitectura del asistente.
+              <b>Figura 12.</b> Vista conceptual de la arquitectura del asistente.
             </figcaption>
           </figure>
 
@@ -1572,7 +1701,7 @@
               </li>
             </ol>
             <figcaption class="arch-caption" id="fig-mt-hwsw">
-              <b>Figura 12.</b> Integración bidireccional entre software y hardware mediante protocolos de comunicación.
+              <b>Figura 13.</b> Integración bidireccional entre software y hardware mediante protocolos de comunicación.
             </figcaption>
           </figure>
 
@@ -1631,7 +1760,7 @@
               </li>
             </ol>
             <figcaption class="arch-caption" id="fig-mt-modbus">
-              <b>Figura 13.</b> Modelo de solicitud y respuesta de Modbus.
+              <b>Figura 14.</b> Modelo de solicitud y respuesta de Modbus.
             </figcaption>
           </figure>
 
@@ -1745,7 +1874,7 @@
               </li>
             </ol>
             <figcaption class="arch-caption" id="fig-mt-riesgo">
-              <b>Figura 14.</b> Cadena de elementos entre el usuario y el proceso físico, con un riesgo representativo en cada uno.
+              <b>Figura 15.</b> Cadena de elementos entre el usuario y el proceso físico, con un riesgo representativo en cada uno.
             </figcaption>
           </figure>
 
@@ -1846,7 +1975,7 @@
               </li>
             </ol>
             <figcaption class="arch-caption" id="fig-mt-ui">
-              <b>Figura 15.</b> Etapas que la interfaz debe hacer visibles al usuario.
+              <b>Figura 16.</b> Etapas que la interfaz debe hacer visibles al usuario.
             </figcaption>
           </figure>
 
@@ -1870,7 +1999,7 @@
               <div class="continuum-mr">Realidad Mixta (MR)</div>
             </div>
             <figcaption class="arch-caption" id="fig-mt-continuo">
-              <b>Figura 16.</b> Continuo realidad–virtualidad, adaptado de Milgram y Kishino (1994).
+              <b>Figura 17.</b> Continuo realidad–virtualidad, adaptado de Milgram y Kishino (1994).
             </figcaption>
           </figure>
 
@@ -1956,7 +2085,7 @@
               </li>
             </ol>
             <figcaption class="arch-caption" id="fig-mt-inmersiva">
-              <b>Figura 17.</b> Componentes de la visualización inmersiva propuesta.
+              <b>Figura 18.</b> Componentes de la visualización inmersiva propuesta.
             </figcaption>
           </figure>
 
@@ -2065,7 +2194,7 @@
             </ol>
 
             <figcaption class="arch-caption" id="arch-cap">
-              <b>Figura 18.</b> Relación entre los módulos de LAVO, desde la instrucción del usuario hasta el PLC.
+              <b>Figura 19.</b> Relación entre los módulos de LAVO, desde la instrucción del usuario hasta el PLC.
               Las respuestas regresan por el mismo camino (ver la tabla siguiente).
             </figcaption>
           </figure>
@@ -2903,7 +3032,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
               </li>
             </ol>
             <figcaption class="arch-caption" id="fig-comunicacion">
-              <b>Figura 19.</b> Camino de la información hacia el PLC. Las lecturas regresan por el mismo camino.
+              <b>Figura 20.</b> Camino de la información hacia el PLC. Las lecturas regresan por el mismo camino.
             </figcaption>
           </figure>
 
@@ -3278,14 +3407,14 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/timer.png" alt="Captura del timer" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 20</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 21</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer.png</span></div>
                   <p>Captura de la configuración/estado del temporizador en la interfaz o en el PLC.</p>
                 </figcaption>
               </figure>
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/timer2.png" alt="Segunda captura del timer" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 21</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer2.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 22</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer2.png</span></div>
                   <p>Segunda captura del temporizador, mostrando otra fase o parámetro del mismo comportamiento.</p>
                 </figcaption>
               </figure>
@@ -3306,14 +3435,14 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/contador1.png" alt="Primera captura del contador" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 22</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador1.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 23</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador1.png</span></div>
                   <p>Captura del contador antes de alcanzar el valor objetivo (conteo en progreso).</p>
                 </figcaption>
               </figure>
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/contador2.png" alt="Segunda captura del contador" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 23</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador2.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 24</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador2.png</span></div>
                   <p>Captura del contador al llegar al valor configurado y activar la salida correspondiente.</p>
                 </figcaption>
               </figure>
@@ -3455,6 +3584,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
             <li id="ref-iec2024">[61] International Electrotechnical Commission. (2024). <em>Human machine interfaces for process automation systems</em> (IEC 63303:2024, ed. 1.0). <a href="https://webstore.iec.ch/en/publication/66298" target="_blank" rel="noopener noreferrer">https://webstore.iec.ch/en/publication/66298</a></li>
             <li id="ref-milgram1994">[62] Milgram, P., &amp; Kishino, F. (1994). A taxonomy of mixed reality visual displays. <em>IEICE Transactions on Information and Systems, E77-D</em>(12), 1321–1329. <a href="https://global.ieice.org/en_transactions/information/10.1587/e77-d_12_1321/_p" target="_blank" rel="noopener noreferrer">https://global.ieice.org/en_transactions/information/10.1587/e77-d_12_1321/_p</a></li>
             <li id="ref-azuma1997">[63] Azuma, R. T. (1997). A survey of augmented reality. <em>Presence: Teleoperators and Virtual Environments, 6</em>(4), 355–385. <a href="https://doi.org/10.1162/pres.1997.6.4.355" target="_blank" rel="noopener noreferrer">https://doi.org/10.1162/pres.1997.6.4.355</a></li>
+            <li id="ref-martin2009">[64] Martín Castillo, J. C., &amp; García García, M. P. (2009). <em>Automatismos industriales</em>. Editorial Editex.</li>
           </ol>
         </section>
 
