@@ -90,7 +90,8 @@
           <ul class="nav-sub">
             <li><a href="#frontend"><span class="n">12</span>Frontend</a></li>
             <li><a href="#editor"><span class="n">13</span>Editor Ladder</a></li>
-            <li><a href="#backend"><span class="n">14</span>Backend</a></li>
+            <li><a href="#realidad-mixta"><span class="n">14</span>Realidad mixta</a></li>
+            <li><a href="#backend"><span class="n">15</span>Backend</a></li>
           </ul>
         </div>
 
@@ -99,7 +100,7 @@
             <span class="nav-group-num">IV</span><span class="nav-group-label">Inteligencia Artificial</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
-            <li><a href="#contrato"><span class="n">15</span>Modelos y JSON lógico</a></li>
+            <li><a href="#contrato"><span class="n">16</span>Modelos y JSON lógico</a></li>
           </ul>
         </div>
 
@@ -108,8 +109,8 @@
             <span class="nav-group-num">V</span><span class="nav-group-label">PLC y comunicación</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
-            <li><a href="#plc"><span class="n">16</span>PLC y registros</a></li>
-            <li><a href="#comunicacion"><span class="n">17</span>Comunicación</a></li>
+            <li><a href="#plc"><span class="n">17</span>PLC y registros</a></li>
+            <li><a href="#comunicacion"><span class="n">18</span>Comunicación</a></li>
           </ul>
         </div>
 
@@ -118,8 +119,8 @@
             <span class="nav-group-num">VI</span><span class="nav-group-label">Validación</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
-            <li><a href="#seguridad"><span class="n">18</span>Validación y seguridad</a></li>
-            <li><a href="#manual"><span class="n">19</span>Manual de buenas prácticas</a></li>
+            <li><a href="#seguridad"><span class="n">19</span>Validación y seguridad</a></li>
+            <li><a href="#manual"><span class="n">20</span>Manual de buenas prácticas</a></li>
           </ul>
         </div>
 
@@ -128,8 +129,8 @@
             <span class="nav-group-num">VII</span><span class="nav-group-label">Pruebas y resultados</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
-            <li><a href="#metricas"><span class="n">20</span>Métricas</a></li>
-            <li><a href="#resultados"><span class="n">21</span>Resultados</a></li>
+            <li><a href="#metricas"><span class="n">21</span>Métricas</a></li>
+            <li><a href="#resultados"><span class="n">22</span>Resultados</a></li>
           </ul>
         </div>
 
@@ -138,7 +139,7 @@
             <span class="nav-group-num">VIII</span><span class="nav-group-label">Agradecimientos</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
-            <li><a href="#agradecimientos"><span class="n">22</span>Agradecimientos</a></li>
+            <li><a href="#agradecimientos"><span class="n">23</span>Agradecimientos</a></li>
           </ul>
         </div>
 
@@ -147,7 +148,7 @@
             <span class="nav-group-num">IX</span><span class="nav-group-label">Referencias</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
-            <li><a href="#referencias"><span class="n">23</span>Referencias</a></li>
+            <li><a href="#referencias"><span class="n">24</span>Referencias</a></li>
           </ul>
         </div>
       </nav>
@@ -2213,6 +2214,11 @@
                   <td>Configuración validada (<code>logic</code> y <code>program</code>), avisos e id de ejemplo; o <code>status: "needs_clarification"</code> con preguntas.</td>
                 </tr>
                 <tr>
+                  <td>Lentes Meta Quest → Backend Render</td>
+                  <td>La misma petición <code>POST /generar-logica</code> que la web; además <code>/transcribir</code> (audio WAV) y los endpoints <code>/enlace/*</code> para enviar la lógica simulada al PLC físico.</td>
+                  <td>La misma configuración validada, que se carga en el PLC virtual de los lentes; texto transcrito y estado del envío.</td>
+                </tr>
+                <tr>
                   <td>Backend → Groq</td>
                   <td>Prompt de sistema del equipo, contexto opcional y la instrucción.</td>
                   <td>Texto con un objeto JSON, que el backend extrae y valida.</td>
@@ -2255,6 +2261,13 @@
               <div class="layer-body">
                 <p>Aplicación FastAPI que llama a Groq, valida y auto-corrige las respuestas, guarda la memoria de ejemplos y controla el acceso con contraseña.</p>
                 <div class="layer-files"><span class="k">Archivos</span><code>app.py</code><code>device_router.py</code><code>agents/*</code><code>banda_intent.py</code></div>
+              </div>
+            </div>
+            <div class="layer lane-front">
+              <div class="layer-name"><i class="fa-solid fa-vr-cardboard"></i> Lentes Meta Quest</div>
+              <div class="layer-body">
+                <p>Segundo cliente del mismo backend: no tienen lógica propia de IA. Reciben el mismo JSON validado que la web y lo ejecutan en una copia del programa maestro del PLC (ver <a href="#realidad-mixta">Realidad mixta</a>).</p>
+                <div class="layer-files"><span class="k">Proyecto</span><code>Maletin_Horner</code><code>Unity + C#</code></div>
               </div>
             </div>
             <div class="layer lane-plc">
@@ -2579,6 +2592,717 @@
           </p>
         </section>
 
+        <!-- 14 · REALIDAD MIXTA -->
+        <section class="doc-section" id="realidad-mixta" data-group="software">
+          <header class="section-head">
+            <div>
+              <div class="section-label">Realidad mixta (Meta Quest)</div>
+              <h2>El programa se prueba en un equipo virtual antes de llegar al PLC</h2>
+            </div>
+          </header>
+
+          <p class="lead">
+            La aplicación de realidad mixta corre en los lentes Meta Quest y coloca, en el espacio real del usuario,
+            una copia virtual del maletín de entrenamiento con PLC Horner XL4 y de la banda transportadora del
+            laboratorio. El usuario le habla a LAVO, el backend genera y valida la lógica, y los lentes la cargan en
+            un PLC virtual que ejecuta, línea por línea, el mismo programa maestro del PLC físico. Así se puede ver y
+            tocar el comportamiento del programa antes de enviarlo al equipo real. Los conceptos de realidad mixta
+            se explican en el <a href="#mt-xr">marco teórico</a>.
+          </p>
+
+          <h3>Ideas clave</h3>
+          <div class="card-grid cols-2">
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-code-merge"></i></div>
+              <h4>Una sola fuente de lógica</h4>
+              <p>El mismo JSON validado alimenta al PLC físico (desde la web) y al PLC virtual (en los lentes).</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-clone"></i></div>
+              <h4>No imita «a su manera»</h4>
+              <p>El equipo virtual escribe los mismos registros <code>%R</code> que el PLC real y ejecuta la misma lógica ST, traducida a C#, con ciclos de scan de 10 ms.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-vr-cardboard"></i></div>
+              <h4>Simulación dentro de los lentes</h4>
+              <p>La simulación corre en el visor y no en un servidor, para que la respuesta a los botones sea inmediata.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-hand"></i></div>
+              <h4>Confirmación del usuario</h4>
+              <p>Nada se carga al equipo virtual ni al físico sin que el usuario lo confirme.</p>
+            </div>
+          </div>
+
+          <h3>Qué hace la aplicación</h3>
+          <p>La aplicación tiene tres escenas:</p>
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-house"></i></div>
+              <h4>Inicio</h4>
+              <p>Menú principal con estilo industrial (rojo <code>#DC151F</code>, grafito y blanco). Desde aquí se elige el equipo: Maletín o Banda transportadora. Incluye información del proyecto e instrucciones de uso por pasos.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-briefcase"></i></div>
+              <h4>Maletín</h4>
+              <p>Maletín de entrenamiento virtual, del tamaño real, con:</p>
+              <ul class="doc-list">
+                <li>botón verde (I1), botón rojo (I2), selector de tres posiciones (I3 arriba / I4 abajo) y hongo de paro de emergencia (I7);</li>
+                <li>luces verde (Q10), amarilla (Q11) y roja (Q12).</li>
+              </ul>
+              <p>Los botones se presionan con el dedo (seguimiento de manos) o con el rayo del control. El hongo se queda enclavado como el real.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-industry"></i></div>
+              <h4>Banda transportadora</h4>
+              <ul class="doc-list">
+                <li>botones de arranque I1, paro I2 y hongo de paro I3;</li>
+                <li>sensores de presencia S1 y S2;</li>
+                <li>torreta de luces verde/amarilla/roja (Q3, Q4, Q5);</li>
+                <li>dos plumas desviadoras (Pluma 1 y Pluma 2);</li>
+                <li>variador de frecuencia Delta MS300 con display y LEDs RUN/FWD/REV;</li>
+                <li>pantalla HMI del PLC que muestra el estado del proceso;</li>
+                <li>cajas físicas que viajan sobre la cinta, chocan con las plumas y se pueden agarrar con la mano.</li>
+              </ul>
+              <p>Antes de usarla, el usuario la coloca en el piso de su cuarto apuntando con la mano.</p>
+            </div>
+          </div>
+          <p class="spaced">
+            En las dos escenas de equipo hay un menú que aparece sobre la mano izquierda y el panel de LAVO para
+            programar con voz o texto.
+          </p>
+
+          <h3>Flujo de uso dentro de los lentes</h3>
+          <ol class="timeline">
+            <li>
+              <div class="tl-num">1</div>
+              <div class="tl-body"><strong>Elegir el equipo</strong><span>En la escena Inicio se elige Maletín o Banda.</span></div>
+            </li>
+            <li>
+              <div class="tl-num">2</div>
+              <div class="tl-body"><strong>Colocar la banda (solo banda)</strong><span>Se coloca la banda en el piso: apuntar, girar y fijar.</span></div>
+            </li>
+            <li>
+              <div class="tl-num">3</div>
+              <div class="tl-body"><strong>Abrir el menú de la mano</strong><span>Al estirar el brazo izquierdo aparece el menú.</span></div>
+            </li>
+            <li>
+              <div class="tl-num">4</div>
+              <div class="tl-body"><strong>Entrar al sistema</strong><span>Se abre el panel de LAVO.</span></div>
+            </li>
+            <li>
+              <div class="tl-num">5</div>
+              <div class="tl-body"><strong>Dar la instrucción</strong><span>Se mantiene presionado el micrófono y se dice la instrucción, o se elige «Prefiero escribir» para usar el teclado del Quest.</span></div>
+            </li>
+            <li>
+              <div class="tl-num">6</div>
+              <div class="tl-body"><strong>LAVO procesa</strong><span>Si le falta un dato, pregunta con opciones.</span></div>
+            </li>
+            <li>
+              <div class="tl-num">7</div>
+              <div class="tl-body"><strong>Ver respuesta</strong><span>El programa se carga en el equipo virtual.</span></div>
+            </li>
+            <li>
+              <div class="tl-num">8</div>
+              <div class="tl-body"><strong>«Así funciona tu programa»</strong><span>El panel indica qué tocar y qué va a pasar, en lenguaje físico («presiona el botón verde (I1)…»).</span></div>
+            </li>
+            <li>
+              <div class="tl-num">9</div>
+              <div class="tl-body"><strong>Probar</strong><span>El usuario prueba el programa con los botones virtuales.</span></div>
+            </li>
+            <li>
+              <div class="tl-num">10</div>
+              <div class="tl-body"><strong>Guardar, deshacer o enviar (opcional)</strong><span>«Guardar en memoria», «Deshacer cambio» o «Enviar al sistema físico», que hace llegar la lógica al PLC real.</span></div>
+            </li>
+          </ol>
+
+          <h3>Arquitectura de la aplicación</h3>
+          <p>
+            La aplicación se organiza en capas. Las capas de abajo son C# puro (no dependen de Unity) para poder
+            probarlas fuera del motor gráfico y compararlas contra el código Python del backend.
+          </p>
+          <div class="layers">
+            <div class="layer lane-front">
+              <div class="layer-name"><i class="fa-solid fa-vr-cardboard"></i> Interfaz en realidad mixta</div>
+              <div class="layer-body">
+                <p>Menú de inicio, menú de la mano, panel LAVO, avisos, colocación de la banda, HMI y display del variador.</p>
+              </div>
+            </div>
+            <div class="layer lane-user">
+              <div class="layer-name"><i class="fa-solid fa-hand-pointer"></i> Interacción</div>
+              <div class="layer-body">
+                <p>Botones físicos 3D, selector, hongo, gesto de la mano, rayo de la mano, perilla, pellizco y agarre de cajas.</p>
+              </div>
+            </div>
+            <div class="layer lane-front">
+              <div class="layer-name"><i class="fa-solid fa-cubes"></i> Equipos virtuales</div>
+              <div class="layer-body">
+                <p>Puente entre la escena y el PLC virtual: maletín y banda, con sensores, plumas, cinta y variador simulado.</p>
+                <div class="layer-files"><span class="k">Scripts</span><code>MaletinVirtual</code><code>BandaVirtual</code></div>
+              </div>
+            </div>
+            <div class="layer lane-plc">
+              <div class="layer-name"><i class="fa-solid fa-microchip"></i> PLC virtual (C# puro)</div>
+              <div class="layer-body">
+                <p>Memoria, reloj, motores que ejecutan el programa maestro y cargadores que traducen el JSON a registros.</p>
+                <div class="layer-files"><span class="k">Scripts</span><code>ImagenPLC</code><code>RelojPLC</code><code>MotorMaletin</code><code>MotorBanda (v5 + v7)</code><code>CargadorConfig</code><code>CargadorBanda</code><code>CargadorV7</code></div>
+              </div>
+            </div>
+            <div class="layer lane-back">
+              <div class="layer-name"><i class="fa-solid fa-wifi"></i> Comunicación</div>
+              <div class="layer-body">
+                <p>Peticiones HTTPS al backend LAVO (FastAPI en Render), que a su vez usa Groq para el LLM y Whisper.</p>
+                <div class="layer-files"><span class="k">Scripts</span><code>ClienteLAVO</code><code>GrabadoraVoz</code><code>AudioWav</code></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout callout-note">
+            <div class="callout-icon"><i class="fa-solid fa-circle-info"></i></div>
+            <div>
+              <span class="callout-title">Patrón de «auto-instalación»</span>
+              Casi todos los componentes no se colocan a mano en la escena: se agregan solos al cargarla
+              (<code>RuntimeInitializeOnLoadMethod</code>) y buscan las piezas del modelo 3D por nombre
+              (<code>Boton_verde</code>, <code>Foco_rojo_lente</code>, <code>Sensor_S1</code>, <code>Pluma_izq</code>…).
+              Esto evitó que una compilación para el visor saliera sin un componente que solo se había agregado en
+              el editor.
+            </div>
+          </div>
+
+          <h3>Tecnologías</h3>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 11.</b> Tecnologías de la aplicación de realidad mixta</caption>
+              <thead>
+                <tr><th>Elemento</th><th>Tecnología</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Visor</td><td>Meta Quest 3 (Android)</td></tr>
+                <tr><td>Motor</td><td>Unity 2022.3.58f1 (LTS)</td></tr>
+                <tr><td>Lenguaje</td><td>C#</td></tr>
+                <tr><td>Realidad mixta</td><td>Meta XR Core SDK 81 + OpenXR (<em>passthrough</em>: se ve el cuarto real)</td></tr>
+                <tr><td>Manos e interacción</td><td>Meta Interaction SDK 81 (toque con el dedo, rayo, agarre, pose de las articulaciones, pellizco)</td></tr>
+                <tr><td>Interfaz</td><td>Unity UI (Canvas en el mundo) + TextMeshPro</td></tr>
+                <tr><td>Tipografías</td><td>DM Sans, Syne, DM Mono (las de la web) y Liberation Sans</td></tr>
+                <tr><td>Iconos</td><td>Lucide (PNG generados, licencia ISC)</td></tr>
+                <tr><td>Red</td><td><code>UnityWebRequest</code> (HTTPS / TLS)</td></tr>
+                <tr><td>JSON</td><td>Newtonsoft JSON 3.2.1</td></tr>
+                <tr><td>Voz</td><td>Micrófono del Quest a 48 kHz → WAV PCM 16 bits → Whisper (<code>whisper-large-v3</code>) en el backend</td></tr>
+                <tr><td>Física</td><td>PhysX de Unity (cinta, cajas, plumas)</td></tr>
+                <tr><td>Tamaño del APK</td><td>~59 MB (compilación del 12 de noviembre de 2026)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="spaced">
+            Paquetes: solo los de Meta que se usan (Core, Interaction, Interaction OVR y el simulador para el editor)
+            y Newtonsoft. Se retiraron Timeline, Visual Scripting, Collab y el paquete completo de Meta, lo que redujo
+            el APK.
+          </p>
+
+          <h3>El PLC virtual: la pieza central</h3>
+          <p>
+            ¿Cómo se garantiza que el equipo virtual se comporte igual que el físico? En el laboratorio, el PLC no se
+            reprograma con cada instrucción. Tiene cargado un <strong>programa maestro</strong> en Texto Estructurado
+            (ST, en Cscape) que funciona como un intérprete fijo, y LAVO solo le escribe <strong>registros %R</strong>
+            de configuración por Modbus. La aplicación copia exactamente ese esquema:
+          </p>
+
+          <figure class="arch" aria-labelledby="fig-plc-virtual">
+            <ol class="pipeline">
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-file-code"></i></span></div>
+                <h4>JSON validado</h4>
+                <span class="stage-layer">el mismo que recibe la web</span>
+              </li>
+              <li class="stage lane-front">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-right-to-bracket"></i></span></div>
+                <h4>Cargador (C#)</h4>
+                <span class="stage-layer">copia de <code>plc_maestro.py</code> / <code>plc_banda.py</code> / <code>lavo_motor.py</code>: mismos registros, mismo orden</span>
+              </li>
+              <li class="stage lane-plc">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-memory"></i></span></div>
+                <h4>Memoria del PLC virtual</h4>
+                <span class="stage-layer"><code>ImagenPLC</code> / arreglo de registros</span>
+              </li>
+              <li class="stage lane-plc">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-gears"></i></span></div>
+                <h4>Motor (C#)</h4>
+                <span class="stage-layer">programa maestro ST traducido línea por línea; scan cada 10 ms de entradas a salidas</span>
+              </li>
+            </ol>
+            <figcaption class="arch-caption" id="fig-plc-virtual">
+              <b>Figura 20.</b> Del JSON validado al PLC virtual. Las entradas (botones, sensores) se leen en cada scan
+              de 10 ms y el motor actualiza las salidas (luces, plumas, variador).
+            </figcaption>
+          </figure>
+
+          <h4 class="sub-h">Memoria (ImagenPLC)</h4>
+          <p>
+            Registros <code>%R</code> de 16 bits con signo, entradas <code>%I</code>, salidas <code>%Q</code> y marcas
+            <code>%M</code> con las mismas direcciones y nombres que la tabla de etiquetas del programa en Cscape. Las
+            entradas se guardan con su nivel eléctrico real: I2 e I7 son normalmente cerradas (valen 1 en reposo), y
+            el motor las invierte igual que el ST. Las variables RETAIN se conservan como en el equipo real.
+          </p>
+
+          <h4 class="sub-h">Reloj (RelojPLC)</h4>
+          <p>
+            Un fotograma de los lentes puede durar 11 ms o 40 ms. Si el PLC virtual ejecutara un scan por fotograma,
+            los temporizadores dependerían del rendimiento del visor. Por eso el tiempo se acumula y se ejecuta un scan
+            cada 10 ms exactos. También genera el reloj de 1 segundo del PLC (<code>%S5</code>), cuyo flanco cuenta los
+            temporizadores: igual que en el real, un preset de N segundos dura entre N−1 y N. Si el visor se congela
+            (por ejemplo, al quitarse los lentes), no se ejecutan miles de scans de golpe: el excedente se descarta.
+          </p>
+
+          <h4 class="sub-h">Motor del maletín (MotorMaletin)</h4>
+          <p>
+            Traducción del ST «TON y enable» del maletín: salidas directas, enclavadas, AND/OR, habilitación,
+            temporizadores (on-delay, off-delay, pulso), contadores y el secuenciador de pasos (sección 6b). Durante
+            el análisis del ST se encontraron y corrigieron dos comportamientos en el PLC físico (on-delay retentivo
+            → TON, y habilitación que leía el nivel crudo de I2/I7); el ST corregido pasó 6 pruebas en el equipo real.
+          </p>
+
+          <h4 class="sub-h">Motor de la banda (MotorBanda + MotorBandaV7)</h4>
+          <ul class="doc-list">
+            <li><strong>v5:</strong> la lógica original de la banda (arranque/paro, eventos por sensor, plumas, conteo, torreta, variador).</li>
+            <li><strong>v7 «LAVO»:</strong> motor general agregado al programa maestro, con carga <em>transaccional</em> de la configuración (BEGIN → espera → COMMIT → confirmación; registros LCMD/LSTG/LACT), entradas filtradas, condiciones, memorias, timers, contadores, dos secuencias (SQ1 y SQ2) y estado publicado (LSTA, desde <code>%R1700</code>).</li>
+          </ul>
+          <p>
+            La configuración v7 ocupa 640 palabras en <code>%R1010..%R1649</code>. La banda virtual elige v5 o v7
+            según el programa recibido, como el real.
+          </p>
+
+          <h4 class="sub-h">Cargadores (JSON → registros)</h4>
+          <ul class="file-list">
+            <li><code>CargadorConfig</code><span>maletín; equivale a <code>plc_maestro.py</code>.</span></li>
+            <li><code>CargadorBanda</code><span>banda v5; equivale a <code>plc_banda.py</code>.</span></li>
+            <li><code>CargadorV7</code><span>banda v7; equivale a <code>lavo_motor.py</code>.</span></li>
+          </ul>
+          <p class="spaced">
+            Incluyen la misma validación y los mismos mensajes de error que el backend, así que un programa que el PLC
+            físico rechazaría tampoco se carga en el virtual.
+          </p>
+
+          <h4 class="sub-h">Cómo se comprobó la equivalencia</h4>
+          <p>
+            Los cargadores y motores se ejecutaron fuera de Unity con arneses de prueba y se compararon contra el
+            código Python y el ST real:
+          </p>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 12.</b> Comprobación de equivalencia del PLC virtual</caption>
+              <thead>
+                <tr><th>Componente</th><th>Comparado contra</th><th>Resultado</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Maletín</td><td>Backend (Python)</td><td>892 escrituras de registros idénticas.</td></tr>
+                <tr><td>Banda v5</td><td>Backend (Python)</td><td>4 014 casos y 88 270 escrituras idénticas.</td></tr>
+                <tr><td>Motor v7</td><td>ST real</td><td>Comparación scan a scan.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Equipos virtuales en la escena</h3>
+
+          <h4 class="sub-h">Maletín (MaletinVirtual)</h4>
+          <p>Une el modelo 3D con el PLC virtual:</p>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 13.</b> Entradas y salidas del maletín virtual</caption>
+              <thead>
+                <tr><th>Control</th><th>Entrada</th><th>Salida</th><th>Luz</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Botón verde</td><td>I1 (NA)</td><td>Q10</td><td>Verde</td></tr>
+                <tr><td>Botón rojo</td><td>I2 (NC)</td><td>Q11</td><td>Amarilla</td></tr>
+                <tr><td>Selector arriba</td><td>I3 (NA)</td><td>Q12</td><td>Roja</td></tr>
+                <tr><td>Selector abajo</td><td>I4 (NA)</td><td colspan="2">—</td></tr>
+                <tr><td>Hongo de emergencia</td><td>I7 (NC)</td><td colspan="2">—</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <ul class="doc-list">
+            <li><strong>Regla de diseño:</strong> las luces <em>solo</em> las enciende el PLC virtual. Ningún botón enciende una luz por su cuenta; cada luz sigue a su salida Q en cada fotograma.</li>
+            <li><strong>Botones 3D</strong> (<code>BotonFisico</code> + <code>ActivadorBotonMR</code>): el botón se hunde con el dedo; la zona de contacto es solo la cabeza del botón (caja orientada con 3 mm de margen) para evitar toques accidentales. El hongo se traba al empujarlo y se libera al empujar otra vez.</li>
+          </ul>
+
+          <h4 class="sub-h">Banda (BandaVirtual)</h4>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 14.</b> Entradas y salidas de la banda virtual</caption>
+              <thead>
+                <tr><th>Entradas</th><th>Función</th><th>Salidas</th><th>Función</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Botón I1 (verde)</td><td>Arranque</td><td>Q3 / Q4 / Q5</td><td>Torreta verde / amarilla / roja</td></tr>
+                <tr><td>Botón I2 (rojo)</td><td>Paro</td><td>Q6..Q9</td><td>Pluma 1 y Pluma 2 (subir / bajar)</td></tr>
+                <tr><td>Hongo I3</td><td>Paro enclavable</td><td>Variador</td><td>Velocidad y sentido de la cinta</td></tr>
+                <tr><td>Sensores S1 / S2</td><td>Presencia</td><td colspan="2"></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout callout-note">
+            <div class="callout-icon"><i class="fa-solid fa-circle-info"></i></div>
+            <div>
+              <span class="callout-title">Sin programa nada se mueve</span>
+              Como el PLC real sin configuración: I1 no arranca, los sensores no mueven plumas y las luces quedan
+              apagadas.
+            </div>
+          </div>
+          <ul class="doc-list">
+            <li><strong>Sensores</strong> (<code>SensorPresencia</code>): zona de detección en forma de caja frente al lente del sensor (85 % del ancho de la cinta), con filtro de 30 ms y foco ámbar que indica detección.</li>
+            <li><strong>Plumas</strong> (<code>PlumaBanda</code>): giran 80° sobre su eje con los mismos comandos que el PLC (0 = detener, 1 = subir, 2 = bajar). Tienen colisionador propio: abajo frenan o desvían las cajas, arriba las dejan pasar.</li>
+            <li><strong>Cinta y cajas</strong> (<code>TransportadorBanda</code>, <code>GeneradorCajas</code>, <code>CajaBanda</code>): la cinta es una superficie física que arrastra las cajas por fricción (Rigidbody cinemático que se mueve con la velocidad del variador). El botón «Agregar caja» del menú crea hasta 3 cajas agarrables, que desaparecen al llegar al final o si caen de la banda.</li>
+            <li><strong>Variador simulado</strong> (Delta MS300): recibe la consigna en Hz que calcula el PLC, hace una rampa de aceleración y frenado (frena a 0 antes de invertir el sentido) y publica la frecuencia de salida en <code>%R502</code>, como el variador real. Velocidad de la cinta: 30 Hz = 0.12 m/s (proporcional), con tope de 0.4 m/s para no lanzar las cajas.</li>
+            <li><strong>Display del variador</strong> (<code>DisplayVFD</code>): muestra «F 30.00» con la banda detenida (frecuencia programada) y «H 29.50» girando (frecuencia de salida), igual que el MS300; LEDs RUN, FWD y REV. Los dígitos se dibujan como una malla de 7 segmentos (ver <a href="#rm-lecciones">lecciones técnicas</a>).</li>
+            <li><strong>Pantalla HMI</strong> (<code>PantallaHMI</code>): sobre la pantalla del PLC del modelo. Solo monitorea, no manda nada. Muestra la entrada activa («I1 PRESIONADO», «SENSOR 1 DETECTADO»), el tiempo restante del paso o temporizador, el conteo («2 / 3») y el último evento. Con el hongo I3 enclavado toda la pantalla se vuelve un aviso rojo «PARO DE EMERGENCIA · SISTEMA BLOQUEADO». Los datos salen del estado que publica el propio PLC virtual (LSTA), no de un cálculo aparte. Se dibuja en una textura que solo se actualiza cuando algo cambia, para cuidar el rendimiento del visor.</li>
+          </ul>
+
+          <h3>Interacción en realidad mixta</h3>
+
+          <h4 class="sub-h">Menú de la mano (PanelPorGesto, MenuMano, MenuBanda)</h4>
+          <p>
+            Se abre al estirar el brazo <strong>izquierdo</strong> al frente, recto y con la palma hacia abajo, durante
+            0.4 s (la mano a no más de 25 cm por debajo de los ojos). Solo funciona con la mano izquierda (con
+            controles, con el control izquierdo). Opciones:
+          </p>
+          <ul class="doc-list">
+            <li><strong>Maletín:</strong> Entrar al sistema · Regresar maletín a la posición original · Ir al inicio.</li>
+            <li><strong>Banda:</strong> Entrar al sistema · Agregar caja · Mover banda · Regresar.</li>
+          </ul>
+          <p>
+            La primera vez, un aviso con una ilustración de vista lateral enseña el gesto; desaparece en cuanto el
+            usuario abre el menú.
+          </p>
+
+          <h4 class="sub-h">Colocar la banda en el cuarto (ColocacionBanda)</h4>
+          <p>La banda mide ~1.44 m de largo y se coloca sobre el piso real en tres pasos:</p>
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-location-crosshairs"></i></div>
+              <h4>1. Apunta</h4>
+              <p>Un rayo sale de la mano derecha (el mismo <em>pointer pose</em> que usa el sistema del Quest) y toca el plano del piso calibrado por el visor. No hace falta escanear el cuarto.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-rotate"></i></div>
+              <h4>2. Gira</h4>
+              <p>Una perilla de 20 cm frente al pecho, con una maqueta de la banda encima; se toca con el índice y se desliza alrededor (la banda gira los mismos grados). Con control: stick derecho.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-thumbtack"></i></div>
+              <h4>3. Fija</h4>
+              <p>Pellizco sostenido de la mano derecha durante 0.5 s (un anillo se va llenando; soltar antes cancela). Con control: botón A o X.</p>
+            </div>
+          </div>
+          <ul class="doc-list spaced-top">
+            <li>Un contorno en el piso indica si el lugar es válido: <strong>verde</strong> entre 1.0 y 2.0 m del usuario, <strong>rojo</strong> fuera de ese rango (la banda no se mueve ni se puede fijar). El límite se agregó porque, con el rayo casi horizontal, un cambio mínimo de ángulo mandaba la banda a 8 m.</li>
+            <li>El movimiento se suaviza y se limita a 2 m/s; la banda nunca se inclina y su parte más baja siempre toca el piso.</li>
+            <li>Un panel «COLOCA LA BANDA» con los tres pasos resalta el paso activo y una línea de estado (muy cerca, muy lejos, girando, fijando).</li>
+          </ul>
+
+          <h4 class="sub-h">Otras ayudas</h4>
+          <ul class="doc-list">
+            <li>«Regresar maletín a la posición original» con animación suave.</li>
+            <li>Transiciones con fundido entre escenas.</li>
+            <li>Mientras se coloca la banda se apagan los rayos de los paneles para no ver dos rayos en la misma mano.</li>
+          </ul>
+
+          <h3>El panel de LAVO en los lentes</h3>
+          <p>
+            El mismo panel sirve para el maletín y para la banda; lo que cambia (textos, equipo que se manda al
+            backend, validación, carga y explicación) está en <code>EquipoLAVO</code> (<code>EquipoMaletin</code> /
+            <code>EquipoBanda</code>). Usa los colores y tipografías de la página web.
+          </p>
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-microphone"></i></div>
+              <h4>Paso 1 · Hablar</h4>
+              <p>Micrófono grande: se mantiene presionado mientras se habla y se suelta al terminar. Un anillo «late» con el volumen de la voz. Enlace «Prefiero escribir» para usar el teclado del Quest.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-comments"></i></div>
+              <h4>Paso 2 · Procesando</h4>
+              <p>Conversación tipo chat: la instrucción del usuario y «LAVO está procesando…». Si a LAVO le falta un dato, muestra la pregunta con opciones en botones; al elegir una, se reenvía la instrucción con la respuesta. Al terminar aparece «Ver respuesta». El texto largo se puede desplazar con el dedo o el rayo.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-lightbulb"></i></div>
+              <h4>Paso 3 · Así funciona tu programa</h4>
+              <p>«Ver respuesta» carga el programa en el equipo virtual (solo si pasó la validación) y muestra cómo probarlo en lenguaje físico, a partir de los registros cargados (<code>ExplicacionSencilla</code> / <code>ExplicacionBanda</code>).</p>
+            </div>
+          </div>
+
+          <div class="callout callout-note">
+            <div class="callout-icon"><i class="fa-solid fa-quote-left"></i></div>
+            <div>
+              <span class="callout-title">Ejemplo de explicación en el paso 3</span>
+              «Presiona el botón verde (I1): la luz roja (Q12) enciende después de 5 segundos.»
+            </div>
+          </div>
+
+          <p class="spaced">Opciones del paso 3:</p>
+          <ul class="doc-list">
+            <li><strong>Detalles técnicos:</strong> alterna entre explicación, resumen técnico y el JSON recibido.</li>
+            <li><strong>Deshacer cambio:</strong> regresa al programa anterior (también diciendo «regrésala como estaba»).</li>
+            <li><strong>Guardar en memoria:</strong> guarda la lógica como validada para que LAVO la use de ejemplo (igual que «Guardar lógica validada» de la web).</li>
+            <li><strong>Enviar al sistema físico:</strong> la lógica simulada viaja al PLC real (ver <a href="#rm-enlace">enlace lentes → PLC físico</a>).</li>
+            <li><strong>Volver a hablar:</strong> nueva instrucción; LAVO recibe el programa anterior, así que se puede decir «cámbialo a 10 segundos» o «agrégale la luz roja».</li>
+          </ul>
+
+          <h4 class="sub-h">Estados del programa</h4>
+          <p>
+            El panel distingue tres estados para que el usuario sepa dónde está su lógica: <strong>generada</strong> ·
+            <strong>cargada en el equipo virtual</strong> · <strong>lista en el PLC físico</strong> (verde si la PC
+            confirma, ámbar «escrita, sin confirmar», rojo si falló).
+          </p>
+
+          <h3>Comunicación de los lentes</h3>
+
+          <h4 class="sub-h">Con el backend</h4>
+          <p>
+            Los lentes se conectan por wifi y HTTPS al mismo backend que usa la web (FastAPI en Render). Siempre son
+            los lentes los que inician la petición. Toda la comunicación la hace <code>ClienteLAVO</code> con
+            <code>UnityWebRequest</code>, en corrutinas (la imagen no se congela mientras llega la respuesta).
+          </p>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 15.</b> Endpoints que usan los lentes</caption>
+              <thead>
+                <tr><th>Endpoint</th><th>Para qué</th><th>Espera máx.</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><span class="method method-get">GET</span><span class="path">/health</span></td><td>Despertar el servidor al entrar.</td><td>90 s</td></tr>
+                <tr><td><span class="method method-post">POST</span><span class="path">/login</span></td><td>Contraseña → token de 12 h.</td><td>30 s</td></tr>
+                <tr><td><span class="method method-post">POST</span><span class="path">/transcribir</span></td><td>Audio WAV → texto (Whisper).</td><td>60 s</td></tr>
+                <tr><td><span class="method method-post">POST</span><span class="path">/generar-logica</span></td><td>Instrucción → lógica validada.</td><td>150 s</td></tr>
+                <tr><td><span class="method method-post">POST</span><span class="path">/memoria/validadas</span></td><td>Guardar una lógica validada.</td><td>—</td></tr>
+                <tr><td><span class="method method-get">GET</span><span class="path">/enlace/estado</span></td><td>¿Hay una PC esperando este equipo?</td><td>—</td></tr>
+                <tr><td><span class="method method-post">POST</span><span class="path">/enlace/enviar</span></td><td>Mandar la lógica a esa PC.</td><td>—</td></tr>
+                <tr><td><span class="method method-get">GET</span><span class="path">/enlace/envio/{id}</span></td><td>Seguir el envío hasta «cargado».</td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="spaced">La petición a <code>/generar-logica</code> es la misma que manda la web:</p>
+          <div class="code-block">
+            <div class="code-head"><div class="code-dots"><span></span><span></span><span></span></div><span class="code-title">generar-logica.json</span></div>
+<pre data-lang="json"><code>{ "texto": "...", "device": "maletin" | "banda",
+  "device_profile": "...",
+  "contexto": { "historial": [últimas 6 instrucciones],
+                "programa_anterior": {...} } }</code></pre>
+          </div>
+
+          <h4 class="sub-h">Sesión y seguridad</h4>
+          <ul class="doc-list">
+            <li>La contraseña viaja una vez a <code>/login</code>; el backend devuelve un token firmado (HMAC-SHA256) que dura 12 horas.</li>
+            <li>El token se guarda en el visor y se renueva solo: si el servidor responde 401, los lentes vuelven a iniciar sesión y repiten la petición una vez; el usuario nunca ve «sesión caducada».</li>
+            <li>Los errores de red se traducen a mensajes claros («Sin conexión con el servidor», «El servidor tardó demasiado», o el motivo que manda el backend, por ejemplo cuando la banda no tiene lo que se pidió).</li>
+            <li>Sin internet, el equipo virtual sigue funcionando con el último programa.</li>
+          </ul>
+
+          <h4 class="sub-h" id="rm-enlace">Enlace lentes → PLC físico («Simular en lentes»)</h4>
+          <p>Render no tiene acceso a la red del laboratorio, así que el backend solo hace de relevo:</p>
+          <figure class="arch" aria-labelledby="fig-enlace-lentes">
+            <ol class="pipeline cols-3">
+              <li class="stage lane-front">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-laptop"></i></span></div>
+                <h4>PC del laboratorio</h4>
+                <span class="stage-layer">«Simular en lentes» en la web, elige el PLC y queda esperando (consulta larga al backend)</span>
+              </li>
+              <li class="stage lane-user">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-vr-cardboard"></i></span></div>
+                <h4>Lentes</h4>
+                <span class="stage-layer">simulan y pulsan «Enviar al sistema físico»</span>
+              </li>
+              <li class="stage lane-back">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-server"></i></span></div>
+                <h4>Backend</h4>
+                <span class="stage-layer">valida la lógica con las mismas reglas que <code>/aplicar-plc</code> y la entrega a la PC</span>
+              </li>
+              <li class="stage lane-plc">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-network-wired"></i></span></div>
+                <h4>PC → PLC</h4>
+                <span class="stage-layer">la escribe por Modbus TCP (puente local) y reporta el resultado</span>
+              </li>
+              <li class="stage lane-user">
+                <div class="stage-top"><span class="stage-icon"><i class="fa-solid fa-circle-check"></i></span></div>
+                <h4>Lentes</h4>
+                <span class="stage-layer">muestran «Lista en el PLC físico» o el error</span>
+              </li>
+            </ol>
+            <figcaption class="arch-caption" id="fig-enlace-lentes">
+              <b>Figura 21.</b> Envío de la lógica simulada en los lentes al PLC físico, con el backend como relevo.
+            </figcaption>
+          </figure>
+          <p class="spaced">
+            Hay un canal por equipo (maletín, banda). Así, lo que se probó en el visor es exactamente lo que llega al
+            PLC.
+          </p>
+
+          <h4 class="sub-h">Voz</h4>
+          <ul class="doc-list">
+            <li><strong>Mantener presionado</strong> (<code>BotonMantener</code>): detecta presionar y soltar; ignora «soltados» falsos de menos de 0.3 s causados por el temblor del seguimiento de la mano.</li>
+            <li><strong>Grabación</strong> (<code>GrabadoraVoz</code>): micrófono del Quest a 48 kHz (su frecuencia nativa; con otra frecuencia el micrófono no entrega audio), con un búfer circular de 10 s que se vacía cada fotograma: la grabación dura lo que el usuario quiera (tope de seguridad de 3 minutos, por debajo del límite de 25 MB del backend). Se descarta si dura menos de 0.4 s o si fue silencio.</li>
+            <li><strong>WAV</strong> (<code>AudioWav</code>): PCM de 16 bits, mono.</li>
+            <li>Al soltar, el audio se transcribe y la frase se envía sola a <code>/generar-logica</code>.</li>
+          </ul>
+
+          <h3>Seguridad del lado de los lentes</h3>
+          <p>Se aplica el mismo principio que en el resto del proyecto: la IA no tiene control directo.</p>
+          <ol class="timeline">
+            <li>
+              <div class="tl-num">1</div>
+              <div class="tl-body"><strong>Validación en el backend</strong><span>El backend valida lo que genera la IA (sintaxis, semántica y cobertura) y le pide corregirlo si algo no cuadra.</span></div>
+            </li>
+            <li>
+              <div class="tl-num">2</div>
+              <div class="tl-body"><strong>Validación en los lentes</strong><span>Los lentes vuelven a validar con las mismas reglas que el PLC físico antes de cargar (<code>CargadorConfig</code> / <code>CargadorBanda</code> / <code>CargadorV7</code>).</span></div>
+            </li>
+            <li>
+              <div class="tl-num">3</div>
+              <div class="tl-body"><strong>Carga al equipo virtual confirmada</strong><span>Nada se carga en el equipo virtual hasta pulsar «Ver respuesta».</span></div>
+            </li>
+            <li>
+              <div class="tl-num">4</div>
+              <div class="tl-body"><strong>Envío al PLC físico confirmado</strong><span>Nada llega al PLC físico hasta pulsar «Enviar al sistema físico», y solo si en el laboratorio una PC está esperando y lo vuelve a validar.</span></div>
+            </li>
+            <li>
+              <div class="tl-num">5</div>
+              <div class="tl-body"><strong>Paro de emergencia virtual</strong><span>El paro (I7 en el maletín, I3 en la banda) se comporta como el real: con la banda, detiene el motor, cancela secuencias, pone timers en cero y al liberarlo nada arranca solo.</span></div>
+            </li>
+          </ol>
+
+          <h3 id="rm-lecciones">Decisiones de diseño y lecciones técnicas</h3>
+          <ul class="doc-list">
+            <li><strong>Simular en el visor y no en un servidor:</strong> la latencia de red haría que los botones respondieran tarde.</li>
+            <li><strong>Copiar el programa maestro a nivel de registros</strong>, en vez de «interpretar el JSON a su manera»: es la única forma de que el virtual falle o funcione exactamente igual que el físico.</li>
+            <li><strong>No crear un backend nuevo para los lentes:</strong> usan los mismos endpoints que la web.</li>
+            <li><strong>Panel propio en Unity</strong> en lugar de abrir la página web dentro del visor: botones grandes, voz con «mantener presionado» y texto legible en realidad mixta.</li>
+            <li><strong>Texto muy pequeño:</strong> TextMeshPro de pocos milímetros se ve en el editor pero no en el Quest (el sombreado SDF falla a esa escala). Por eso el display del variador se dibuja como malla de 7 segmentos y la HMI se dibuja en una textura. Lección: probar siempre en el visor, no solo en el editor.</li>
+            <li><strong>Componentes que se instalan solos:</strong> evita que un build salga sin un componente agregado solo en el editor.</li>
+            <li><strong>Vidrio simulado</strong> (sin desenfoque real) en los menús, para mantener los cuadros por segundo del Quest.</li>
+            <li><strong>Rango de colocación de 1 a 2 m y velocidad máxima:</strong> hacen la colocación predecible con el rayo de la mano.</li>
+          </ul>
+
+          <h3>Estado de validación</h3>
+          <p>Estado registrado al 15 de noviembre de 2026.</p>
+          <div class="card-grid cols-2">
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-vr-cardboard"></i></div>
+              <h4>Probado en los lentes</h4>
+              <ul class="doc-list">
+                <li>Maletín virtual con timers, contadores y secuencias; conexión con LAVO; voz «mantener presionado».</li>
+                <li>Banda virtual programada por LAVO (etapa 5), timers y contadores de la banda, display del variador, transporte físico de cajas, posicionar la banda con la mano derecha y rango de distancia.</li>
+                <li>Menú de inicio con el estilo industrial.</li>
+              </ul>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-flask-vial"></i></div>
+              <h4>Verificado fuera de Unity</h4>
+              <ul class="doc-list">
+                <li>Cargadores y motores del maletín y la banda (v5 y v7): compilan y coinciden con Python / el ST.</li>
+              </ul>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-hourglass-half"></i></div>
+              <h4>Implementado, pendiente de prueba final en el visor</h4>
+              <ul class="doc-list">
+                <li>Perilla de giro, colisionadores de las plumas, avisos de cómo abrir el menú, panel «Coloca la banda» sobre la cinta, rediseño del paso 3 del panel LAVO, envío al sistema físico desde los lentes, HMI de la banda.</li>
+              </ul>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fa-solid fa-list-check"></i></div>
+              <h4>Pendiente (fase 8)</h4>
+              <ul class="doc-list">
+                <li>Dejar la aplicación instalada de forma independiente en el Quest (nombre e icono finales; hoy el identificador es el de la plantilla de Unity).</li>
+                <li>Comparación lado a lado virtual vs. físico.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout callout-warn">
+            <div class="callout-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            <div>
+              <span class="callout-title">Limitaciones conocidas</span>
+              <ul class="doc-list">
+                <li>Requiere internet para generar programas (no para probar el último).</li>
+                <li>Algunas preguntas abiertas de LAVO se contestan mejor por voz o texto que con las opciones en botones.</li>
+                <li>El menú de la mano puede abrirse sin querer si la mano izquierda se queda a la altura del pecho por 0.4 s.</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3>Mapa de módulos</h3>
+          <p>En números: 56 scripts propios, ~23 000 líneas de C# y 3 escenas.</p>
+
+          <h4 class="sub-h">PLC virtual (C# puro)</h4>
+          <ul class="file-list">
+            <li><code>ImagenPLC</code><span>memoria del PLC del maletín (<code>%R</code>, <code>%I</code>, <code>%Q</code>, <code>%M</code>).</span></li>
+            <li><code>RelojPLC</code><span>scans de 10 ms y reloj de 1 s (<code>%S5</code>).</span></li>
+            <li><code>MotorMaletin</code><span>ST del maletín línea por línea (con secuenciador).</span></li>
+            <li><code>MotorBanda</code><span>ST v5 de la banda.</span></li>
+            <li><code>MotorBandaV7</code><span>motor general v7 (carga transaccional, SQ1/SQ2).</span></li>
+            <li><code>MotorBandaLectura</code><span>lectura del estado v7 para la HMI.</span></li>
+            <li><code>CargadorConfig</code><span>JSON → registros del maletín (= <code>plc_maestro.py</code>).</span></li>
+            <li><code>CargadorBanda</code><span>JSON → registros de la banda v5 (= <code>plc_banda.py</code>).</span></li>
+            <li><code>CargadorV7</code><span>JSON → 640 palabras v7 (= <code>lavo_motor.py</code>).</span></li>
+            <li><code>ExplicacionSencilla</code><span>explicación física del programa del maletín.</span></li>
+            <li><code>ExplicacionBanda</code><span>explicación física del programa de la banda.</span></li>
+            <li><code>ResumenLogica</code><span>«lo que entendió LAVO» a partir del JSON.</span></li>
+            <li><code>AudioWav</code><span>audio → WAV PCM 16 bits.</span></li>
+          </ul>
+
+          <h4 class="sub-h">Equipos y escena</h4>
+          <ul class="file-list">
+            <li><code>MaletinVirtual</code><span>controles del maletín ↔ PLC virtual.</span></li>
+            <li><code>BandaVirtual</code><span>banda ↔ PLC virtual, variador simulado.</span></li>
+            <li><code>ControlBanda</code><span>cinta, velocidad, sentido y lámparas.</span></li>
+            <li><code>SensorPresencia</code><span>sensores S1/S2.</span></li>
+            <li><code>PlumaBanda</code><span>plumas con comandos 0/1/2 y colisionador.</span></li>
+            <li><code>TransportadorBanda</code><span>superficie física de la cinta.</span></li>
+            <li><code>GeneradorCajas</code><span>«Agregar caja» (máx. 3).</span></li>
+            <li><code>CajaBanda</code><span>cajas transportables.</span></li>
+            <li><code>DisplayVFD</code><span>display de 7 segmentos del MS300.</span></li>
+            <li><code>PantallaHMI</code><span>HMI de monitoreo de la banda.</span></li>
+            <li><code>BotonFisico</code>, <code>ActivadorBotonMR</code>, <code>SelectorTresPosiciones</code>, <code>FlechasSelector</code>, <code>IndicadorLed</code>, <code>EtiquetasPanel</code>, <code>DisenoBotonesMaletin</code>, <code>RestaurarMaletin</code><span>controles y detalles del maletín.</span></li>
+          </ul>
+
+          <h4 class="sub-h">Interfaz e interacción</h4>
+          <ul class="file-list">
+            <li><code>PanelLAVO</code><span>panel de LAVO en 3 pasos.</span></li>
+            <li><code>EquipoLAVO</code><span>diferencias maletín / banda del panel.</span></li>
+            <li><code>ClienteLAVO</code><span>comunicación HTTPS con el backend.</span></li>
+            <li><code>GrabadoraVoz</code>, <code>BotonMantener</code><span>voz «mantener presionado».</span></li>
+            <li><code>PanelPorGesto</code><span>abrir el menú con el brazo izquierdo.</span></li>
+            <li><code>MenuMano</code>, <code>MenuBanda</code><span>menú de la mano.</span></li>
+            <li><code>AvisoMenu</code><span>aviso de cómo abrir el menú.</span></li>
+            <li><code>ColocacionBanda</code><span>apuntar, girar (perilla) y fijar la banda.</span></li>
+            <li><code>MenuLAVO</code>, <code>TemaInicio</code><span>menú de la escena Inicio.</span></li>
+            <li><code>EstiloLAVO</code>, <code>EstiloIndustrial</code>, <code>BotonIndustrial</code>, <code>DegradadoUI</code><span>estilos.</span></li>
+            <li><code>TransicionEscena</code>, <code>Tween</code>, <code>LogoSpinner</code><span>animaciones.</span></li>
+          </ul>
+
+          <h3>Glosario de la sección</h3>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 16.</b> Términos usados en la aplicación de realidad mixta</caption>
+              <thead>
+                <tr><th>Término</th><th>Significado</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Realidad mixta</td><td>El visor muestra el cuarto real (<em>passthrough</em>) con objetos virtuales encima.</td></tr>
+                <tr><td>Passthrough</td><td>Imagen del entorno real tomada por las cámaras del visor.</td></tr>
+                <tr><td>Seguimiento de manos</td><td>El visor detecta las manos y dedos sin controles.</td></tr>
+                <tr><td>Pointer pose</td><td>Dirección del rayo que sale de la mano.</td></tr>
+                <tr><td>Pellizco</td><td>Juntar índice y pulgar; equivale a un clic.</td></tr>
+                <tr><td>Scan</td><td>Un ciclo del PLC: leer entradas, ejecutar, escribir salidas.</td></tr>
+                <tr><td>Programa maestro</td><td>Programa fijo del PLC que se configura con registros en lugar de reprogramarse.</td></tr>
+                <tr><td>Registro %R</td><td>Casilla de memoria del PLC (16 bits).</td></tr>
+                <tr><td>APK</td><td>Archivo de instalación de la app en Android/Quest.</td></tr>
+                <tr><td>HMI</td><td>Interfaz humano-máquina (pantalla del operador).</td></tr>
+                <tr><td>VFD</td><td>Variador de frecuencia que controla el motor.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
         <!-- 13 · BACKEND -->
         <section class="doc-section" id="backend" data-group="software">
           <header class="section-head">
@@ -2595,7 +3319,7 @@
 
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 11.</b> Roles del backend</caption>
+              <caption><b>Tabla 17.</b> Roles del backend</caption>
               <thead>
                 <tr><th>Rol</th><th>Dónde corre</th><th>Qué hace</th><th>Necesita</th></tr>
               </thead>
@@ -2634,7 +3358,7 @@
           <h3>Endpoints principales</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 12.</b> Endpoints del backend</caption>
+              <caption><b>Tabla 18.</b> Endpoints del backend</caption>
               <thead>
                 <tr><th>Endpoint</th><th>Descripción</th></tr>
               </thead>
@@ -2691,7 +3415,7 @@
           <h3>Modelos utilizados</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 13.</b> Modelos de IA y su responsabilidad</caption>
+              <caption><b>Tabla 19.</b> Modelos de IA y su responsabilidad</caption>
               <thead>
                 <tr><th>Modelo (Groq)</th><th>Dónde se usa</th><th>Responsabilidad</th></tr>
               </thead>
@@ -2825,7 +3549,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
           <h3>Manejo de errores del modelo</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 14.</b> Errores del modelo y respuesta del sistema</caption>
+              <caption><b>Tabla 20.</b> Errores del modelo y respuesta del sistema</caption>
               <thead>
                 <tr><th>Situación</th><th>Comportamiento</th></tr>
               </thead>
@@ -2885,7 +3609,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
           </p>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 15.</b> Registros del Ladder maestro del maletín</caption>
+              <caption><b>Tabla 21.</b> Registros del Ladder maestro del maletín</caption>
               <thead>
                 <tr><th>Registros</th><th>Contenido</th><th>Acceso</th></tr>
               </thead>
@@ -2904,7 +3628,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
           <h3>Maletín: modos de operación</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 16.</b> Modos de operación</caption>
+              <caption><b>Tabla 22.</b> Modos de operación</caption>
               <thead>
                 <tr><th>Modo</th><th>Descripción</th><th>Ejemplo</th></tr>
               </thead>
@@ -2931,7 +3655,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
           </p>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 17.</b> Registros del programa maestro de la banda</caption>
+              <caption><b>Tabla 23.</b> Registros del programa maestro de la banda</caption>
               <thead>
                 <tr><th>Registros</th><th>Contenido</th><th>Acceso</th></tr>
               </thead>
@@ -3032,7 +3756,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
               </li>
             </ol>
             <figcaption class="arch-caption" id="fig-comunicacion">
-              <b>Figura 20.</b> Camino de la información hacia el PLC. Las lecturas regresan por el mismo camino.
+              <b>Figura 22.</b> Camino de la información hacia el PLC. Las lecturas regresan por el mismo camino.
             </figcaption>
           </figure>
 
@@ -3071,7 +3795,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
 
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 18.</b> Errores de comunicación y respuesta del sistema</caption>
+              <caption><b>Tabla 24.</b> Errores de comunicación y respuesta del sistema</caption>
               <thead>
                 <tr><th>Código</th><th>Causa</th><th>Qué ve el usuario</th></tr>
               </thead>
@@ -3160,7 +3884,7 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
           <h3>Qué ocurre cuando una validación falla</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 19.</b> Comportamiento ante fallas de validación</caption>
+              <caption><b>Tabla 25.</b> Comportamiento ante fallas de validación</caption>
               <thead>
                 <tr><th>Falla</th><th>Comportamiento implementado</th></tr>
               </thead>
@@ -3407,14 +4131,14 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/timer.png" alt="Captura del timer" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 21</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 23</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer.png</span></div>
                   <p>Captura de la configuración/estado del temporizador en la interfaz o en el PLC.</p>
                 </figcaption>
               </figure>
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/timer2.png" alt="Segunda captura del timer" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 22</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer2.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 24</span><span class="fig-file"><i class="fa-solid fa-image"></i> timer2.png</span></div>
                   <p>Segunda captura del temporizador, mostrando otra fase o parámetro del mismo comportamiento.</p>
                 </figcaption>
               </figure>
@@ -3435,14 +4159,14 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/contador1.png" alt="Primera captura del contador" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 23</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador1.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 25</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador1.png</span></div>
                   <p>Captura del contador antes de alcanzar el valor objetivo (conteo en progreso).</p>
                 </figcaption>
               </figure>
               <figure class="figure">
                 <div class="figure-media"><img src="assets/resultados/contador2.png" alt="Segunda captura del contador" loading="lazy" /><span class="figure-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div>
                 <figcaption>
-                  <div class="fig-label"><span class="fig-num">Figura 24</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador2.png</span></div>
+                  <div class="fig-label"><span class="fig-num">Figura 26</span><span class="fig-file"><i class="fa-solid fa-image"></i> contador2.png</span></div>
                   <p>Captura del contador al llegar al valor configurado y activar la salida correspondiente.</p>
                 </figcaption>
               </figure>
