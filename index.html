@@ -90,14 +90,22 @@
           <ul class="nav-sub">
             <li><a href="#frontend"><span class="n">12</span>Frontend</a></li>
             <li><a href="#editor"><span class="n">13</span>Editor Ladder</a></li>
-            <li><a href="#realidad-mixta"><span class="n">14</span>Realidad mixta</a></li>
-            <li><a href="#backend"><span class="n">15</span>Backend</a></li>
+            <li><a href="#backend"><span class="n">14</span>Backend</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-group" data-group="realidad-mixta">
+          <button class="nav-group-btn" aria-expanded="false">
+            <span class="nav-group-num">IV</span><span class="nav-group-label">Realidad mixta</span><i class="fa-solid fa-chevron-right chev"></i>
+          </button>
+          <ul class="nav-sub">
+            <li><a href="#realidad-mixta"><span class="n">15</span>Realidad mixta</a></li>
           </ul>
         </div>
 
         <div class="nav-group" data-group="ia">
           <button class="nav-group-btn" aria-expanded="false">
-            <span class="nav-group-num">IV</span><span class="nav-group-label">Inteligencia Artificial</span><i class="fa-solid fa-chevron-right chev"></i>
+            <span class="nav-group-num">V</span><span class="nav-group-label">Inteligencia Artificial</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
             <li><a href="#contrato"><span class="n">16</span>Modelos y JSON lógico</a></li>
@@ -106,7 +114,7 @@
 
         <div class="nav-group" data-group="plc">
           <button class="nav-group-btn" aria-expanded="false">
-            <span class="nav-group-num">V</span><span class="nav-group-label">PLC y comunicación</span><i class="fa-solid fa-chevron-right chev"></i>
+            <span class="nav-group-num">VI</span><span class="nav-group-label">PLC y comunicación</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
             <li><a href="#plc"><span class="n">17</span>PLC y registros</a></li>
@@ -116,7 +124,7 @@
 
         <div class="nav-group" data-group="validacion">
           <button class="nav-group-btn" aria-expanded="false">
-            <span class="nav-group-num">VI</span><span class="nav-group-label">Validación</span><i class="fa-solid fa-chevron-right chev"></i>
+            <span class="nav-group-num">VII</span><span class="nav-group-label">Validación</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
             <li><a href="#seguridad"><span class="n">19</span>Validación y seguridad</a></li>
@@ -126,7 +134,7 @@
 
         <div class="nav-group" data-group="pruebas">
           <button class="nav-group-btn" aria-expanded="false">
-            <span class="nav-group-num">VII</span><span class="nav-group-label">Pruebas y resultados</span><i class="fa-solid fa-chevron-right chev"></i>
+            <span class="nav-group-num">VIII</span><span class="nav-group-label">Pruebas y resultados</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
             <li><a href="#metricas"><span class="n">21</span>Métricas</a></li>
@@ -136,7 +144,7 @@
 
         <div class="nav-group" data-group="agradecimientos">
           <button class="nav-group-btn" aria-expanded="false">
-            <span class="nav-group-num">VIII</span><span class="nav-group-label">Agradecimientos</span><i class="fa-solid fa-chevron-right chev"></i>
+            <span class="nav-group-num">IX</span><span class="nav-group-label">Agradecimientos</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
             <li><a href="#agradecimientos"><span class="n">23</span>Agradecimientos</a></li>
@@ -145,7 +153,7 @@
 
         <div class="nav-group" data-group="referencias">
           <button class="nav-group-btn" aria-expanded="false">
-            <span class="nav-group-num">IX</span><span class="nav-group-label">Referencias</span><i class="fa-solid fa-chevron-right chev"></i>
+            <span class="nav-group-num">X</span><span class="nav-group-label">Referencias</span><i class="fa-solid fa-chevron-right chev"></i>
           </button>
           <ul class="nav-sub">
             <li><a href="#referencias"><span class="n">24</span>Referencias</a></li>
@@ -2592,8 +2600,103 @@
           </p>
         </section>
 
-        <!-- 14 · REALIDAD MIXTA -->
-        <section class="doc-section" id="realidad-mixta" data-group="software">
+
+        <!-- 13 · BACKEND -->
+        <section class="doc-section" id="backend" data-group="software">
+          <header class="section-head">
+            <div>
+              <div class="section-label">Backend</div>
+              <h2>Servicios de IA y comunicación</h2>
+            </div>
+          </header>
+
+          <p>
+            El backend es una aplicación en Python con FastAPI (<code>app.py</code>, «LadderVoice Backend» v2.0).
+            El mismo código cumple dos funciones según dónde se ejecute.
+          </p>
+
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 11.</b> Roles del backend</caption>
+              <thead>
+                <tr><th>Rol</th><th>Dónde corre</th><th>Qué hace</th><th>Necesita</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Nube</td><td>Render (<code>uvicorn app:app</code>)</td><td>Genera configuraciones, atiende el chat del copiloto y registra el feedback.</td><td><code>GROQ_API_KEY</code></td></tr>
+                <tr><td>Puente PLC</td><td>PC en la red del PLC (<code>localhost:8000</code>)</td><td>Valida y escribe registros por Modbus TCP; controla la banda en vivo.</td><td>Estar en la LAN del PLC</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Tecnologías del backend</h3>
+          <ul class="file-list">
+            <li><code>FastAPI + Uvicorn</code><span>API HTTP, middleware de CORS y de contraseña, documentación interactiva en <code>/docs</code>.</span></li>
+            <li><code>Pydantic</code><span>define la forma de cada petición y respuesta (por ejemplo, <code>LogicaRequest</code> y <code>LogicaResponse</code>).</span></li>
+            <li><code>groq</code><span>cliente oficial para los modelos de lenguaje y de voz alojados en Groq.</span></li>
+            <li><code>pymodbus</code><span>cliente Modbus TCP para leer y escribir los registros de los PLC.</span></li>
+            <li><code>python-dotenv</code><span>carga las variables de entorno (llaves, modelos, contraseña, IP de los PLC).</span></li>
+            <li><code>python-multipart</code><span>recibe archivos de audio en los endpoints de voz.</span></li>
+            <li><code>pymupdf</code><span>lo usa <code>preparar_contexto.py</code>, una utilidad que extrae contexto de programas Ladder en PDF.</span></li>
+          </ul>
+
+          <h3>Estructura de módulos</h3>
+          <ul class="file-list">
+            <li><code>app.py</code><span>endpoints, prompts, validación del maletín, auto-revisión y acceso con contraseña.</span></li>
+            <li><code>device_router.py</code><span>decide si una instrucción es del maletín o de la banda (espejo de <code>equipment.js</code>).</span></li>
+            <li><code>agents/clarify.py</code><span>detecta instrucciones del maletín sin salida o sin entrada y arma las preguntas.</span></li>
+            <li><code>agents/validators.py</code><span>validación semántica contra las capacidades del perfil.</span></li>
+            <li><code>agents/experts.py</code><span>fragmentos de guía por tipo de lógica (temporizador, contador, enclavamiento, combinacional, secuencia).</span></li>
+            <li><code>agents/memory.py</code><span>selecciona ejemplos validados por el usuario para reforzar el prompt.</span></li>
+            <li><code>profile_registry.py</code>, <code>engine_spec.py</code><span>carga los perfiles de dispositivo (<code>profiles/*.json</code>) y deriva de ellos el vocabulario válido.</span></li>
+            <li><code>banda_intent.py</code><span>traduce la intención de la banda a los campos del programa maestro y comprueba que no se pierda ninguna acción.</span></li>
+            <li><code>banda_contexto.py</code><span>agrega, solo cuando hace falta, el contexto industrial de la banda al prompt.</span></li>
+            <li><code>plc_maestro.py</code>, <code>plc_banda.py</code><span>mapas de registros, validación final y plan de escritura de cada PLC.</span></li>
+          </ul>
+
+          <h3>Endpoints principales</h3>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <caption><b>Tabla 12.</b> Endpoints del backend</caption>
+              <thead>
+                <tr><th>Endpoint</th><th>Descripción</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><span class="method method-post">POST</span><span class="path">/generar-logica</span></td><td>Endpoint principal: texto → configuración validada del maletín o de la banda, o preguntas de aclaración.</td></tr>
+                <tr><td><span class="method method-post">POST</span><span class="path">/chat</span></td><td>Copiloto de los modos Aprendizaje y Práctico.</td></tr>
+                <tr><td><span class="method method-get">GET</span><span class="path">/profiles</span></td><td>Perfiles de respuesta del copiloto (Genérico, Instantánea, Media, Alta).</td></tr>
+                <tr><td><span class="method method-post">POST</span><span class="path">/login</span></td><td>Cambia la contraseña por un token de sesión firmado.</td></tr>
+                <tr><td><span class="method method-get">GET</span><span class="path">/health</span></td><td>Estado del servicio, modelo configurado y si se requiere contraseña.</td></tr>
+                <tr><td><span class="method method-post">POST</span><span class="path">/feedback</span></td><td>Marca una respuesta como aceptada, corregida o rechazada.</td></tr>
+                <tr><td><span class="method method-get">GET</span><span class="path">/memoria</span></td><td>Consulta los ejemplos guardados.</td></tr>
+                <tr><td><span class="method method-post">POST</span><span class="path">/aplicar-plc</span></td><td>Valida y escribe la configuración en el PLC del equipo indicado (solo puente local).</td></tr>
+                <tr><td><span class="method method-get">GET</span><span class="path">/plc/probar</span>, <span class="path">/plc/escanear</span></td><td>Prueba ping y puerto 502 de una IP; busca equipos Modbus TCP en la red local.</td></tr>
+                <tr><td><span class="method method-get">GET</span><span class="path">/banda/estado</span></td><td>Estado real de la banda leído del PLC.</td></tr>
+                <tr><td><span class="method method-post">POST</span><span class="path">/banda/*</span></td><td>Comandos en vivo de la banda: configuración, frecuencia, dirección, paros, reset, torreta, plumas, lámpara temporizada y contadores.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="spaced">
+            El backend conserva además <code>/transcribir</code>, <code>/voz-a-ladder</code> y <code>/generar-ladder</code>
+            (voz con Whisper y el formato Ladder anterior), pero el frontend actual no los utiliza.
+          </p>
+
+          <div class="callout callout-warn">
+            <div class="callout-icon"><i class="fa-solid fa-key"></i></div>
+            <div>
+              <span class="callout-title">Llaves y acceso</span>
+              Las llaves de Groq viven solo en las variables de entorno de Render. Si se define
+              <code>APP_PASSWORD</code>, toda petición a la API, excepto las rutas públicas como <code>/health</code>
+              y <code>/login</code>, necesita un token firmado con HMAC que vence a las 12 horas; sin él, el
+              backend responde 401.
+            </div>
+          </div>
+        </section>
+
+        <!-- ======================= PARTE IV · REALIDAD MIXTA ======================= -->
+        <div class="part" data-group="realidad-mixta"><span class="part-num">Parte IV</span><span class="part-title">Realidad mixta</span><span class="part-line"></span></div>
+
+        <!-- 15 · REALIDAD MIXTA -->
+        <section class="doc-section" id="realidad-mixta" data-group="realidad-mixta">
           <header class="section-head">
             <div>
               <div class="section-label">Realidad mixta (Meta Quest)</div>
@@ -2772,7 +2875,7 @@
           <h3>Tecnologías</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 11.</b> Tecnologías de la aplicación de realidad mixta</caption>
+              <caption><b>Tabla 13.</b> Tecnologías de la aplicación de realidad mixta</caption>
               <thead>
                 <tr><th>Elemento</th><th>Tecnología</th></tr>
               </thead>
@@ -2889,7 +2992,7 @@
           </p>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 12.</b> Comprobación de equivalencia del PLC virtual</caption>
+              <caption><b>Tabla 14.</b> Comprobación de equivalencia del PLC virtual</caption>
               <thead>
                 <tr><th>Componente</th><th>Comparado contra</th><th>Resultado</th></tr>
               </thead>
@@ -2907,7 +3010,7 @@
           <p>Une el modelo 3D con el PLC virtual:</p>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 13.</b> Entradas y salidas del maletín virtual</caption>
+              <caption><b>Tabla 15.</b> Entradas y salidas del maletín virtual</caption>
               <thead>
                 <tr><th>Control</th><th>Entrada</th><th>Salida</th><th>Luz</th></tr>
               </thead>
@@ -2928,7 +3031,7 @@
           <h4 class="sub-h">Banda (BandaVirtual)</h4>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 14.</b> Entradas y salidas de la banda virtual</caption>
+              <caption><b>Tabla 16.</b> Entradas y salidas de la banda virtual</caption>
               <thead>
                 <tr><th>Entradas</th><th>Función</th><th>Salidas</th><th>Función</th></tr>
               </thead>
@@ -3064,7 +3167,7 @@
           </p>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 15.</b> Endpoints que usan los lentes</caption>
+              <caption><b>Tabla 17.</b> Endpoints que usan los lentes</caption>
               <thead>
                 <tr><th>Endpoint</th><th>Para qué</th><th>Espera máx.</th></tr>
               </thead>
@@ -3282,7 +3385,7 @@
           <h3>Glosario de la sección</h3>
           <div class="table-wrap">
             <table class="doc-table">
-              <caption><b>Tabla 16.</b> Términos usados en la aplicación de realidad mixta</caption>
+              <caption><b>Tabla 18.</b> Términos usados en la aplicación de realidad mixta</caption>
               <thead>
                 <tr><th>Término</th><th>Significado</th></tr>
               </thead>
@@ -3303,99 +3406,8 @@
           </div>
         </section>
 
-        <!-- 13 · BACKEND -->
-        <section class="doc-section" id="backend" data-group="software">
-          <header class="section-head">
-            <div>
-              <div class="section-label">Backend</div>
-              <h2>Servicios de IA y comunicación</h2>
-            </div>
-          </header>
-
-          <p>
-            El backend es una aplicación en Python con FastAPI (<code>app.py</code>, «LadderVoice Backend» v2.0).
-            El mismo código cumple dos funciones según dónde se ejecute.
-          </p>
-
-          <div class="table-wrap">
-            <table class="doc-table">
-              <caption><b>Tabla 17.</b> Roles del backend</caption>
-              <thead>
-                <tr><th>Rol</th><th>Dónde corre</th><th>Qué hace</th><th>Necesita</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>Nube</td><td>Render (<code>uvicorn app:app</code>)</td><td>Genera configuraciones, atiende el chat del copiloto y registra el feedback.</td><td><code>GROQ_API_KEY</code></td></tr>
-                <tr><td>Puente PLC</td><td>PC en la red del PLC (<code>localhost:8000</code>)</td><td>Valida y escribe registros por Modbus TCP; controla la banda en vivo.</td><td>Estar en la LAN del PLC</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <h3>Tecnologías del backend</h3>
-          <ul class="file-list">
-            <li><code>FastAPI + Uvicorn</code><span>API HTTP, middleware de CORS y de contraseña, documentación interactiva en <code>/docs</code>.</span></li>
-            <li><code>Pydantic</code><span>define la forma de cada petición y respuesta (por ejemplo, <code>LogicaRequest</code> y <code>LogicaResponse</code>).</span></li>
-            <li><code>groq</code><span>cliente oficial para los modelos de lenguaje y de voz alojados en Groq.</span></li>
-            <li><code>pymodbus</code><span>cliente Modbus TCP para leer y escribir los registros de los PLC.</span></li>
-            <li><code>python-dotenv</code><span>carga las variables de entorno (llaves, modelos, contraseña, IP de los PLC).</span></li>
-            <li><code>python-multipart</code><span>recibe archivos de audio en los endpoints de voz.</span></li>
-            <li><code>pymupdf</code><span>lo usa <code>preparar_contexto.py</code>, una utilidad que extrae contexto de programas Ladder en PDF.</span></li>
-          </ul>
-
-          <h3>Estructura de módulos</h3>
-          <ul class="file-list">
-            <li><code>app.py</code><span>endpoints, prompts, validación del maletín, auto-revisión y acceso con contraseña.</span></li>
-            <li><code>device_router.py</code><span>decide si una instrucción es del maletín o de la banda (espejo de <code>equipment.js</code>).</span></li>
-            <li><code>agents/clarify.py</code><span>detecta instrucciones del maletín sin salida o sin entrada y arma las preguntas.</span></li>
-            <li><code>agents/validators.py</code><span>validación semántica contra las capacidades del perfil.</span></li>
-            <li><code>agents/experts.py</code><span>fragmentos de guía por tipo de lógica (temporizador, contador, enclavamiento, combinacional, secuencia).</span></li>
-            <li><code>agents/memory.py</code><span>selecciona ejemplos validados por el usuario para reforzar el prompt.</span></li>
-            <li><code>profile_registry.py</code>, <code>engine_spec.py</code><span>carga los perfiles de dispositivo (<code>profiles/*.json</code>) y deriva de ellos el vocabulario válido.</span></li>
-            <li><code>banda_intent.py</code><span>traduce la intención de la banda a los campos del programa maestro y comprueba que no se pierda ninguna acción.</span></li>
-            <li><code>banda_contexto.py</code><span>agrega, solo cuando hace falta, el contexto industrial de la banda al prompt.</span></li>
-            <li><code>plc_maestro.py</code>, <code>plc_banda.py</code><span>mapas de registros, validación final y plan de escritura de cada PLC.</span></li>
-          </ul>
-
-          <h3>Endpoints principales</h3>
-          <div class="table-wrap">
-            <table class="doc-table">
-              <caption><b>Tabla 18.</b> Endpoints del backend</caption>
-              <thead>
-                <tr><th>Endpoint</th><th>Descripción</th></tr>
-              </thead>
-              <tbody>
-                <tr><td><span class="method method-post">POST</span><span class="path">/generar-logica</span></td><td>Endpoint principal: texto → configuración validada del maletín o de la banda, o preguntas de aclaración.</td></tr>
-                <tr><td><span class="method method-post">POST</span><span class="path">/chat</span></td><td>Copiloto de los modos Aprendizaje y Práctico.</td></tr>
-                <tr><td><span class="method method-get">GET</span><span class="path">/profiles</span></td><td>Perfiles de respuesta del copiloto (Genérico, Instantánea, Media, Alta).</td></tr>
-                <tr><td><span class="method method-post">POST</span><span class="path">/login</span></td><td>Cambia la contraseña por un token de sesión firmado.</td></tr>
-                <tr><td><span class="method method-get">GET</span><span class="path">/health</span></td><td>Estado del servicio, modelo configurado y si se requiere contraseña.</td></tr>
-                <tr><td><span class="method method-post">POST</span><span class="path">/feedback</span></td><td>Marca una respuesta como aceptada, corregida o rechazada.</td></tr>
-                <tr><td><span class="method method-get">GET</span><span class="path">/memoria</span></td><td>Consulta los ejemplos guardados.</td></tr>
-                <tr><td><span class="method method-post">POST</span><span class="path">/aplicar-plc</span></td><td>Valida y escribe la configuración en el PLC del equipo indicado (solo puente local).</td></tr>
-                <tr><td><span class="method method-get">GET</span><span class="path">/plc/probar</span>, <span class="path">/plc/escanear</span></td><td>Prueba ping y puerto 502 de una IP; busca equipos Modbus TCP en la red local.</td></tr>
-                <tr><td><span class="method method-get">GET</span><span class="path">/banda/estado</span></td><td>Estado real de la banda leído del PLC.</td></tr>
-                <tr><td><span class="method method-post">POST</span><span class="path">/banda/*</span></td><td>Comandos en vivo de la banda: configuración, frecuencia, dirección, paros, reset, torreta, plumas, lámpara temporizada y contadores.</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="spaced">
-            El backend conserva además <code>/transcribir</code>, <code>/voz-a-ladder</code> y <code>/generar-ladder</code>
-            (voz con Whisper y el formato Ladder anterior), pero el frontend actual no los utiliza.
-          </p>
-
-          <div class="callout callout-warn">
-            <div class="callout-icon"><i class="fa-solid fa-key"></i></div>
-            <div>
-              <span class="callout-title">Llaves y acceso</span>
-              Las llaves de Groq viven solo en las variables de entorno de Render. Si se define
-              <code>APP_PASSWORD</code>, toda petición a la API, excepto las rutas públicas como <code>/health</code>
-              y <code>/login</code>, necesita un token firmado con HMAC que vence a las 12 horas; sin él, el
-              backend responde 401.
-            </div>
-          </div>
-        </section>
-
-        <!-- ======================= PARTE IV · INTELIGENCIA ARTIFICIAL ======================= -->
-        <div class="part" data-group="ia"><span class="part-num">Parte IV</span><span class="part-title">Inteligencia Artificial</span><span class="part-line"></span></div>
+        <!-- ======================= PARTE V · INTELIGENCIA ARTIFICIAL ======================= -->
+        <div class="part" data-group="ia"><span class="part-num">Parte V</span><span class="part-title">Inteligencia Artificial</span><span class="part-line"></span></div>
 
         <!-- 14 · IA -->
         <section class="doc-section" id="contrato" data-group="ia">
@@ -3574,8 +3586,8 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
           </ul>
         </section>
 
-        <!-- ======================= PARTE V · PLC Y COMUNICACIÓN ======================= -->
-        <div class="part" data-group="plc"><span class="part-num">Parte V</span><span class="part-title">PLC y comunicación</span><span class="part-line"></span></div>
+        <!-- ======================= PARTE VI · PLC Y COMUNICACIÓN ======================= -->
+        <div class="part" data-group="plc"><span class="part-num">Parte VI</span><span class="part-title">PLC y comunicación</span><span class="part-line"></span></div>
 
         <!-- 15 · PLC -->
         <section class="doc-section" id="plc" data-group="plc">
@@ -3810,8 +3822,8 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
           </div>
         </section>
 
-        <!-- ======================= PARTE VI · VALIDACIÓN ======================= -->
-        <div class="part" data-group="validacion"><span class="part-num">Parte VI</span><span class="part-title">Validación</span><span class="part-line"></span></div>
+        <!-- ======================= PARTE VII · VALIDACIÓN ======================= -->
+        <div class="part" data-group="validacion"><span class="part-num">Parte VII</span><span class="part-title">Validación</span><span class="part-line"></span></div>
 
         <!-- 17 · VALIDACIÓN -->
         <section class="doc-section" id="seguridad" data-group="validacion">
@@ -4012,8 +4024,8 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
           </div>
         </section>
 
-        <!-- ======================= PARTE VII · PRUEBAS Y RESULTADOS ======================= -->
-        <div class="part" data-group="pruebas"><span class="part-num">Parte VII</span><span class="part-title">Pruebas y resultados</span><span class="part-line"></span></div>
+        <!-- ======================= PARTE VIII · PRUEBAS Y RESULTADOS ======================= -->
+        <div class="part" data-group="pruebas"><span class="part-num">Parte VIII</span><span class="part-title">Pruebas y resultados</span><span class="part-line"></span></div>
 
         <!-- 12 · MÉTRICAS -->
         <section class="doc-section" id="metricas" data-group="pruebas">
@@ -4183,8 +4195,8 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
           </div>
         </section>
 
-        <!-- ======================= PARTE VIII · AGRADECIMIENTOS ======================= -->
-        <div class="part" data-group="agradecimientos"><span class="part-num">Parte VIII</span><span class="part-title">Agradecimientos</span><span class="part-line"></span></div>
+        <!-- ======================= PARTE IX · AGRADECIMIENTOS ======================= -->
+        <div class="part" data-group="agradecimientos"><span class="part-num">Parte IX</span><span class="part-title">Agradecimientos</span><span class="part-line"></span></div>
 
         <!-- 22 · AGRADECIMIENTOS -->
         <section class="doc-section" id="agradecimientos" data-group="agradecimientos">
@@ -4231,8 +4243,8 @@ I2 sea paro y Q10 quede encendida hasta presionar I2."</code></pre>
           </div>
         </section>
 
-        <!-- ======================= PARTE IX · REFERENCIAS ======================= -->
-        <div class="part" data-group="referencias"><span class="part-num">Parte IX</span><span class="part-title">Referencias</span><span class="part-line"></span></div>
+        <!-- ======================= PARTE X · REFERENCIAS ======================= -->
+        <div class="part" data-group="referencias"><span class="part-num">Parte X</span><span class="part-title">Referencias</span><span class="part-line"></span></div>
 
         <!-- 22 · REFERENCIAS -->
         <section class="doc-section" id="referencias" data-group="referencias">
